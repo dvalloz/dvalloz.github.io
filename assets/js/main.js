@@ -13,6 +13,7 @@ const projectsData = [
     repoPrivate: true,
     pdfUrl: "assets/TFG_David_Valls_Memoria.pdf",
     pdfSummaryUrl: "assets/TFG_David_Valls_Resumen_Ejecutivo.pdf",
+    pdfPresentationUrl: "assets/Presentacion_TFG.pdf",
     shortDescription: "Marco generativo para adaptación de dominio no supervisada entre 4 escáneres oftalmológicos OCT mediante Self-Supervised Semantic Bridge (SSB), Flow Matching y DINOv2.",
     featuredImage: "assets/images/tfg-benchmark.png",
     tags: ["PyTorch", "Flow Matching", "Brownian Bridge", "DINOv2 (ViT)", "Latent KL-VAE", "Medical AI", "ODE/SDE Solvers"],
@@ -190,7 +191,7 @@ const projectsData = [
       - Despliegue en producción estable 24/7 sin dependencias de servicios de suscripción de terceros.
     `,
     gallery: [
-      { src: "assets/images/jarvis-preview.svg", caption: "Ejecución de Function Calling en Telegram con Groq Qwen-2.5 27B y arquitectura asíncrona" }
+      { src: "assets/images/jarvis-preview.svg", caption: "Chat interactivo en Telegram con briefing matutino proactivo, teclado táctil inline y ejecución de function calling" }
     ]
   },
   {
@@ -246,7 +247,7 @@ const projectsData = [
       - Resistencia demostrada del watermarking forense frente a remuestreos, compresiones con pérdida y grabaciones directas de pantalla, permitiendo la identificación inequívoca del emisor de la fuga.
     `,
     gallery: [
-      { src: "assets/images/segder-preview.svg", caption: "Diagrama arquitectónico W3C EME, CDM aislado y volcado de flujo binario cifrado" }
+      { src: "assets/images/segder-preview.svg", caption: "Diagrama formal de arquitectura W3C EME: Servidor de Contenidos, CDM aislado, UA y Servidor de Licencias (KMS)" }
     ]
   },
   {
@@ -600,11 +601,17 @@ function openProjectModal(id) {
             <div class="text-xs text-purple-300 mt-0.5">Accede a la memoria académica completa en PDF (37.7 MB) directamente en tu navegador.</div>
           </div>
         </div>
-        <div class="flex items-center gap-2">
+        <div class="flex flex-wrap items-center gap-2">
           <a href="${project.pdfUrl}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-purple-600 hover:bg-purple-500 text-white font-medium text-xs shadow-sm transition-colors whitespace-nowrap">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
-            <span>Abrir Memoria en Navegador</span>
+            <span>Memoria Completa</span>
           </a>
+          ${project.pdfPresentationUrl ? `
+            <a href="${project.pdfPresentationUrl}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg bg-purple-950/80 hover:bg-purple-900 text-purple-200 border border-purple-700/80 font-medium text-xs transition-colors whitespace-nowrap">
+              <svg class="w-4 h-4 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"></path></svg>
+              <span>Presentación (Slides)</span>
+            </a>
+          ` : ''}
           ${project.pdfSummaryUrl ? `
             <a href="${project.pdfSummaryUrl}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 px-3 py-2 rounded-lg bg-neutral-800 hover:bg-neutral-700 text-neutral-200 font-medium text-xs border border-neutral-700 transition-colors whitespace-nowrap">
               <span>Resumen Ejecutivo</span>

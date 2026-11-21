@@ -1,219 +1,270 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="100%" height="100%">
   <defs>
-    <linearGradient id="drm-bg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#0a0c12"/>
-      <stop offset="100%" stop-color="#06070a"/>
+    <!-- Background Gradient -->
+    <linearGradient id="diag-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#090c13"/>
+      <stop offset="100%" stop-color="#05070a"/>
     </linearGradient>
-    <linearGradient id="sec-card" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#161b26"/>
-      <stop offset="100%" stop-color="#0f131c"/>
+
+    <!-- Node Gradients -->
+    <linearGradient id="node-cs" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0f261f"/>
+      <stop offset="100%" stop-color="#0a1a15"/>
     </linearGradient>
-    <linearGradient id="lock-glow" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#f59e0b"/>
-      <stop offset="100%" stop-color="#d97706"/>
+
+    <linearGradient id="node-ua" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#142238"/>
+      <stop offset="100%" stop-color="#0d1726"/>
     </linearGradient>
-    <filter id="drm-shadow" x="-5%" y="-5%" width="110%" height="110%">
-      <feDropShadow dx="0" dy="10" stdDeviation="18" flood-color="#000000" flood-opacity="0.6"/>
+
+    <linearGradient id="node-cdm" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#231738"/>
+      <stop offset="100%" stop-color="#170f26"/>
+    </linearGradient>
+
+    <linearGradient id="node-kms" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#2b2011"/>
+      <stop offset="100%" stop-color="#1c140a"/>
+    </linearGradient>
+
+    <!-- Filter Shadow -->
+    <filter id="diag-shadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="6" stdDeviation="12" flood-color="#000000" flood-opacity="0.6"/>
     </filter>
+
+    <!-- Arrow Marker definitions -->
+    <marker id="arrow-green" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#10b981"/>
+    </marker>
+    <marker id="arrow-blue" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#3b82f6"/>
+    </marker>
+    <marker id="arrow-amber" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#f59e0b"/>
+    </marker>
+    <marker id="arrow-purple" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#a855f7"/>
+    </marker>
   </defs>
 
-  <!-- Background -->
-  <rect width="1200" height="675" fill="url(#drm-bg)"/>
+  <!-- Background Canvas -->
+  <rect width="1200" height="675" fill="url(#diag-bg)"/>
 
-  <!-- Subtle grid -->
-  <g stroke="#f59e0b" stroke-opacity="0.03" stroke-width="1">
-    <line x1="0" y1="135" x2="1200" y2="135"/>
-    <line x1="0" y1="270" x2="1200" y2="270"/>
-    <line x1="0" y1="405" x2="1200" y2="405"/>
-    <line x1="0" y1="540" x2="1200" y2="540"/>
-    <line x1="300" y1="0" x2="300" y2="675"/>
+  <!-- Subtle Blueprint Grid -->
+  <g stroke="#ffffff" stroke-opacity="0.025" stroke-width="1">
+    <line x1="0" y1="75" x2="1200" y2="75"/>
+    <line x1="0" y1="175" x2="1200" y2="175"/>
+    <line x1="0" y1="275" x2="1200" y2="275"/>
+    <line x1="0" y1="375" x2="1200" y2="375"/>
+    <line x1="0" y1="475" x2="1200" y2="475"/>
+    <line x1="0" y1="575" x2="1200" y2="575"/>
+    <line x1="200" y1="0" x2="200" y2="675"/>
+    <line x1="400" y1="0" x2="400" y2="675"/>
     <line x1="600" y1="0" x2="600" y2="675"/>
-    <line x1="900" y1="0" x2="900" y2="675"/>
+    <line x1="800" y1="0" x2="800" y2="675"/>
+    <line x1="1000" y1="0" x2="1000" y2="675"/>
   </g>
 
-  <!-- Main Architecture Board Frame -->
-  <g transform="translate(60, 40)" filter="url(#drm-shadow)">
-    <rect width="1080" height="595" rx="16" fill="#0d111a" stroke="#222b3d" stroke-width="1.5"/>
+  <!-- Diagram Header Bar -->
+  <g transform="translate(60, 28)">
+    <text x="0" y="24" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="20" font-weight="800" fill="#ffffff" letter-spacing="-0.5">DIAGRAMA DE ARQUITECTURA W3C EME DRM &amp; CRIPTOGRAFÍA HÍBRIDA</text>
+    <text x="0" y="44" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="12" fill="#94a3b8">Topología Desacoplada Cliente-Servidor · Content Decryption Module (CDM) Aislado · Watermarking Forense</text>
+    
+    <g transform="translate(850, 8)">
+      <rect width="230" height="28" rx="14" fill="#1e2433" stroke="#2e384d" stroke-width="1"/>
+      <circle cx="16" cy="14" r="4" fill="#10b981"/>
+      <text x="28" y="18" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="600" fill="#cbd5e1">W3C EME Specification</text>
+    </g>
+  </g>
 
-    <!-- Window Bar -->
-    <rect width="1080" height="52" rx="16" fill="#121724"/>
-    <rect y="38" width="1080" height="14" fill="#121724"/>
-    <line x1="0" y1="52" x2="1080" y2="52" stroke="#222b3d" stroke-width="1"/>
+  <!-- ================= ARCHITECTURAL NODES ================= -->
 
-    <!-- Window Dots -->
-    <circle cx="28" cy="26" r="5.5" fill="#ef4444" opacity="0.8"/>
-    <circle cx="46" cy="26" r="5.5" fill="#f59e0b" opacity="0.8"/>
-    <circle cx="64" cy="26" r="5.5" fill="#10b981" opacity="0.8"/>
+  <!-- NODE 1: SERVIDOR DE CONTENIDOS (Top Center) -->
+  <g transform="translate(425, 95)" filter="url(#diag-shadow)">
+    <rect width="350" height="155" rx="12" fill="url(#node-cs)" stroke="#10b981" stroke-width="1.5"/>
+    
+    <!-- Header banner -->
+    <path d="M 0 12 C 0 5.37 5.37 0 12 0 L 338 0 C 344.63 0 350 5.37 350 12 L 350 36 L 0 36 Z" fill="#0d2b21"/>
+    <line x1="0" y1="36" x2="350" y2="36" stroke="#10b981" stroke-width="1"/>
+    <text x="16" y="23" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="13" font-weight="700" fill="#34d399">SERVIDOR DE CONTENIDOS (Puerto 8000)</text>
+    
+    <!-- Specs -->
+    <g transform="translate(16, 52)" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="11" fill="#cbd5e1">
+      <text x="0" y="14">• Repositorio de Medios: Imágenes (JPEG, PNG) y Vídeo (MP4)</text>
+      <text x="0" y="34">• <tspan fill="#6ee7b7" font-weight="600">Inyector Dinámico de Watermark Forense</tspan> (User ID + IP)</text>
+      <text x="0" y="54">• Cifrador simétrico de alta tasa: <tspan font-family="'JetBrains Mono', monospace" fill="#ffffff">AES-128-CBC PKCS#7</tspan></text>
+      <text x="0" y="74">• Servidor de Sockets TCP multihilo concurrente</text>
+    </g>
+  </g>
 
-    <!-- Title -->
-    <text x="96" y="32" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="14" font-weight="700" fill="#ffffff">W3C EME DRM Architecture &amp; Forensic Watermarking</text>
-    <rect x="520" y="16" width="140" height="22" rx="11" fill="#f59e0b" fill-opacity="0.15" stroke="#f59e0b" stroke-opacity="0.3"/>
-    <text x="532" y="31" font-family="monospace" font-size="10.5" font-weight="600" fill="#fbbf24">RSA-2048 + AES-128</text>
+  <!-- CLIENT SECURITY BOUNDARY (Dotted Outer Box) -->
+  <g transform="translate(60, 290)">
+    <rect width="715" height="345" rx="16" fill="#0c111a" fill-opacity="0.6" stroke="#3b82f6" stroke-width="1.2" stroke-dasharray="6 6"/>
+    
+    <!-- Boundary Tag -->
+    <rect x="20" y="-12" width="220" height="24" rx="6" fill="#152136" stroke="#3b82f6" stroke-width="1"/>
+    <text x="32" y="4" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="700" fill="#60a5fa">CLIENT ENVIRONMENT</text>
+  </g>
 
-    <!-- Top Right Specs -->
-    <g transform="translate(860, 14)">
-      <rect width="190" height="24" rx="12" fill="#1a2233" stroke="#2c3a54" stroke-width="1"/>
-      <circle cx="16" cy="12" r="3.5" fill="#f59e0b"/>
-      <text x="28" y="16" font-family="monospace" font-size="10" fill="#cbd5e1">Cryptographic Verified</text>
+  <!-- NODE 2: CONTENT DECRYPTION MODULE - CDM (Bottom Left, Inside Client Sandbox) -->
+  <g transform="translate(85, 325)" filter="url(#diag-shadow)">
+    <rect width="320" height="280" rx="12" fill="url(#node-cdm)" stroke="#a855f7" stroke-width="1.5"/>
+    
+    <!-- Header banner -->
+    <path d="M 0 12 C 0 5.37 5.37 0 12 0 L 308 0 C 314.63 0 320 5.37 320 12 L 320 36 L 0 36 Z" fill="#29153d"/>
+    <line x1="0" y1="36" x2="320" y2="36" stroke="#a855f7" stroke-width="1"/>
+    <text x="16" y="23" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="12.5" font-weight="700" fill="#c084fc">CONTENT DECRYPTION MODULE (CDM)</text>
+    
+    <rect x="220" y="8" width="88" height="20" rx="4" fill="#a855f7" fill-opacity="0.25"/>
+    <text x="227" y="22" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="700" fill="#e9d5ff">PORT 8002</text>
+
+    <!-- Isolated Sandbox Badge -->
+    <g transform="translate(16, 48)">
+      <rect width="288" height="34" rx="6" fill="#1b1029" stroke="#7e22ce" stroke-width="1"/>
+      <text x="12" y="21" font-family="'JetBrains Mono', monospace" font-size="10.5" font-weight="700" fill="#e9d5ff">🔒 HARDWARE / MEMORY SANDBOX</text>
     </g>
 
-    <!-- Content Architecture Flow Diagram -->
-    <g transform="translate(30, 80)">
-
-      <!-- Node 1: CLIENT USER AGENT & CDM -->
-      <g transform="translate(0, 0)">
-        <rect width="320" height="470" rx="12" fill="url(#sec-card)" stroke="#2b364c" stroke-width="1.2"/>
-        
-        <!-- Header -->
-        <rect width="320" height="42" rx="12" fill="#171f2e"/>
-        <rect y="30" width="320" height="12" fill="#171f2e"/>
-        <line x1="0" y1="42" x2="320" y2="42" stroke="#2b364c" stroke-width="1"/>
-        <text x="18" y="27" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="13" font-weight="700" fill="#60a5fa">CLIENT (Browser / User Agent)</text>
-
-        <!-- Component 1A: User Agent Frontend -->
-        <g transform="translate(16, 58)">
-          <rect width="288" height="96" rx="8" fill="#111622" stroke="#1e2738" stroke-width="1"/>
-          <text x="14" y="24" font-family="monospace" font-size="11" font-weight="700" fill="#93c5fd">1. User Agent (Front-end)</text>
-          <text x="14" y="44" font-family="sans-serif" font-size="10" fill="#94a3b8">• Inspección heurística de Magic Bytes (JFIF, PNG)</text>
-          <text x="14" y="60" font-family="sans-serif" font-size="10" fill="#94a3b8">• Recepción de flujos cifrados vía TCP Sockets</text>
-          <text x="14" y="76" font-family="sans-serif" font-size="10" fill="#94a3b8">• Cero acceso a claves maestras (Sandboxed)</text>
-        </g>
-
-        <!-- Component 1B: Isolated CDM -->
-        <g transform="translate(16, 170)">
-          <rect width="288" height="175" rx="8" fill="#19172e" stroke="#8b5cf6" stroke-opacity="0.5" stroke-width="1.5"/>
-          <text x="14" y="24" font-family="monospace" font-size="11" font-weight="800" fill="#c4b5fd">2. Content Decryption Module (CDM)</text>
-          <text x="14" y="42" font-family="sans-serif" font-size="9.5" fill="#a78bfa">Entorno Seguro Aislado (Hardware / Memory Sandbox)</text>
-          
-          <rect x="14" y="54" width="260" height="40" rx="6" fill="#110e24"/>
-          <text x="22" y="70" font-family="monospace" font-size="9" fill="#e9d5ff">Custodia Clave Privada: RSA-2048</text>
-          <text x="22" y="85" font-family="monospace" font-size="9" fill="#a855f7">Firma de Licencia: RSA-PSS (SHA-256)</text>
-
-          <text x="14" y="112" font-family="sans-serif" font-size="9.5" fill="#cbd5e1">• Descifrado simétrico local: AES-128 CBC</text>
-          <text x="14" y="128" font-family="sans-serif" font-size="9.5" fill="#cbd5e1">• Buffer de vídeo protegido en memoria</text>
-          <text x="14" y="144" font-family="sans-serif" font-size="9.5" fill="#cbd5e1">• Renderizado directo a hardware</text>
-          <rect x="14" y="152" width="120" height="14" rx="3" fill="#10b981" fill-opacity="0.2"/>
-          <text x="18" y="162" font-family="monospace" font-size="8" font-weight="700" fill="#34d399">NON-REPUDIATION OK</text>
-        </g>
-
-        <!-- CDM Status Badge -->
-        <g transform="translate(16, 360)">
-          <rect width="288" height="92" rx="8" fill="#141a26" stroke="#253247" stroke-width="1"/>
-          <text x="14" y="24" font-family="monospace" font-size="10.5" font-weight="700" fill="#f59e0b">CRYPTO SPECIFICATIONS</text>
-          <text x="14" y="44" font-family="monospace" font-size="9.5" fill="#94a3b8">• Asimétrico: RSA-2048 OAEP</text>
-          <text x="14" y="60" font-family="monospace" font-size="9.5" fill="#94a3b8">• Simétrico: AES-128-CBC PKCS#7</text>
-          <text x="14" y="76" font-family="monospace" font-size="9.5" fill="#94a3b8">• Integridad: SHA-256 Digest</text>
-        </g>
-      </g>
-
-      <!-- Middle Connections & Data Flow -->
-      <g transform="translate(335, 100)">
-        <!-- Flow Arrow 1: License Request -->
-        <path d="M 0 40 L 70 40" stroke="#f59e0b" stroke-width="2" stroke-dasharray="4 4"/>
-        <polygon points="70,36 80,40 70,44" fill="#f59e0b"/>
-        <text x="5" y="30" font-family="monospace" font-size="9" fill="#f59e0b">License Request (RSA-PSS)</text>
-
-        <!-- Flow Arrow 2: License Response (Key Encrypted) -->
-        <path d="M 80 100 L 10 100" stroke="#8b5cf6" stroke-width="2"/>
-        <polygon points="10,96 0,100 10,104" fill="#8b5cf6"/>
-        <text x="5" y="90" font-family="monospace" font-size="9" fill="#c4b5fd">RSA-2048 OAEP (AES Key + IV)</text>
-
-        <!-- Flow Arrow 3: Encrypted Media Stream -->
-        <path d="M 80 230 L 10 230" stroke="#3b82f6" stroke-width="2.5"/>
-        <polygon points="10,226 0,230 10,234" fill="#3b82f6"/>
-        <text x="5" y="220" font-family="monospace" font-size="9" fill="#60a5fa">AES-128 Stream + Watermark</text>
-      </g>
-
-      <!-- Node 2: LICENSE SERVER (KMS) -->
-      <g transform="translate(430, 0)">
-        <rect width="280" height="210" rx="12" fill="url(#sec-card)" stroke="#2b364c" stroke-width="1.2"/>
-        
-        <!-- Header -->
-        <rect width="280" height="42" rx="12" fill="#171f2e"/>
-        <rect y="30" width="280" height="12" fill="#171f2e"/>
-        <line x1="0" y1="42" x2="280" y2="42" stroke="#2b364c" stroke-width="1"/>
-        <text x="18" y="27" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="13" font-weight="700" fill="#f59e0b">KEY MANAGEMENT (KMS)</text>
-
-        <g transform="translate(14, 56)">
-          <text x="0" y="16" font-family="sans-serif" font-size="10.5" font-weight="600" fill="#f1f5f9">Verificación Criptográfica de Derechos</text>
-          <text x="0" y="34" font-family="sans-serif" font-size="9.5" fill="#94a3b8">• Valida firma digital RSA-PSS del CDM.</text>
-          <text x="0" y="50" font-family="sans-serif" font-size="9.5" fill="#94a3b8">• Extrae clave pública autorizada.</text>
-          <text x="0" y="66" font-family="sans-serif" font-size="9.5" fill="#94a3b8">• Empaqueta clave de sesión AES-128.</text>
-          
-          <rect x="0" y="80" width="250" height="52" rx="6" fill="#101420" stroke="#26334a" stroke-width="1"/>
-          <text x="10" y="98" font-family="monospace" font-size="8.5" fill="#fbbf24">CIPHERTEXT_OUTPUT =</text>
-          <text x="10" y="112" font-family="monospace" font-size="8.5" fill="#cbd5e1">RSA_OAEP_Encrypt(K_pub_cdm, AES_KEY || IV)</text>
-        </g>
-      </g>
-
-      <!-- Node 3: CONTENT & FORENSIC WATERMARKING SERVER -->
-      <g transform="translate(430, 235)">
-        <rect width="280" height="235" rx="12" fill="url(#sec-card)" stroke="#2b364c" stroke-width="1.2"/>
-        
-        <!-- Header -->
-        <rect width="280" height="42" rx="12" fill="#171f2e"/>
-        <rect y="30" width="280" height="12" fill="#171f2e"/>
-        <line x1="0" y1="42" x2="280" y2="42" stroke="#2b364c" stroke-width="1"/>
-        <text x="18" y="27" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="13" font-weight="700" fill="#38bdf8">MEDIA &amp; WATERMARK SERVER</text>
-
-        <g transform="translate(14, 56)">
-          <text x="0" y="16" font-family="sans-serif" font-size="10.5" font-weight="600" fill="#f1f5f9">Inyección Dinámica Forense</text>
-          <text x="0" y="34" font-family="sans-serif" font-size="9.5" fill="#94a3b8">• Inyección en tiempo real en espacio YUV/RGB</text>
-          <text x="0" y="50" font-family="sans-serif" font-size="9.5" fill="#94a3b8">• Huella indeleble: UserID + Timestamp + IP</text>
-          <text x="0" y="66" font-family="sans-serif" font-size="9.5" fill="#94a3b8">• Resistencia frente a recodificación / screen capture</text>
-          
-          <rect x="0" y="80" width="250" height="82" rx="6" fill="#101420" stroke="#26334a" stroke-width="1"/>
-          <text x="10" y="98" font-family="monospace" font-size="8.5" fill="#38bdf8">// PIPELINE STREAM MULTIHILO</text>
-          <text x="10" y="114" font-family="monospace" font-size="8" fill="#94a3b8">1. Raw Frame Read -> InjectWatermark()</text>
-          <text x="10" y="128" font-family="monospace" font-size="8" fill="#94a3b8">2. AES-128-CBC Encrypt(Frame)</text>
-          <text x="10" y="142" font-family="monospace" font-size="8" fill="#94a3b8">3. TCP Socket Flush chunked chunks</text>
-        </g>
-      </g>
-
-      <!-- Right Panel: Binary Inspection & Hex Stream Proof -->
-      <g transform="translate(730, 0)">
-        <rect width="290" height="470" rx="12" fill="#111622" stroke="#232d3f" stroke-width="1.2"/>
-        
-        <!-- Header -->
-        <rect width="290" height="42" rx="12" fill="#151b29"/>
-        <rect y="30" width="290" height="12" fill="#151b29"/>
-        <line x1="0" y1="42" x2="290" y2="42" stroke="#232d3f" stroke-width="1"/>
-        <text x="18" y="27" font-family="monospace" font-size="11" font-weight="700" fill="#a7f3d0">RAW CIPHERTEXT STREAM DUMP</text>
-
-        <!-- Hex dump lines -->
-        <g transform="translate(16, 60)" font-family="'JetBrains Mono', monospace" font-size="9">
-          <text x="0" y="14" fill="#64748b">OFFSET  00 01 02 03 04 05 06 07  ASCII</text>
-          <line x1="0" y1="22" x2="258" y2="22" stroke="#222b3d" stroke-width="1"/>
-          
-          <text x="0" y="38" fill="#38bdf8">000000  53 45 47 44 45 52 01 00  SEGDER..</text>
-          <text x="0" y="54" fill="#e2e8f0">000008  A4 1F 8C 3D 92 B1 F0 4E  ...=...N</text>
-          <text x="0" y="70" fill="#e2e8f0">000010  7B 28 E1 04 59 CC A3 D8  {(..Y...</text>
-          <text x="0" y="86" fill="#e2e8f0">000018  11 9F 44 BC 80 32 E7 9A  ..D..2..</text>
-          <text x="0" y="102" fill="#e2e8f0">000020  FE 3C 12 AA 76 09 81 B4  .&lt;..v...</text>
-          <text x="0" y="118" fill="#e2e8f0">000028  C0 D4 55 61 2F 9E BB 02  ..Ua/...</text>
-          <text x="0" y="134" fill="#e2e8f0">000030  88 71 23 F9 10 BA CE 47  .q#....G</text>
-          <text x="0" y="150" fill="#e2e8f0">000038  99 30 14 EF 5D 28 01 62  .0..](.b</text>
-        </g>
-
-        <!-- Evaluation Results Box -->
-        <g transform="translate(16, 240)">
-          <rect width="258" height="210" rx="8" fill="#0f141f" stroke="#232f42" stroke-width="1"/>
-          <text x="14" y="24" font-family="monospace" font-size="10.5" font-weight="700" fill="#ffffff">RESULTADOS &amp; VALIDACIÓN</text>
-          
-          <g transform="translate(14, 44)" font-family="sans-serif" font-size="10">
-            <text x="0" y="0" fill="#94a3b8">✔ <tspan fill="#f1f5f9" font-weight="600">Zero-Leakage en Tránsito</tspan>: Ninguna clave expuesta fuera del CDM aislado.</text>
-            <text x="0" y="32" fill="#94a3b8">✔ <tspan fill="#f1f5f9" font-weight="600">Rendimiento en Streaming</tspan>: Latencia de descifrado negligible en frames HD.</text>
-            <text x="0" y="64" fill="#94a3b8">✔ <tspan fill="#f1f5f9" font-weight="600">Trazabilidad Forense</tspan>: Identificación inequívoca del cliente ante redistribución.</text>
-            <text x="0" y="96" fill="#94a3b8">✔ <tspan fill="#f1f5f9" font-weight="600">Estándar W3C</tspan>: Prototipo fiel a la especificación EME comercial.</text>
-          </g>
-
-          <rect x="14" y="170" width="230" height="24" rx="4" fill="#f59e0b" fill-opacity="0.15" stroke="#f59e0b" stroke-opacity="0.4"/>
-          <text x="22" y="186" font-family="monospace" font-size="9" font-weight="700" fill="#fbbf24">W3C EME COMPLIANT PROTOTYPE</text>
-        </g>
-
-      </g>
-
+    <g transform="translate(16, 100)" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="11" fill="#cbd5e1">
+      <text x="0" y="14">• Custodia de <tspan fill="#f3e8ff" font-weight="600">Clave Privada RSA-2048</tspan> del cliente</text>
+      <text x="0" y="32">• Emisión de License Request con <tspan fill="#c084fc" font-weight="600">Firma RSA-PSS</tspan></text>
+      <text x="0" y="50">• Descifrado de sesión de claves e IV con RSA</text>
+      <text x="0" y="68">• Descifrado simétrico directo con <tspan fill="#ffffff" font-weight="600">AES-128 CBC</tspan></text>
+      <text x="0" y="86">• Desempaquetado seguro de padding PKCS#7</text>
+      <text x="0" y="104">• Salida a buffer de vídeo protegido (Zero-Leak)</text>
     </g>
 
+    <!-- Security Check -->
+    <g transform="translate(16, 228)">
+      <rect width="288" height="34" rx="6" fill="#0f291e" stroke="#10b981" stroke-width="1"/>
+      <circle cx="16" cy="17" r="4" fill="#10b981"/>
+      <text x="28" y="21" font-family="'JetBrains Mono', monospace" font-size="9.5" font-weight="700" fill="#34d399">NON-REPUDIATION &amp; ZERO-EXPOSURE</text>
+    </g>
+  </g>
+
+  <!-- NODE 3: USER AGENT - UA (Bottom Center, Inside Client) -->
+  <g transform="translate(445, 325)" filter="url(#diag-shadow)">
+    <rect width="305" height="280" rx="12" fill="url(#node-ua)" stroke="#3b82f6" stroke-width="1.5"/>
+    
+    <!-- Header banner -->
+    <path d="M 0 12 C 0 5.37 5.37 0 12 0 L 293 0 C 299.63 0 305 5.37 305 12 L 305 36 L 0 36 Z" fill="#11223b"/>
+    <line x1="0" y1="36" x2="305" y2="36" stroke="#3b82f6" stroke-width="1"/>
+    <text x="16" y="23" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="13" font-weight="700" fill="#60a5fa">USER AGENT (UA / Front-end)</text>
+
+    <g transform="translate(16, 52)" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="11" fill="#cbd5e1">
+      <text x="0" y="14">• Orquestador de peticiones del usuario</text>
+      <text x="0" y="34">• Transporte de red y socket TCP con servidores</text>
+      <text x="0" y="54">• <tspan fill="#93c5fd" font-weight="600">Inspección heurística de Magic Bytes</tspan>:</text>
+      <text x="12" y="72" font-family="'JetBrains Mono', monospace" font-size="10" fill="#60a5fa">↳ Encabezados JFIF (JPEG) / PNG / MP4</text>
+      <text x="0" y="94">• Verificación de alineación de bloque (16B)</text>
+      <text x="0" y="114">• Reenvío de licencias cifradas sin descifrado</text>
+      <text x="0" y="134">• <tspan fill="#f87171" font-weight="600">Sin acceso</tspan> a claves maestras ni memoria CDM</text>
+    </g>
+
+    <!-- User Interaction representation -->
+    <g transform="translate(16, 218)">
+      <rect width="273" height="42" rx="6" fill="#0c1626" stroke="#253a59" stroke-width="1"/>
+      <text x="12" y="18" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="10.5" font-weight="600" fill="#93c5fd">👤 Usuario / Interfaz de Reproducción</text>
+      <text x="12" y="32" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="9.5" fill="#64748b">Solicita contenido y visualiza el render final</text>
+    </g>
+  </g>
+
+  <!-- NODE 4: SERVIDOR DE LICENCIAS - KMS (Right Side) -->
+  <g transform="translate(830, 325)" filter="url(#diag-shadow)">
+    <rect width="320" height="280" rx="12" fill="url(#node-kms)" stroke="#f59e0b" stroke-width="1.5"/>
+    
+    <!-- Header banner -->
+    <path d="M 0 12 C 0 5.37 5.37 0 12 0 L 308 0 C 314.63 0 320 5.37 320 12 L 320 36 L 0 36 Z" fill="#36220b"/>
+    <line x1="0" y1="36" x2="320" y2="36" stroke="#f59e0b" stroke-width="1"/>
+    <text x="16" y="23" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="13" font-weight="700" fill="#fbbf24">SERVIDOR DE LICENCIAS (KMS)</text>
+    
+    <rect x="220" y="8" width="88" height="20" rx="4" fill="#f59e0b" fill-opacity="0.25"/>
+    <text x="227" y="22" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="700" fill="#fde68a">PORT 9000</text>
+
+    <g transform="translate(16, 52)" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="11" fill="#cbd5e1">
+      <text x="0" y="14">• Key Management Server centralizado</text>
+      <text x="0" y="34">• Validación criptográfica de firma <tspan fill="#fde68a" font-weight="600">RSA-PSS</tspan></text>
+      <text x="0" y="54">• BBDD de claves simétricas de contenido e IVs</text>
+      <text x="0" y="74">• <tspan fill="#fbbf24" font-weight="600">Cifrado de licencia</tspan> para el CDM:</text>
+      <text x="12" y="92" font-family="'JetBrains Mono', monospace" font-size="10" fill="#fbbf24">↳ RSA-2048 OAEP (SHA-256)</text>
+      <text x="0" y="114">• Despacho de clave de descifrado y vector IV</text>
+      <text x="0" y="134">• Registro de auditoría de licencias emitidas</text>
+    </g>
+
+    <!-- Key Store badge -->
+    <g transform="translate(16, 218)">
+      <rect width="288" height="42" rx="6" fill="#1f1608" stroke="#523910" stroke-width="1"/>
+      <text x="12" y="18" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="700" fill="#fbbf24">🔐 SECURE KEY STORAGE</text>
+      <text x="12" y="32" font-family="'JetBrains Mono', monospace" font-size="9" fill="#94a3b8">claves.txt &amp; vectores.txt (Cifrados)</text>
+    </g>
+  </g>
+
+  <!-- ================= COMMUNICATION FLOW ARROWS ================= -->
+
+  <!-- STEP 1: Solicitud de archivo (UA -> Content Server) -->
+  <g>
+    <path d="M 560 325 L 560 255" stroke="#3b82f6" stroke-width="2.5" marker-end="url(#arrow-blue)"/>
+    <!-- Step 1 badge -->
+    <rect x="520" y="275" width="28" height="22" rx="6" fill="#2563eb"/>
+    <text x="534" y="291" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="800" fill="#ffffff" text-anchor="middle">1</text>
+    <text x="465" y="290" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="10.5" font-weight="600" fill="#93c5fd">GET &lt;media&gt;</text>
+  </g>
+
+  <!-- STEP 2: Contenido Protegido + Watermark (Content Server -> UA) -->
+  <g>
+    <path d="M 640 255 L 640 325" stroke="#10b981" stroke-width="2.5" marker-end="url(#arrow-green)"/>
+    <!-- Step 2 badge -->
+    <rect x="655" y="275" width="28" height="22" rx="6" fill="#059669"/>
+    <text x="669" y="291" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="800" fill="#ffffff" text-anchor="middle">2</text>
+    <text x="692" y="286" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="10.5" font-weight="600" fill="#34d399">Stream Cifrado AES-128</text>
+    <text x="692" y="300" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="9.5" fill="#6ee7b7">+ Watermark Forense</text>
+  </g>
+
+  <!-- STEP 3: Solicitud de Licencia (CDM <-> UA <-> KMS) -->
+  <!-- 3A: CDM -> UA -->
+  <g>
+    <path d="M 405 400 L 440 400" stroke="#a855f7" stroke-width="2.5" marker-end="url(#arrow-purple)"/>
+    <rect x="410" y="375" width="24" height="20" rx="5" fill="#9333ea"/>
+    <text x="422" y="390" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="800" fill="#ffffff" text-anchor="middle">3a</text>
+    <text x="422" y="420" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="8.5" font-weight="600" fill="#c084fc" text-anchor="middle">License Req (RSA-PSS)</text>
+  </g>
+
+  <!-- 3B: UA -> KMS -->
+  <g>
+    <path d="M 750 400 L 825 400" stroke="#f59e0b" stroke-width="2.5" marker-end="url(#arrow-amber)"/>
+    <rect x="772" y="375" width="24" height="20" rx="5" fill="#d97706"/>
+    <text x="784" y="390" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="800" fill="#ffffff" text-anchor="middle">3b</text>
+    <text x="784" y="420" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="8.5" font-weight="600" fill="#fbbf24" text-anchor="middle">Forward Request</text>
+  </g>
+
+  <!-- STEP 4: Retorno de Claves Cifradas & Descifrado Local -->
+  <!-- 4A: KMS -> UA -->
+  <g>
+    <path d="M 830 460 L 755 460" stroke="#f59e0b" stroke-width="2.5" marker-end="url(#arrow-amber)"/>
+    <rect x="772" y="445" width="24" height="20" rx="5" fill="#d97706"/>
+    <text x="784" y="460" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="800" fill="#ffffff" text-anchor="middle">4a</text>
+    <text x="784" y="480" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="8.5" font-weight="600" fill="#fbbf24" text-anchor="middle">Clave AES cifrada RSA</text>
+  </g>
+
+  <!-- 4B: UA -> CDM -->
+  <g>
+    <path d="M 445 460 L 410 460" stroke="#a855f7" stroke-width="2.5" marker-end="url(#arrow-purple)"/>
+    <rect x="410" y="445" width="24" height="20" rx="5" fill="#9333ea"/>
+    <text x="422" y="460" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="800" fill="#ffffff" text-anchor="middle">4b</text>
+    <text x="422" y="480" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="8.5" font-weight="600" fill="#c084fc" text-anchor="middle">Descifrado en CDM</text>
+  </g>
+
+  <!-- Flow Legend Bar at the bottom -->
+  <g transform="translate(60, 642)">
+    <circle cx="6" cy="6" r="4" fill="#3b82f6"/>
+    <text x="16" y="9" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="10.5" fill="#94a3b8">Flujo de Petición HTTP/TCP</text>
+
+    <circle cx="190" cy="6" r="4" fill="#10b981"/>
+    <text x="200" y="9" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="10.5" fill="#94a3b8">Stream Audiovisual Cifrado</text>
+
+    <circle cx="390" cy="6" r="4" fill="#a855f7"/>
+    <text x="400" y="9" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="10.5" fill="#94a3b8">Aislamiento Seguro CDM</text>
+
+    <circle cx="580" cy="6" r="4" fill="#f59e0b"/>
+    <text x="590" y="9" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="10.5" fill="#94a3b8">Intercambio de Licencias KMS (RSA-2048 OAEP)</text>
   </g>
 </svg>

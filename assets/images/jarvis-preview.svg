@@ -1,192 +1,203 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="100%" height="100%">
   <defs>
-    <linearGradient id="jarvis-bg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#090b10"/>
-      <stop offset="100%" stop-color="#06070a"/>
+    <!-- Telegram Dark Theme Background -->
+    <linearGradient id="tg-bg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0f1621"/>
+      <stop offset="100%" stop-color="#090d14"/>
     </linearGradient>
-    <linearGradient id="tg-card" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#171d29"/>
-      <stop offset="100%" stop-color="#121620"/>
+
+    <!-- User Message Bubble (Telegram Blue) -->
+    <linearGradient id="tg-user-bubble" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2b5278"/>
+      <stop offset="100%" stop-color="#1e3b56"/>
     </linearGradient>
-    <linearGradient id="bot-bubble" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#1f293d"/>
-      <stop offset="100%" stop-color="#182030"/>
+
+    <!-- Bot Message Bubble (Telegram Dark Navy) -->
+    <linearGradient id="tg-bot-bubble" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#182533"/>
+      <stop offset="100%" stop-color="#131c26"/>
     </linearGradient>
-    <linearGradient id="user-bubble" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#2563eb"/>
-      <stop offset="100%" stop-color="#1d4ed8"/>
-    </linearGradient>
-    <linearGradient id="tool-bar" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#3b82f6"/>
-      <stop offset="100%" stop-color="#06b6d4"/>
-    </linearGradient>
+
+    <!-- Subtle Drop Shadow -->
     <filter id="tg-shadow" x="-5%" y="-5%" width="110%" height="110%">
-      <feDropShadow dx="0" dy="10" stdDeviation="18" flood-color="#000000" flood-opacity="0.6"/>
+      <feDropShadow dx="0" dy="8" stdDeviation="16" flood-color="#000000" flood-opacity="0.6"/>
     </filter>
   </defs>
 
-  <!-- Background -->
-  <rect width="1200" height="675" fill="url(#jarvis-bg)"/>
+  <!-- Outer Canvas Frame -->
+  <rect width="1200" height="675" fill="#070a0f"/>
 
-  <!-- Subtle tech lattice lines -->
-  <g stroke="#3b82f6" stroke-opacity="0.03" stroke-width="1">
-    <line x1="0" y1="135" x2="1200" y2="135"/>
-    <line x1="0" y1="270" x2="1200" y2="270"/>
-    <line x1="0" y1="405" x2="1200" y2="405"/>
-    <line x1="0" y1="540" x2="1200" y2="540"/>
-    <line x1="300" y1="0" x2="300" y2="675"/>
-    <line x1="600" y1="0" x2="600" y2="675"/>
-    <line x1="900" y1="0" x2="900" y2="675"/>
-  </g>
+  <!-- Telegram Desktop Client Window -->
+  <g transform="translate(60, 25)" filter="url(#tg-shadow)">
+    <!-- Window Border & Outer Shell -->
+    <rect width="1080" height="625" rx="16" fill="url(#tg-bg)" stroke="#222e3d" stroke-width="1.5"/>
 
-  <!-- Telegram Desktop Client Frame -->
-  <g transform="translate(60, 40)" filter="url(#tg-shadow)">
-    <!-- Main Window Background -->
-    <rect width="1080" height="595" rx="16" fill="#0e131d" stroke="#212a3b" stroke-width="1.5"/>
+    <!-- Telegram Header Bar -->
+    <path d="M 0 16 C 0 7.16 7.16 0 16 0 L 1064 0 C 1072.84 0 1080 7.16 1080 16 L 1080 62 L 0 62 Z" fill="#17212b"/>
+    <line x1="0" y1="62" x2="1080" y2="62" stroke="#222e3d" stroke-width="1"/>
 
-    <!-- App Title Bar -->
-    <rect width="1080" height="52" rx="16" fill="#131926"/>
-    <rect y="38" width="1080" height="14" fill="#131926"/>
-    <line x1="0" y1="52" x2="1080" y2="52" stroke="#212a3b" stroke-width="1"/>
+    <!-- Window Controls (Mac/Unix style dots) -->
+    <circle cx="28" cy="31" r="5.5" fill="#ef4444" opacity="0.8"/>
+    <circle cx="46" cy="31" r="5.5" fill="#f59e0b" opacity="0.8"/>
+    <circle cx="64" cy="31" r="5.5" fill="#10b981" opacity="0.8"/>
 
-    <!-- Window Dots -->
-    <circle cx="28" cy="26" r="5.5" fill="#ef4444" opacity="0.8"/>
-    <circle cx="46" cy="26" r="5.5" fill="#f59e0b" opacity="0.8"/>
-    <circle cx="64" cy="26" r="5.5" fill="#10b981" opacity="0.8"/>
-
-    <!-- Top Chat Header -->
-    <g transform="translate(100, 11)">
-      <!-- Avatar Bot -->
-      <circle cx="15" cy="15" r="15" fill="#2563eb"/>
-      <text x="15" y="19" font-family="monospace" font-size="12" font-weight="800" fill="#ffffff" text-anchor="middle">J</text>
-      
-      <!-- Name & Status -->
-      <text x="38" y="14" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="13.5" font-weight="700" fill="#ffffff">Jarvis Personal Executive</text>
-      <rect x="200" y="3" width="34" height="15" rx="3" fill="#3b82f6" fill-opacity="0.25"/>
-      <text x="205" y="14" font-family="sans-serif" font-size="9" font-weight="700" fill="#60a5fa">BOT</text>
-
-      <text x="38" y="27" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="10.5" fill="#10b981">● Groq Qwen-2.5 27B · APScheduler Activo</text>
+    <!-- Telegram Back Arrow / Menu Icon -->
+    <g transform="translate(95, 22)" stroke="#708499" stroke-width="2" stroke-linecap="round">
+      <line x1="0" y1="9" x2="14" y2="9"/>
+      <polyline points="7,2 0,9 7,16"/>
     </g>
 
-    <!-- Top Right Specs Tag -->
-    <g transform="translate(850, 14)">
-      <rect width="200" height="24" rx="12" fill="#1a2333" stroke="#2d3a52" stroke-width="1"/>
-      <text x="14" y="16" font-family="monospace" font-size="10" font-weight="600" fill="#93c5fd">18 JSON Tool Schemas</text>
+    <!-- Bot Avatar -->
+    <g transform="translate(130, 11)">
+      <circle cx="20" cy="20" r="20" fill="#2481cc"/>
+      <!-- Robot / AI Avatar Icon -->
+      <path d="M 12 16 L 28 16 C 29.5 16 30.5 17 30.5 18.5 L 30.5 25.5 C 30.5 27 29.5 28 28 28 L 12 28 C 10.5 28 9.5 27 9.5 25.5 L 9.5 18.5 C 9.5 17 10.5 16 12 16 Z" fill="#ffffff" opacity="0.95"/>
+      <circle cx="16" cy="21.5" r="2.2" fill="#2481cc"/>
+      <circle cx="24" cy="21.5" r="2.2" fill="#2481cc"/>
+      <line x1="20" y1="11" x2="20" y2="16" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
+      <circle cx="20" cy="10" r="2" fill="#ffffff"/>
+      <line x1="16" y1="25" x2="24" y2="25" stroke="#2481cc" stroke-width="1.5" stroke-linecap="round"/>
     </g>
 
-    <!-- Chat Messages Feed (Left 65%) -->
-    <g transform="translate(30, 75)">
-      
-      <!-- User Message -->
-      <g transform="translate(230, 0)">
-        <path d="M 0 0 L 460 0 C 470 0 470 10 470 10 L 470 54 C 470 62 462 62 462 62 L 10 62 C 0 62 0 52 0 52 Z" fill="url(#user-bubble)"/>
-        <text x="18" y="26" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="12.5" fill="#ffffff">Revisa mi agenda de hoy y añade entrenamiento de fuerza</text>
-        <text x="18" y="46" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="12.5" fill="#ffffff">a las 18:00 si no se solapa con el lab de la UniBo.</text>
-        <text x="430" y="56" font-family="sans-serif" font-size="9" fill="#93c5fd">14:28</text>
-      </g>
-
-      <!-- Bot Tool Call In-Progress Card -->
-      <g transform="translate(0, 85)">
-        <rect width="600" height="74" rx="10" fill="#141c2b" stroke="#2a3952" stroke-width="1"/>
-        
-        <!-- Status indicator -->
-        <circle cx="22" cy="22" r="5" fill="#38bdf8"/>
-        <text x="36" y="26" font-family="monospace" font-size="11" font-weight="700" fill="#38bdf8">FUNCTION CALL INVOCADA:</text>
-        <text x="215" y="26" font-family="monospace" font-size="11" font-weight="600" fill="#e2e8f0">google_calendar_query()</text>
-        
-        <!-- JSON Arguments snippet -->
-        <rect x="22" y="38" width="556" height="26" rx="6" fill="#0c111a"/>
-        <text x="32" y="55" font-family="'JetBrains Mono', monospace" font-size="10" fill="#94a3b8">{"date": "2026-11-21", "range_start": "17:30", "range_end": "19:30"}</text>
-        <text x="500" y="55" font-family="monospace" font-size="9.5" font-weight="700" fill="#34d399">➔ OK (0 solapes)</text>
-      </g>
-
-      <!-- Bot Final Answer with Action Buttons -->
-      <g transform="translate(0, 180)">
-        <path d="M 0 10 C 0 0 10 0 10 0 L 590 0 C 600 0 600 10 600 10 L 600 160 C 600 170 590 170 590 170 L 0 170 Z" fill="url(#bot-bubble)" stroke="#222f44" stroke-width="1"/>
-        
-        <text x="20" y="30" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="12.5" font-weight="600" fill="#f8fafc">Comprobación completada en 184 ms (Groq API):</text>
-        <text x="20" y="54" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="12" fill="#cbd5e1">• El laboratorio de UniBo termina a las 16:30. Tienes margen amplio.</text>
-        <text x="20" y="74" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="12" fill="#cbd5e1">• He agendado en Google Calendar: <tspan font-weight="700" fill="#60a5fa">Entrenamiento Fuerza (18:00 - 19:15)</tspan>.</text>
-        <text x="20" y="94" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="12" fill="#cbd5e1">• Se ha programado la alerta proactiva de hidratación a las 17:45.</text>
-
-        <!-- Inline Action Buttons (Telegram keyboard) -->
-        <g transform="translate(20, 116)">
-          <rect width="170" height="34" rx="8" fill="#2563eb" fill-opacity="0.25" stroke="#3b82f6" stroke-width="1"/>
-          <text x="22" y="21" font-family="sans-serif" font-size="11" font-weight="600" fill="#93c5fd">📅 Abrir en Calendar</text>
-
-          <rect x="180" y="0" width="180" height="34" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1"/>
-          <text x="195" y="21" font-family="sans-serif" font-size="11" font-weight="500" fill="#cbd5e1">⏱ Ajustar Recordatorio</text>
-
-          <rect x="370" y="0" width="185" height="34" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1"/>
-          <text x="385" y="21" font-family="sans-serif" font-size="11" font-weight="500" fill="#cbd5e1">💊 Validar Medicación</text>
-        </g>
-        <text x="560" y="162" font-family="sans-serif" font-size="9" fill="#64748b">14:28</text>
-      </g>
-
-      <!-- Proactive Morning Briefing Snippet -->
-      <g transform="translate(0, 370)">
-        <rect width="600" height="110" rx="10" fill="#141c2b" stroke="#25354d" stroke-width="1"/>
-        <text x="18" y="24" font-family="monospace" font-size="10.5" font-weight="700" fill="#f59e0b">⚡ DISPARO CRON PROACTIVO · 08:00 AM (Europe/Madrid)</text>
-        <text x="18" y="46" font-family="sans-serif" font-size="11.5" fill="#e2e8f0"><tspan font-weight="700">Buenos días, David.</tspan> Resumen técnico del día:</text>
-        <text x="18" y="66" font-family="sans-serif" font-size="11" fill="#94a3b8">• 3 compromisos detectados en Google Calendar. Ventana de foco: 10:00 - 13:30.</text>
-        <text x="18" y="86" font-family="sans-serif" font-size="11" fill="#94a3b8">• Tareas pendientes con deadline hoy: 1 (Revisar logs de Flow Matching).</text>
-        <text x="18" y="102" font-family="monospace" font-size="9.5" fill="#10b981">✓ Estado base de datos: Sincronizada · PostgreSQL 16</text>
-      </g>
-
+    <!-- Header Bot Name & Status -->
+    <g transform="translate(182, 18)">
+      <div style="display: flex; align-items: center;">
+        <text x="0" y="15" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="15" font-weight="700" fill="#ffffff">Jarvis Personal Executive</text>
+        <rect x="185" y="4" width="32" height="15" rx="3" fill="#2481cc" fill-opacity="0.3"/>
+        <text x="189" y="15" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="9" font-weight="700" fill="#4fa7e8">BOT</text>
+      </div>
+      <text x="0" y="32" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11.5" fill="#4fa7e8">en línea · Groq Qwen-2.5 27B · Docker Active</text>
     </g>
 
-    <!-- Side Panel (System Architecture & Tools Roster) -->
-    <g transform="translate(740, 75)">
-      <rect width="310" height="490" rx="12" fill="#121824" stroke="#212d40" stroke-width="1"/>
+    <!-- Top Right Action Icons (Search, Mute, Menu) -->
+    <g transform="translate(970, 20)">
+      <!-- Search Icon -->
+      <circle cx="12" cy="11" r="5" stroke="#708499" stroke-width="1.8" fill="none"/>
+      <line x1="16" y1="15" x2="22" y2="21" stroke="#708499" stroke-width="1.8" stroke-linecap="round"/>
+      <!-- Vertical Dots Menu -->
+      <circle cx="55" cy="6" r="2" fill="#708499"/>
+      <circle cx="55" cy="12" r="2" fill="#708499"/>
+      <circle cx="55" cy="18" r="2" fill="#708499"/>
+    </g>
+
+    <!-- Telegram Chat Body Wallpaper Pattern (Subtle geometric/chat doodles) -->
+    <g opacity="0.04" stroke="#ffffff" stroke-width="1.2" fill="none">
+      <path d="M 120 120 C 140 100 160 140 180 120"/>
+      <circle cx="340" cy="160" r="14"/>
+      <rect x="780" y="110" width="20" height="20" rx="4"/>
+      <polygon points="560,180 575,200 545,200"/>
+      <path d="M 850 320 C 870 300 890 340 910 320"/>
+      <circle cx="160" cy="420" r="12"/>
+      <rect x="420" y="460" width="18" height="18" rx="3"/>
+      <polygon points="980,440 995,460 965,460"/>
+    </g>
+
+    <!-- Date Bubble: "Hoy" -->
+    <g transform="translate(500, 76)">
+      <rect width="80" height="22" rx="11" fill="#182533" fill-opacity="0.8" stroke="#253549" stroke-width="0.8"/>
+      <text x="40" y="15" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="11" font-weight="600" fill="#8ca0b3" text-anchor="middle">Hoy</text>
+    </g>
+
+    <!-- ================= CHAT MESSAGE THREAD ================= -->
+
+    <!-- MESSAGE 1: Bot Proactive Morning Briefing (Cron: 08:00 AM) -->
+    <g transform="translate(40, 108)">
+      <!-- Bubble Card -->
+      <path d="M 10 0 L 680 0 C 690 0 690 10 690 10 L 690 196 C 690 206 680 206 680 206 L 0 206 L 0 10 C 0 0 10 0 10 0 Z" fill="url(#tg-bot-bubble)" stroke="#243447" stroke-width="1"/>
       
-      <!-- Panel Header -->
-      <g transform="translate(18, 24)">
-        <text x="0" y="0" font-family="monospace" font-size="11" font-weight="800" fill="#60a5fa">// ARQUITECTURA ASÍNCRONA</text>
-        <text x="0" y="18" font-family="sans-serif" font-size="10.5" fill="#64748b">Docker Compose · Python 3.12</text>
+      <!-- Content Header -->
+      <text x="22" y="28" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="13.5" font-weight="700" fill="#f59e0b">☀️ BRIEFING MATUTINO PROACTIVO · 08:00 AM</text>
+      <text x="22" y="50" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="12.5" fill="#e1e7ed"><tspan font-weight="600">Buenos días, David.</tspan> Resumen de agenda y compromisos de hoy:</text>
+      
+      <!-- Agenda Bullets -->
+      <g transform="translate(22, 68)" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="12" fill="#c3d1de">
+        <text x="0" y="0">📅 <tspan font-weight="600" fill="#60a5fa">10:00 - 13:00</tspan> | Laboratorio UniBo: Modelos Generativos</text>
+        <text x="0" y="20">📅 <tspan font-weight="600" fill="#60a5fa">16:30 - 17:30</tspan> | Sesión de revisión TFG: Flow Matching Retiniano</text>
+        <text x="0" y="40">🏋️‍♂️ <tspan font-weight="600" fill="#34d399">Rutina Propuesta:</tspan> Fuerza Tren Superior (Día B) - 18:30 h</text>
+        <text x="0" y="60">💊 <tspan font-weight="600" fill="#f87171">Medicación:</tspan> Dosis matinal pendiente de confirmación</text>
+        <text x="0" y="80">📌 <tspan font-weight="600" fill="#a78bfa">Deadlines:</tspan> 1 entrega periódica antes de las 23:59 h</text>
       </g>
 
-      <!-- Schema list -->
-      <g transform="translate(18, 70)">
-        
-        <!-- Module 1 -->
-        <rect width="274" height="64" rx="8" fill="#172030" stroke="#26354d" stroke-width="1"/>
-        <text x="12" y="20" font-family="monospace" font-size="10.5" font-weight="700" fill="#e2e8f0">1. LLM Engine (Groq)</text>
-        <text x="12" y="38" font-family="sans-serif" font-size="9.5" fill="#94a3b8">Qwen-2.5 27B / Dynamic System Prompt con inyección temporal y zona horaria.</text>
-        <text x="12" y="52" font-family="monospace" font-size="8.5" fill="#34d399">Latencia media: ~220 ms</text>
+      <!-- Timestamp -->
+      <text x="645" y="196" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="10" fill="#687e94">08:00</text>
 
-        <!-- Module 2 -->
-        <g transform="translate(0, 74)">
-          <rect width="274" height="64" rx="8" fill="#172030" stroke="#26354d" stroke-width="1"/>
-          <text x="12" y="20" font-family="monospace" font-size="10.5" font-weight="700" fill="#e2e8f0">2. Tool Calling Registry</text>
-          <text x="12" y="38" font-family="sans-serif" font-size="9.5" fill="#94a3b8">18 esquemas JSON tipados. Fallback de parsing XML ante respuestas anómalas.</text>
-          <text x="12" y="52" font-family="monospace" font-size="8.5" fill="#60a5fa">OAuth2 Google Calendar + Gmail</text>
-        </g>
+      <!-- Inline Keyboard Buttons for Morning Briefing -->
+      <g transform="translate(0, 214)">
+        <rect width="220" height="34" rx="8" fill="#1f2c3d" stroke="#2d3f54" stroke-width="1"/>
+        <text x="26" y="21" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="11.5" font-weight="600" fill="#4fa7e8">💊 Confirmar Medicación</text>
 
-        <!-- Module 3 -->
-        <g transform="translate(0, 148)">
-          <rect width="274" height="64" rx="8" fill="#172030" stroke="#26354d" stroke-width="1"/>
-          <text x="12" y="20" font-family="monospace" font-size="10.5" font-weight="700" fill="#e2e8f0">3. Persistencia Asíncrona</text>
-          <text x="12" y="38" font-family="sans-serif" font-size="9.5" fill="#94a3b8">PostgreSQL 16 + SQLAlchemy AsyncIO. Migraciones con Alembic.</text>
-          <text x="12" y="52" font-family="monospace" font-size="8.5" fill="#c084fc">Driver asyncpg</text>
-        </g>
+        <rect x="230" width="220" height="34" rx="8" fill="#1f2c3d" stroke="#2d3f54" stroke-width="1"/>
+        <text x="265" y="21" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="11.5" font-weight="600" fill="#4fa7e8">📅 Ver Google Calendar</text>
 
-        <!-- Module 4 -->
-        <g transform="translate(0, 222)">
-          <rect width="274" height="64" rx="8" fill="#172030" stroke="#26354d" stroke-width="1"/>
-          <text x="12" y="20" font-family="monospace" font-size="10.5" font-weight="700" fill="#e2e8f0">4. Crons Proactivos</text>
-          <text x="12" y="38" font-family="sans-serif" font-size="9.5" fill="#94a3b8">AsyncIOScheduler ejecutando revisiones periódicas (15 min) y briefings.</text>
-          <text x="12" y="52" font-family="monospace" font-size="8.5" fill="#f59e0b">APScheduler daemon</text>
-        </g>
-
-        <!-- Security Badge -->
-        <g transform="translate(0, 305)">
-          <rect width="274" height="70" rx="8" fill="#0f291e" stroke="#10b981" stroke-opacity="0.4" stroke-width="1"/>
-          <text x="12" y="22" font-family="monospace" font-size="10" font-weight="700" fill="#34d399">SECURITY &amp; PRIVACY</text>
-          <text x="12" y="40" font-family="sans-serif" font-size="9.5" fill="#a7f3d0">• Decorador @restricted por Telegram ID</text>
-          <text x="12" y="56" font-family="sans-serif" font-size="9.5" fill="#a7f3d0">• Configuración Zero-PII en clientes API</text>
-        </g>
-
+        <rect x="460" width="230" height="34" rx="8" fill="#1f2c3d" stroke="#2d3f54" stroke-width="1"/>
+        <text x="495" y="21" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="11.5" font-weight="600" fill="#4fa7e8">⏱ Posponer Alerta 30m</text>
       </g>
+    </g>
+
+    <!-- MESSAGE 2: User Prompt (Telegram Blue Bubble on Right) -->
+    <g transform="translate(480, 375)">
+      <path d="M 10 0 L 550 0 C 560 0 560 10 560 10 L 560 48 C 560 56 550 56 550 56 L 0 56 L 0 10 C 0 0 10 0 10 0 Z" fill="url(#tg-user-bubble)"/>
+      <text x="18" y="24" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="12.5" fill="#ffffff">He terminado el lab antes. Agenda entreno de escalada a las</text>
+      <text x="18" y="44" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="12.5" fill="#ffffff">18:00 y confirma la toma de medicación del día.</text>
+      
+      <!-- Read Double Checkmark & Timestamp -->
+      <g transform="translate(508, 45)">
+        <text x="0" y="0" font-family="sans-serif" font-size="10" fill="#8cb9df">14:24</text>
+        <!-- Blue checkmarks -->
+        <path d="M 32 -3 L 36 1 L 43 -6" stroke="#4fa7e8" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+        <path d="M 36 -3 L 40 1 L 47 -6" stroke="#4fa7e8" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+      </g>
+    </g>
+
+    <!-- MESSAGE 3: Bot Autonomous Execution & Tool Calling -->
+    <g transform="translate(40, 442)">
+      <!-- Bubble Card -->
+      <path d="M 10 0 L 690 0 C 700 0 700 10 700 10 L 700 115 C 700 124 690 124 690 124 L 0 124 L 0 10 C 0 0 10 0 10 0 Z" fill="url(#tg-bot-bubble)" stroke="#243447" stroke-width="1"/>
+      
+      <!-- Tool Execution Pill Badge -->
+      <g transform="translate(20, 14)">
+        <rect width="400" height="22" rx="6" fill="#13202e" stroke="#2a4159" stroke-width="1"/>
+        <circle cx="12" cy="11" r="3.5" fill="#38bdf8"/>
+        <text x="22" y="15" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="600" fill="#38bdf8">TOOL: google_calendar_insert_event() [OK · 182ms]</text>
+      </g>
+
+      <!-- Bot Answer Text -->
+      <g transform="translate(20, 52)" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="12.5" fill="#e1e7ed">
+        <text x="0" y="0">✔ <tspan font-weight="700" fill="#ffffff">Entrenamiento de Escalada</tspan> programado en Google Calendar (18:00 - 19:30).</text>
+        <text x="0" y="20">✔ <tspan font-weight="700" fill="#ffffff">Medicación validada en 2FA</tspan>: Registro actualizado en PostgreSQL 16.</text>
+        <text x="0" y="40" fill="#93c5fd">Tasa semanal de adherencia: 100%. Te recordaré la hidratación a las 17:45.</text>
+      </g>
+
+      <!-- Timestamp -->
+      <text x="655" y="115" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="10" fill="#687e94">14:24</text>
+    </g>
+
+    <!-- Telegram Bottom Input Message Bar -->
+    <g transform="translate(0, 574)">
+      <rect width="1080" height="51" fill="#17212b"/>
+      <line x1="0" y1="0" x2="1080" y2="0" stroke="#222e3d" stroke-width="1"/>
+
+      <!-- Paperclip Icon (Attach) -->
+      <g transform="translate(28, 16)" stroke="#708499" stroke-width="1.8" fill="none" stroke-linecap="round">
+        <path d="M 14 8 L 8 14 C 5.5 16.5 5.5 20.5 8 23 C 10.5 25.5 14.5 25.5 17 23 L 24 16 C 25.5 14.5 25.5 12 24 10.5 C 22.5 9 20 9 18.5 10.5 L 12 17"/>
+      </g>
+
+      <!-- Input Text Field -->
+      <rect x="66" y="8" width="940" height="35" rx="17.5" fill="#0f1621" stroke="#243447" stroke-width="1"/>
+      <text x="86" y="30" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="13" fill="#687e94">Escribe un mensaje a Jarvis...</text>
+
+      <!-- Emoji / Microphone Icon -->
+      <circle cx="985" cy="25" r="8" stroke="#708499" stroke-width="1.5" fill="none"/>
+      <circle cx="982" cy="23" r="1" fill="#708499"/>
+      <circle cx="988" cy="23" r="1" fill="#708499"/>
+      <path d="M 982 27 Q 985 30 988 27" stroke="#708499" stroke-width="1.3" fill="none" stroke-linecap="round"/>
+
+      <!-- Voice / Send Button -->
+      <circle cx="1040" cy="25" r="15" fill="#2481cc"/>
+      <!-- Mic symbol -->
+      <rect x="1037" y="17" width="6" height="10" rx="3" fill="#ffffff"/>
+      <path d="M 1035 22 C 1035 26 1045 26 1045 22" stroke="#ffffff" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+      <line x1="1040" y1="26" x2="1040" y2="30" stroke="#ffffff" stroke-width="1.5"/>
     </g>
 
   </g>
