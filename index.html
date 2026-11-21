@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>David Valls Lozano | Portfolio de Inteligencia Artificial & Software Engineering</title>
-  <meta name="description" content="Portfolio profesional de David Valls Lozano. Ingeniero en Tecnología Digital y Multimedia especializado en Inteligencia Artificial, Computer Vision y Arquitecturas de Software Robustas.">
+  <meta name="description" content="Portfolio de ingeniería de software e inteligencia artificial de David Valls Lozano. Modelos generativos, visión por computador y arquitecturas backend robustas.">
   
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="assets/images/avatar_0.png">
@@ -12,27 +12,25 @@
   <!-- Fonts & Tailwind CSS CDN -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- Tailwind config for custom styling -->
+  <!-- Tailwind Config -->
   <script>
     tailwind.config = {
       darkMode: 'class',
       theme: {
         extend: {
           fontFamily: {
-            sans: ['Inter', 'sans-serif'],
+            sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
             mono: ['JetBrains Mono', 'monospace'],
           },
           colors: {
-            brand: {
-              50: '#eff6ff',
-              500: '#3b82f6',
-              600: '#2563eb',
-              700: '#1d4ed8',
-              900: '#1e3a8a',
-              950: '#0a0c10',
+            surface: {
+              main: '#090b10',
+              card: '#0e121a',
+              cardHover: '#131824',
+              elevated: '#171d2b'
             }
           }
         }
@@ -44,88 +42,316 @@
   <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 
-<body class="bg-[#0a0c10] text-slate-100 font-sans antialiased selection:bg-blue-600 selection:text-white relative bg-grid-pattern min-h-screen">
-
-  <!-- Background top radial glow -->
-  <div class="fixed top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[600px] radial-glow pointer-events-none -z-10"></div>
+<body class="bg-[#090b10] text-neutral-100 font-sans antialiased selection:bg-blue-600 selection:text-white min-h-screen">
 
   <!-- Top Navigation Bar -->
-  <header class="sticky top-0 z-40 w-full glass-panel border-b border-slate-800/80">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+  <header class="sticky top-0 z-40 w-full nav-glass">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
       <a href="#hero" class="flex items-center gap-3 group">
-        <div class="relative w-9 h-9 rounded-full overflow-hidden ring-2 ring-blue-500/50 group-hover:ring-blue-400 transition-all">
+        <div class="relative w-8 h-8 rounded-full overflow-hidden ring-1 ring-neutral-700 group-hover:ring-blue-500 transition-all">
           <img src="assets/images/avatar_0.png" alt="David Valls" class="w-full h-full object-cover">
         </div>
         <div class="flex flex-col">
-          <span class="font-bold text-sm tracking-tight text-slate-100 group-hover:text-blue-400 transition-colors">David Valls Lozano</span>
-          <span class="text-[11px] text-slate-400 font-mono">IA & Software Engineer</span>
+          <span class="font-bold text-sm tracking-tight text-white group-hover:text-blue-400 transition-colors">David Valls Lozano</span>
+          <span class="text-[11px] text-neutral-400 font-mono">IA &amp; Software Engineer</span>
         </div>
       </a>
 
       <!-- Desktop Links -->
-      <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-300">
-        <a href="#proyectos" class="hover:text-blue-400 transition-colors">Proyectos</a>
-        <a href="#about" class="hover:text-blue-400 transition-colors">Sobre Mí</a>
-        <a href="#habilidades" class="hover:text-blue-400 transition-colors">Habilidades</a>
-        <a href="#contacto" class="hover:text-blue-400 transition-colors">Contacto</a>
+      <nav class="hidden md:flex items-center gap-7 text-xs sm:text-sm font-medium text-neutral-300">
+        <a href="#proyectos" class="hover:text-white transition-colors">Proyectos</a>
+        <a href="#stack" class="hover:text-white transition-colors">Stack Tecnológico</a>
+        <a href="#perfil" class="hover:text-white transition-colors">Perfil</a>
+        <a href="#contacto" class="hover:text-white transition-colors">Contacto</a>
       </nav>
 
       <!-- Quick Actions -->
-      <div class="flex items-center gap-3">
+      <div class="flex items-center gap-2.5">
         <a 
-          href="assets/David_Valls_Lozano_CV.pdf" 
-          download="David_Valls_Lozano_CV.pdf"
-          class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-blue-600 hover:bg-blue-500 text-white shadow-sm hover:shadow-blue-500/20 transition-all btn-shimmer"
+          href="https://github.com/dvalloz" 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          aria-label="GitHub"
+          class="p-2 rounded-lg bg-neutral-900 hover:bg-neutral-800 text-neutral-300 hover:text-white border border-neutral-800 transition-colors"
         >
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
-          <span class="hidden sm:inline">Descargar</span> CV
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
         </a>
         <a 
           href="https://www.linkedin.com/in/david-valls-lozano/" 
           target="_blank" 
           rel="noopener noreferrer" 
           aria-label="LinkedIn"
-          class="p-2 rounded-lg bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700/80 transition-colors"
+          class="p-2 rounded-lg bg-neutral-900 hover:bg-neutral-800 text-neutral-300 hover:text-white border border-neutral-800 transition-colors"
         >
           <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+        </a>
+        <a 
+          href="assets/David_Valls_Lozano_CV.pdf" 
+          download="David_Valls_Lozano_CV.pdf"
+          class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-blue-600 hover:bg-blue-500 text-white transition-colors"
+        >
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+          <span>CV PDF</span>
         </a>
       </div>
     </div>
   </header>
 
-  <!-- Hero Section -->
-  <section id="hero" class="relative pt-16 pb-20 sm:pt-24 sm:pb-28 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-      
-      <!-- Left Column: Presentation -->
-      <div class="lg:col-span-8 flex flex-col items-start">
-        <!-- Status Pill -->
-        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-medium bg-emerald-950/70 text-emerald-300 border border-emerald-800/60 mb-6">
-          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-          Disponible para proyectos e incorporación profesional
+  <main>
+    <!-- Hero Section (Direct, punchy, human) -->
+    <section id="hero" class="pt-14 pb-14 sm:pt-20 sm:pb-20 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 border-b border-neutral-800/60">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-8">
+        
+        <!-- Left: Presentation -->
+        <div class="max-w-2xl">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono bg-blue-950/60 text-blue-300 border border-blue-800/60 mb-5">
+            <span class="w-2 h-2 rounded-full bg-blue-400"></span>
+            David Valls Lozano · Valencia, España
+          </div>
+
+          <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white mb-4 leading-[1.15]">
+            Ingeniero de Software enfocado en <span class="text-blue-400">Inteligencia Artificial</span> y <span class="text-emerald-400">Sistemas Robustos</span>.
+          </h1>
+
+          <p class="text-base sm:text-lg text-neutral-300 leading-relaxed mb-6 font-normal">
+            Especializado en modelos generativos (<span class="text-white font-medium">Flow Matching, Diffusion Bridges</span>), visión por computador y arquitecturas de backend desacopladas (<span class="text-white font-medium">Hexagonal, Next.js 15, Async Python</span>). Graduado en Tecnología Digital y Multimedia por la UPV con formación de Máster en IA en la Università di Bologna.
+          </p>
+
+          <!-- Action buttons -->
+          <div class="flex flex-wrap items-center gap-3">
+            <a 
+              href="#proyectos" 
+              class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-semibold text-xs sm:text-sm bg-blue-600 hover:bg-blue-500 text-white shadow-sm transition-all"
+            >
+              <span>Ver Proyectos</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+            </a>
+            
+            <button 
+              class="copy-email-btn inline-flex items-center gap-2 px-4 py-2.5 rounded-xl font-medium text-xs sm:text-sm bg-neutral-900 hover:bg-neutral-800 text-neutral-200 border border-neutral-800 hover:border-neutral-700 transition-colors"
+            >
+              <svg class="w-4 h-4 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+              <span>Copiar Email</span>
+            </button>
+
+            <a 
+              href="mailto:dvdvalls04@gmail.com" 
+              class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl font-medium text-xs sm:text-sm bg-neutral-900 hover:bg-neutral-800 text-neutral-200 border border-neutral-800 hover:border-neutral-700 transition-colors"
+            >
+              <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+              <span>dvdvalls04@gmail.com</span>
+            </a>
+          </div>
         </div>
 
-        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white mb-6 leading-tight">
-          Construyendo soluciones donde la <span class="gradient-text-blue">Inteligencia Artificial</span> se une a la <span class="gradient-text-emerald">ingeniería robusta</span>.
-        </h1>
+        <!-- Right: Profile card badge -->
+        <div class="w-full md:w-auto md:min-w-[280px] bg-[#0e121a] border border-neutral-800/90 rounded-2xl p-5 shadow-sm">
+          <div class="flex items-center gap-3.5 mb-4">
+            <img src="assets/images/avatar_0.png" alt="David Valls" class="w-14 h-14 rounded-xl object-cover border border-neutral-700">
+            <div>
+              <div class="font-bold text-white text-sm">David Valls Lozano</div>
+              <div class="text-xs text-neutral-400">UPV &amp; UniBo AI</div>
+              <div class="text-[11px] text-emerald-400 font-mono mt-0.5">● Disponible para proyectos</div>
+            </div>
+          </div>
+          
+          <div class="space-y-2 text-xs border-t border-neutral-800/80 pt-3">
+            <div class="flex justify-between text-neutral-400">
+              <span>Especialidad</span>
+              <span class="text-neutral-200 font-medium font-mono">IA Generativa &amp; CV</span>
+            </div>
+            <div class="flex justify-between text-neutral-400">
+              <span>Arquitectura</span>
+              <span class="text-neutral-200 font-medium font-mono">Hexagonal / Next.js 15</span>
+            </div>
+            <div class="flex justify-between text-neutral-400">
+              <span>Idiomas</span>
+              <span class="text-neutral-200 font-medium">ES · VAL (C1) · EN (B2)</span>
+            </div>
+          </div>
+        </div>
 
-        <p class="text-lg sm:text-xl text-slate-300 leading-relaxed mb-8 max-w-3xl">
-          Soy <strong class="text-white font-semibold">David Valls Lozano</strong>, graduado en <span class="text-blue-400 font-medium">Tecnología Digital y Multimedia (UPV)</span> y formado en el <span class="text-purple-400 font-medium">Máster en Inteligencia Artificial (Università di Bologna)</span>. Especializado en modelos generativos, visión por computador, criptografía aplicada y desarrollo de software con arquitectura limpia.
+      </div>
+    </section>
+
+    <!-- CORE SECTION: PROYECTOS (Centrado al 100% en proyectos reales con imágenes) -->
+    <section id="proyectos" class="py-14 sm:py-20 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
+        <div>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+            Proyectos Realizados
+          </h2>
+          <p class="text-neutral-400 text-sm mt-1 max-w-xl">
+            Sistemas completos en producción, investigaciones generativas en medicina oftalmológica y prototipos de seguridad criptográfica.
+          </p>
+        </div>
+
+        <!-- Filter Controls -->
+        <div class="flex flex-wrap gap-2 text-xs">
+          <button data-filter="all" class="filter-btn active px-3.5 py-1.5 rounded-lg font-medium">
+            Todos (5)
+          </button>
+          <button data-filter="ia" class="filter-btn px-3.5 py-1.5 rounded-lg font-medium">
+            IA &amp; Visión
+          </button>
+          <button data-filter="fullstack" class="filter-btn px-3.5 py-1.5 rounded-lg font-medium">
+            Full-Stack &amp; Sistemas
+          </button>
+          <button data-filter="cyber" class="filter-btn px-3.5 py-1.5 rounded-lg font-medium">
+            Seguridad &amp; DRM
+          </button>
+          <button data-filter="academic" class="filter-btn px-3.5 py-1.5 rounded-lg font-medium">
+            Investigación &amp; TFG
+          </button>
+        </div>
+      </div>
+
+      <!-- Projects Grid (Injected dynamically with images) -->
+      <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Rendered by main.js with project images -->
+      </div>
+    </section>
+
+    <!-- TECHNICAL STACK & ARCHITECTURE (Conciso y enfocado a software) -->
+    <section id="stack" class="py-14 sm:py-18 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-neutral-800/60">
+      <div class="mb-8">
+        <h2 class="text-xl sm:text-2xl font-bold text-white tracking-tight">
+          Stack Tecnológico &amp; Capacidades
+        </h2>
+        <p class="text-neutral-400 text-xs sm:text-sm mt-1">
+          Tecnologías, marcos y herramientas aplicadas en los proyectos del portfolio.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <!-- Col 1: AI & ML -->
+        <div class="bg-[#0e121a] p-5 rounded-xl border border-neutral-800/80">
+          <div class="text-purple-400 font-mono text-xs font-semibold uppercase mb-2">Machine Learning &amp; CV</div>
+          <h3 class="text-sm font-bold text-white mb-2">Modelado Inteligente</h3>
+          <ul class="space-y-1 text-xs text-neutral-300 font-mono">
+            <li class="flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-purple-400"></span>PyTorch &amp; Torchvision</li>
+            <li class="flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-purple-400"></span>Flow Matching &amp; Diffusion</li>
+            <li class="flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-purple-400"></span>DINOv2 (ViT) &amp; Latent VAE</li>
+            <li class="flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-purple-400"></span>Ultralytics YOLOv8</li>
+            <li class="flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-purple-400"></span>OpenCV &amp; Scikit-learn</li>
+            <li class="flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-purple-400"></span>Groq API &amp; Tool Calling</li>
+          </ul>
+        </div>
+
+        <!-- Col 2: Backend & Web -->
+        <div class="bg-[#0e121a] p-5 rounded-xl border border-neutral-800/80">
+          <div class="text-blue-400 font-mono text-xs font-semibold uppercase mb-2">Arquitectura &amp; Web</div>
+          <h3 class="text-sm font-bold text-white mb-2">Sistemas Escalables</h3>
+          <ul class="space-y-1 text-xs text-neutral-300 font-mono">
+            <li class="flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-blue-400"></span>Next.js 15 (App Router)</li>
+            <li class="flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-blue-400"></span>Arquitectura Hexagonal</li>
+            <li class="flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-blue-400"></span>PostgreSQL 16 (UUIDv7)</li>
+            <li class="flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-blue-400"></span>Drizzle ORM &amp; SQLAlchemy</li>
+            <li class="flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-blue-400"></span>Python AsyncIO &amp; Sockets</li>
+            <li class="flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-blue-400"></span>Open Banking PSD2</li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Criptografía & Seguridad -->
+        <div class="bg-[#0e121a] p-5 rounded-xl border border-neutral-800/80">
+          <div class="text-amber-400 font-mono text-xs font-semibold uppercase mb-2">Criptografía &amp; Medios</div>
+          <h3 class="text-sm font-bold text-white mb-2">Seguridad Multimedia</h3>
+          <ul class="space-y-1 text-xs text-neutral-300 font-mono">
+            <li class="flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>RSA-2048 OAEP (SHA-256)</li>
+            <li class="flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>AES-128-CBC PKCS#7</li>
+            <li class="flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>Firmas Digitales RSA-PSS</li>
+            <li class="flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>Estándar W3C EME &amp; CDM</li>
+            <li class="flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>Watermarking Forense Dinámico</li>
+            <li class="flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>Inspección de Magic Bytes</li>
+          </ul>
+        </div>
+
+        <!-- Col 4: Lenguajes & DevOps -->
+        <div class="bg-[#0e121a] p-5 rounded-xl border border-neutral-800/80">
+          <div class="text-emerald-400 font-mono text-xs font-semibold uppercase mb-2">Lenguajes &amp; DevOps</div>
+          <h3 class="text-sm font-bold text-white mb-2">Fundamentos &amp; Infra</h3>
+          <ul class="space-y-1 text-xs text-neutral-300 font-mono">
+            <li class="flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>Python 3.12 (Tipado estricto)</li>
+            <li class="flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>TypeScript &amp; JavaScript</li>
+            <li class="flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>SQL / Relational Modeling</li>
+            <li class="flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>Tailwind CSS &amp; HTML5</li>
+            <li class="flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>Docker &amp; Docker Compose</li>
+            <li class="flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>Git / GitHub Flow</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- PERFIL / BACKGROUND (Compacto, elegante, sin robar protagonismo a los proyectos) -->
+    <section id="perfil" class="py-14 sm:py-18 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-neutral-800/60">
+      <div class="bg-[#0e121a] border border-neutral-800/90 rounded-2xl p-6 sm:p-8">
+        <div class="flex flex-col lg:flex-row gap-8 items-start justify-between">
+          
+          <div class="max-w-2xl">
+            <div class="text-xs font-mono font-semibold uppercase tracking-wider text-blue-400 mb-2">Perfil &amp; Enfoque Técnico</div>
+            <h2 class="text-xl sm:text-2xl font-bold text-white mb-4">
+              Ingeniería de software con rigor matemático
+            </h2>
+            <p class="text-neutral-300 text-sm leading-relaxed mb-4">
+              Mi trabajo se sitúa en la convergencia entre la investigación en Inteligencia Artificial y la construcción de software con arquitectura limpia. Considero que un algoritmo de Machine Learning solo aporta valor real cuando está respaldado por código tipado, desacoplado, testeable y desplegable de forma fiable.
+            </p>
+            <p class="text-neutral-300 text-sm leading-relaxed">
+              Cuento con formación de Grado en Tecnología Digital y Multimedia por la <strong class="text-white">UPV</strong> y estudios de Máster en IA por la <strong class="text-white">Università di Bologna</strong>. Complementariamente, mi formación como músico profesional de guitarra clásica me ha dotado de una disciplina rigurosa para abordar problemas complejos y estructurados.
+            </p>
+          </div>
+
+          <!-- Compact Education & Milestones Card -->
+          <div class="w-full lg:w-80 bg-[#080b11] border border-neutral-800/80 rounded-xl p-4 space-y-3 text-xs">
+            <div class="text-neutral-400 font-mono text-[11px] uppercase font-bold tracking-wider">Hitos Académicos</div>
+            
+            <div class="border-l-2 border-purple-500/70 pl-3">
+              <div class="font-bold text-white">Erasmus · Master in AI</div>
+              <div class="text-neutral-400 text-[11px]">Università di Bologna (2025)</div>
+            </div>
+
+            <div class="border-l-2 border-blue-500/70 pl-3">
+              <div class="font-bold text-white">Grado en Tec. Digital y Multimedia</div>
+              <div class="text-neutral-400 text-[11px]">UPV (2022 - En curso)</div>
+            </div>
+
+            <div class="border-l-2 border-emerald-500/70 pl-3">
+              <div class="font-bold text-white">Grado Profesional de Música</div>
+              <div class="text-neutral-400 text-[11px]">Guitarra Clásica (2017 - 2023)</div>
+            </div>
+
+            <div class="pt-2 border-t border-neutral-800">
+              <a href="assets/David_Valls_Lozano_CV.pdf" download="David_Valls_Lozano_CV.pdf" class="text-blue-400 hover:text-blue-300 font-semibold text-xs flex items-center gap-1">
+                <span>Descargar CV completo con detalle</span>
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contacto" class="py-14 sm:py-20 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-neutral-800/60">
+      <div class="bg-[#0e121a] border border-neutral-800/90 rounded-2xl p-8 sm:p-10 text-center max-w-3xl mx-auto">
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-white mb-3">
+          ¿Hablamos sobre un proyecto o posición?
+        </h2>
+        <p class="text-neutral-300 text-sm max-w-lg mx-auto mb-6 leading-relaxed">
+          Disponible para roles de ingeniería en Inteligencia Artificial, Machine Learning o Software Engineering, así como colaboraciones técnicas especializadas.
         </p>
 
-        <!-- CTA Buttons -->
-        <div class="flex flex-wrap items-center gap-4 w-full sm:w-auto">
+        <div class="flex flex-wrap items-center justify-center gap-3">
           <a 
-            href="#proyectos" 
-            class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl font-semibold text-sm bg-blue-600 hover:bg-blue-500 text-white shadow-lg shadow-blue-600/30 transition-all btn-shimmer"
+            href="mailto:dvdvalls04@gmail.com" 
+            class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-semibold text-xs sm:text-sm bg-blue-600 hover:bg-blue-500 text-white shadow-sm transition-all"
           >
-            <span>Ver Proyectos Técnicos</span>
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+            <span>dvdvalls04@gmail.com</span>
           </a>
-          
+
           <button 
-            id="copy-email-btn"
-            class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-xl font-medium text-sm bg-slate-900/90 hover:bg-slate-800 text-slate-200 border border-slate-700/80 hover:border-slate-600 transition-all"
+            class="copy-email-btn inline-flex items-center gap-2 px-4 py-2.5 rounded-xl font-medium text-xs sm:text-sm bg-neutral-900 hover:bg-neutral-800 text-neutral-200 border border-neutral-800 transition-colors"
           >
             <svg class="w-4 h-4 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
             <span>Copiar Email</span>
@@ -135,372 +361,76 @@
             href="https://www.linkedin.com/in/david-valls-lozano/" 
             target="_blank" 
             rel="noopener noreferrer" 
-            class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-xl font-medium text-sm bg-slate-900/90 hover:bg-slate-800 text-slate-200 border border-slate-700/80 hover:border-slate-600 transition-all"
+            class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl font-medium text-xs sm:text-sm bg-neutral-900 hover:bg-neutral-800 text-neutral-200 border border-neutral-800 transition-colors"
           >
             <svg class="w-4 h-4 text-[#0077b5]" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
-            <span>Perfil LinkedIn</span>
+            <span>LinkedIn</span>
+          </a>
+
+          <a 
+            href="assets/David_Valls_Lozano_CV.pdf" 
+            download="David_Valls_Lozano_CV.pdf"
+            class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl font-medium text-xs sm:text-sm bg-neutral-900 hover:bg-neutral-800 text-neutral-200 border border-neutral-800 transition-colors"
+          >
+            <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+            <span>Descargar CV</span>
           </a>
         </div>
-      </div>
 
-      <!-- Right Column: Profile Card & Quick Stats -->
-      <div class="lg:col-span-4">
-        <div class="glass-panel p-6 sm:p-8 rounded-2xl relative">
-          <div class="flex items-center gap-4 mb-6">
-            <div class="relative w-20 h-20 rounded-2xl overflow-hidden ring-2 ring-blue-500/40 shadow-xl">
-              <img src="assets/images/avatar_0.png" alt="David Valls Lozano" class="w-full h-full object-cover">
-            </div>
-            <div>
-              <h2 class="text-xl font-bold text-white">David Valls</h2>
-              <p class="text-xs text-slate-400">Valencia, España</p>
-              <div class="flex items-center gap-1.5 mt-1.5 text-xs text-blue-400 font-mono">
-                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"></path></svg>
-                <span>UPV & UniBo</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="space-y-3.5 text-xs text-slate-300 border-t border-slate-800/80 pt-4">
-            <div class="flex items-center justify-between">
-              <span class="text-slate-400">Especialidad</span>
-              <span class="font-semibold text-slate-200">IA Generativa & CV</span>
-            </div>
-            <div class="flex items-center justify-between">
-              <span class="text-slate-400">Arquitectura</span>
-              <span class="font-semibold text-slate-200">Hexagonal & Async</span>
-            </div>
-            <div class="flex items-center justify-between">
-              <span class="text-slate-400">Idiomas</span>
-              <span class="font-semibold text-slate-200">Español, Val. (C1), Inglés (B2)</span>
-            </div>
-            <div class="flex items-center justify-between">
-              <span class="text-slate-400">Background Artístico</span>
-              <span class="font-semibold text-slate-200">Guitarra Clásica (G. Prof.)</span>
-            </div>
-          </div>
-
-          <div class="mt-6 pt-4 border-t border-slate-800/80">
-            <a 
-              href="mailto:dvdvalls04@gmail.com" 
-              class="flex items-center justify-center gap-2 w-full py-2.5 rounded-xl text-xs font-semibold bg-slate-800/90 hover:bg-slate-700 text-slate-200 transition-colors"
-            >
-              <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-              <span>dvdvalls04@gmail.com</span>
-            </a>
-          </div>
+        <div class="mt-6 text-xs text-neutral-500 font-mono">
+          Teléfono: +34 658 19 77 47 · Valencia / Bolonia
         </div>
       </div>
-
-    </div>
-  </section>
-
-  <!-- Project Section -->
-  <section id="proyectos" class="py-16 sm:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-slate-800/60">
-    <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6">
-      <div>
-        <div class="inline-flex items-center gap-2 text-xs font-mono font-semibold uppercase tracking-wider text-blue-400 mb-2">
-          <span>// Catálogo Técnico</span>
-        </div>
-        <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-          Proyectos Destacados
-        </h2>
-        <p class="text-slate-400 text-sm sm:text-base mt-2 max-w-2xl">
-          Selección de desarrollos que combinan rigor matemático en Machine Learning, diseño arquitectónico limpio y soluciones completas listas para producción.
-        </p>
-      </div>
-
-      <!-- Filter Controls -->
-      <div class="flex flex-wrap gap-2">
-        <button data-filter="all" class="filter-btn active px-3.5 py-1.5 rounded-lg text-xs font-medium border border-slate-700 bg-slate-800/70 text-slate-300">
-          Todos (5)
-        </button>
-        <button data-filter="ia" class="filter-btn px-3.5 py-1.5 rounded-lg text-xs font-medium border border-slate-700 bg-slate-800/70 text-slate-300">
-          IA & Computer Vision
-        </button>
-        <button data-filter="fullstack" class="filter-btn px-3.5 py-1.5 rounded-lg text-xs font-medium border border-slate-700 bg-slate-800/70 text-slate-300">
-          Full-Stack & Fintech
-        </button>
-        <button data-filter="cyber" class="filter-btn px-3.5 py-1.5 rounded-lg text-xs font-medium border border-slate-700 bg-slate-800/70 text-slate-300">
-          Criptografía & DRM
-        </button>
-        <button data-filter="academic" class="filter-btn px-3.5 py-1.5 rounded-lg text-xs font-medium border border-slate-700 bg-slate-800/70 text-slate-300">
-          Investigación & TFG
-        </button>
-      </div>
-    </div>
-
-    <!-- Projects Grid Container -->
-    <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      <!-- Injected via JavaScript -->
-    </div>
-  </section>
-
-  <!-- About Me & Background Section -->
-  <section id="about" class="py-16 sm:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-slate-800/60">
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
-      
-      <!-- Left Column: Biography & Narrative -->
-      <div class="lg:col-span-7">
-        <div class="inline-flex items-center gap-2 text-xs font-mono font-semibold uppercase tracking-wider text-blue-400 mb-2">
-          <span>// Trayectoria y Filosofía</span>
-        </div>
-        <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight mb-6">
-          Ingeniería orientada al impacto real y la excelencia técnica
-        </h2>
-
-        <div class="space-y-4 text-slate-300 text-sm sm:text-base leading-relaxed">
-          <p>
-            Mi pasión se centra en la intersección entre la <strong class="text-white">Inteligencia Artificial de vanguardia</strong> y los <strong class="text-white">sistemas de software robustos</strong>. Considero que un modelo de Machine Learning solo alcanza su verdadero potencial cuando está respaldado por una arquitectura limpia, escalable y mantenible.
-          </p>
-          <p>
-            Durante mi formación en el <strong class="text-white">Grado en Tecnología Digital y Multimedia de la UPV</strong> y mi estancia en la <strong class="text-white">Università di Bologna</strong> cursando materias de Máster en IA, he desarrollado investigaciones en traducción de imágenes médicas no supervisadas con Flow Matching y modelos de difusión estocásticos, así como prototipos criptográficos avanzados basados en estándares web (W3C EME).
-          </p>
-          <p>
-            Complementariamente, mi formación como <strong class="text-white">músico profesional de guitarra clásica</strong> me ha aportado una disciplina férrea, atención meticulosa al detalle y capacidad para abordar problemas abstractos y estructurados con perseverancia y creatividad.
-          </p>
-        </div>
-
-        <!-- Academic & Experience Milestones -->
-        <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div class="p-4 rounded-xl glass-card border border-slate-800">
-            <span class="text-xs font-mono text-purple-400 uppercase font-semibold">2025 · Bologna, Italia</span>
-            <h4 class="text-base font-bold text-slate-100 mt-1">Programa Erasmus · Master in AI</h4>
-            <p class="text-xs text-slate-400 mt-1">Data Mining, Machine Learning avanzado y resolución de problemas por búsqueda y planificación.</p>
-          </div>
-
-          <div class="p-4 rounded-xl glass-card border border-slate-800">
-            <span class="text-xs font-mono text-blue-400 uppercase font-semibold">2022 - En Curso · Valencia</span>
-            <h4 class="text-base font-bold text-slate-100 mt-1">Grado en Tec. Digital y Multimedia</h4>
-            <p class="text-xs text-slate-400 mt-1">Tratamiento digital de señales, Computer Vision, desarrollo software y redes multimedia.</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Right Column: Professional Experience -->
-      <div class="lg:col-span-5">
-        <div class="glass-panel p-6 sm:p-8 rounded-2xl h-full flex flex-col justify-between">
-          <div>
-            <h3 class="text-xl font-bold text-white mb-6 flex items-center gap-2">
-              <svg class="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-              <span>Experiencia Práctica</span>
-            </h3>
-
-            <div class="space-y-6">
-              <!-- Item 1 -->
-              <div class="border-l-2 border-blue-500/60 pl-4 relative">
-                <span class="text-[11px] font-mono text-blue-400 font-semibold block">Enero 2025 – Junio 2025</span>
-                <h4 class="text-sm font-bold text-slate-100">Filmmaker & Edición de Medios · Mindcast</h4>
-                <p class="text-xs text-slate-400 mt-1">Producción y grabación de audio/vídeo para podcast, edición técnica de contenido para redes y gestión de activos digitales.</p>
-              </div>
-
-              <!-- Item 2 -->
-              <div class="border-l-2 border-purple-500/60 pl-4 relative">
-                <span class="text-[11px] font-mono text-purple-400 font-semibold block">Septiembre 2023 – Julio 2025</span>
-                <h4 class="text-sm font-bold text-slate-100">Auxiliar Soporte MOOC · Polimedia UPV</h4>
-                <p class="text-xs text-slate-400 mt-1">Planificación técnica de nuevos cursos masivos online, traducción técnica al inglés y soporte especializado a estudiantes en foros formativos.</p>
-              </div>
-
-              <!-- Item 3 -->
-              <div class="border-l-2 border-emerald-500/60 pl-4 relative">
-                <span class="text-[11px] font-mono text-emerald-400 font-semibold block">2017 – 2023</span>
-                <h4 class="text-sm font-bold text-slate-100">Grado Profesional de Música · Guitarra Clásica</h4>
-                <p class="text-xs text-slate-400 mt-1">Liceu de Música de Mislata. Interpretación solista y camerística, análisis formal y entrenamiento riguroso.</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="mt-8 pt-4 border-t border-slate-800 text-xs text-slate-400 flex items-center justify-between">
-            <span>¿Interesado en mi perfil?</span>
-            <a href="assets/David_Valls_Lozano_CV.pdf" download="David_Valls_Lozano_CV.pdf" class="text-blue-400 hover:text-blue-300 font-semibold underline">Descargar CV Completo</a>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- Technical Skills Matrix -->
-  <section id="habilidades" class="py-16 sm:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-slate-800/60">
-    <div class="text-center max-w-3xl mx-auto mb-12">
-      <div class="inline-flex items-center gap-2 text-xs font-mono font-semibold uppercase tracking-wider text-blue-400 mb-2">
-        <span>// Stack & Capacidades</span>
-      </div>
-      <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-        Habilidades Técnicas & Herramientas
-      </h2>
-      <p class="text-slate-400 text-sm sm:text-base mt-2">
-        Dominio de frameworks de Machine Learning moderno, estándares criptográficos y tecnologías para desarrollo de software de producción.
-      </p>
-    </div>
-
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-      <!-- Col 1: AI & Data -->
-      <div class="p-6 rounded-2xl glass-card border border-slate-800">
-        <div class="w-10 h-10 rounded-xl bg-purple-950/80 text-purple-400 flex items-center justify-center mb-4 border border-purple-800/60">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
-        </div>
-        <h3 class="text-base font-bold text-white mb-2">Inteligencia Artificial</h3>
-        <p class="text-xs text-slate-400 mb-4">Modelado generativo, visión por computador y análisis de datos.</p>
-        <ul class="space-y-1.5 text-xs text-slate-300 font-mono">
-          <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-purple-400"></span>PyTorch & Torchvision</li>
-          <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-purple-400"></span>Flow Matching & Diffusion</li>
-          <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-purple-400"></span>DINOv2 & Vision Transformers</li>
-          <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-purple-400"></span>Ultralytics YOLOv8</li>
-          <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-purple-400"></span>OpenCV & Scikit-learn</li>
-          <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-purple-400"></span>Pandas & NumPy</li>
-        </ul>
-      </div>
-
-      <!-- Col 2: Lenguajes -->
-      <div class="p-6 rounded-2xl glass-card border border-slate-800">
-        <div class="w-10 h-10 rounded-xl bg-blue-950/80 text-blue-400 flex items-center justify-center mb-4 border border-blue-800/60">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
-        </div>
-        <h3 class="text-base font-bold text-white mb-2">Lenguajes de Programación</h3>
-        <p class="text-xs text-slate-400 mb-4">Desarrollo políglota centrado en rendimiento y tipado estricto.</p>
-        <ul class="space-y-1.5 text-xs text-slate-300 font-mono">
-          <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-blue-400"></span>Python (Asyncio, Typing)</li>
-          <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-blue-400"></span>TypeScript / JavaScript</li>
-          <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-blue-400"></span>SQL (PostgreSQL)</li>
-          <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-blue-400"></span>HTML5 & CSS3 / Tailwind</li>
-          <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-blue-400"></span>C++ (Básico / Multimedia)</li>
-        </ul>
-      </div>
-
-      <!-- Col 3: Arquitectura & Backend -->
-      <div class="p-6 rounded-2xl glass-card border border-slate-800">
-        <div class="w-10 h-10 rounded-xl bg-emerald-950/80 text-emerald-400 flex items-center justify-center mb-4 border border-emerald-800/60">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2 1.5 3 3.5 3h9c2 0 3.5-1 3.5-3V7c0-2-1.5-3-3.5-3h-9C5.5 4 4 5 4 7zm0 5h16M9 4v16"></path></svg>
-        </div>
-        <h3 class="text-base font-bold text-white mb-2">Arquitectura & Backend</h3>
-        <p class="text-xs text-slate-400 mb-4">Sistemas desacoplados, escalables y orientados al dominio.</p>
-        <ul class="space-y-1.5 text-xs text-slate-300 font-mono">
-          <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>Arquitectura Hexagonal (Ports & Adapters)</li>
-          <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>Next.js 15 (App Router)</li>
-          <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>Drizzle ORM & SQLAlchemy</li>
-          <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>PostgreSQL 16 (UUIDv7)</li>
-          <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>Docker & Docker Compose</li>
-          <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>Open Banking PSD2 (GoCardless)</li>
-        </ul>
-      </div>
-
-      <!-- Col 4: Seguridad & Criptografía -->
-      <div class="p-6 rounded-2xl glass-card border border-slate-800">
-        <div class="w-10 h-10 rounded-xl bg-amber-950/80 text-amber-400 flex items-center justify-center mb-4 border border-amber-800/60">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
-        </div>
-        <h3 class="text-base font-bold text-white mb-2">Seguridad & Multimedia</h3>
-        <p class="text-xs text-slate-400 mb-4">Criptografía aplicada, protección de medios y streaming.</p>
-        <ul class="space-y-1.5 text-xs text-slate-300 font-mono">
-          <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>RSA-2048 OAEP & AES-128 CBC</li>
-          <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>Firmas Digitales RSA-PSS</li>
-          <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>Estándar W3C EME & CDM</li>
-          <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>Watermarking Dinámico Forense</li>
-          <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>Tratamiento Digital de Señal</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact Section -->
-  <section id="contacto" class="py-16 sm:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-slate-800/60">
-    <div class="max-w-4xl mx-auto glass-panel p-8 sm:p-12 rounded-3xl text-center relative overflow-hidden">
-      <!-- Background accent glow -->
-      <div class="absolute -top-24 left-1/2 -translate-x-1/2 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl pointer-events-none"></div>
-
-      <div class="inline-flex items-center gap-2 text-xs font-mono font-semibold uppercase tracking-wider text-blue-400 mb-4">
-        <span>// Hablemos</span>
-      </div>
-
-      <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight mb-4">
-        ¿Tienes un proyecto en mente o buscas incorporar talento?
-      </h2>
-
-      <p class="text-slate-300 text-sm sm:text-base max-w-2xl mx-auto mb-8 leading-relaxed">
-        Estoy disponible para posiciones de ingeniería en Inteligencia Artificial, Machine Learning o Desarrollo de Software, así como para proyectos de consultoría técnica y colaboraciones.
-      </p>
-
-      <div class="flex flex-wrap items-center justify-center gap-4">
-        <a 
-          href="mailto:dvdvalls04@gmail.com" 
-          class="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl font-semibold text-sm bg-blue-600 hover:bg-blue-500 text-white shadow-lg shadow-blue-600/30 transition-all btn-shimmer"
-        >
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-          <span>Enviar Correo</span>
-        </a>
-
-        <a 
-          href="https://www.linkedin.com/in/david-valls-lozano/" 
-          target="_blank" 
-          rel="noopener noreferrer" 
-          class="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl font-semibold text-sm bg-slate-900 hover:bg-slate-800 text-slate-200 border border-slate-700/80 transition-all"
-        >
-          <svg class="w-4 h-4 text-[#0077b5]" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
-          <span>Conectar en LinkedIn</span>
-        </a>
-
-        <a 
-          href="assets/David_Valls_Lozano_CV.pdf" 
-          download="David_Valls_Lozano_CV.pdf"
-          class="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl font-semibold text-sm bg-slate-900 hover:bg-slate-800 text-slate-200 border border-slate-700/80 transition-all"
-        >
-          <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
-          <span>Descargar Currículum (PDF)</span>
-        </a>
-      </div>
-
-      <div class="mt-8 text-xs text-slate-400 font-mono">
-        Tel: +34 658 19 77 47 · Valencia / Bolonia
-      </div>
-    </div>
-  </section>
+    </section>
+  </main>
 
   <!-- Footer -->
-  <footer class="py-8 border-t border-slate-900 text-center text-xs text-slate-400">
-    <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+  <footer class="py-8 border-t border-neutral-900 text-xs text-neutral-500">
+    <div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
       <div>
-        © 2026 David Valls Lozano. Diseñado con rigor técnico para GitHub Pages, LinkedIn y CV.
+        © 2026 David Valls Lozano. Portfolio de Software &amp; Inteligencia Artificial.
       </div>
-      <div class="flex items-center gap-4">
-        <a href="https://www.linkedin.com/in/david-valls-lozano/" target="_blank" rel="noopener noreferrer" class="hover:text-blue-400 transition-colors">LinkedIn</a>
-        <a href="mailto:dvdvalls04@gmail.com" class="hover:text-blue-400 transition-colors">Email</a>
-        <a href="assets/David_Valls_Lozano_CV.pdf" download class="hover:text-blue-400 transition-colors">CV</a>
+      <div class="flex items-center gap-5">
+        <a href="https://github.com/dvalloz" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">GitHub</a>
+        <a href="https://www.linkedin.com/in/david-valls-lozano/" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">LinkedIn</a>
+        <a href="mailto:dvdvalls04@gmail.com" class="hover:text-white transition-colors">Email</a>
+        <a href="assets/David_Valls_Lozano_CV.pdf" download class="hover:text-white transition-colors">CV (PDF)</a>
       </div>
     </div>
   </footer>
 
   <!-- Modal Component for Technical Deep-Dive -->
-  <div id="project-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 md:p-10 bg-black/80 backdrop-blur-md hidden modal-overlay">
-    <div class="bg-[#0f141c] border border-slate-800 w-full max-w-4xl max-h-[90vh] rounded-3xl shadow-2xl flex flex-col overflow-hidden modal-content">
+  <div id="project-modal" class="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 md:p-8 bg-black/85 backdrop-blur-md hidden modal-overlay">
+    <div class="bg-[#0b0e15] border border-neutral-800 w-full max-w-5xl max-h-[92vh] rounded-2xl shadow-2xl flex flex-col overflow-hidden modal-content">
       
       <!-- Modal Header -->
-      <div class="p-6 border-b border-slate-800 flex items-start justify-between gap-4 bg-slate-900/60">
+      <div class="p-5 sm:p-6 border-b border-neutral-800 flex items-start justify-between gap-4 bg-[#0e121a]">
         <div>
           <span id="modal-subtitle" class="text-xs font-mono text-blue-400 uppercase tracking-wider font-semibold"></span>
           <h3 id="modal-title" class="text-xl sm:text-2xl font-bold text-white mt-1"></h3>
         </div>
-        <button id="modal-close-btn" class="p-2 rounded-xl text-slate-400 hover:text-white bg-slate-800/80 hover:bg-slate-700 transition-colors">
+        <button id="modal-close-btn" class="p-2 rounded-xl text-neutral-400 hover:text-white bg-neutral-900 hover:bg-neutral-800 border border-neutral-800 transition-colors" aria-label="Cerrar modal">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
         </button>
       </div>
 
       <!-- Navigation Tabs -->
-      <div class="px-6 border-b border-slate-800 flex gap-4 text-xs sm:text-sm font-semibold bg-slate-950/40">
+      <div class="px-5 sm:px-6 border-b border-neutral-800 flex gap-4 text-xs sm:text-sm font-semibold bg-[#090b10]">
         <button onclick="switchModalTab('overview')" data-tab="overview" class="modal-tab-btn py-3 border-b-2 border-blue-500 text-blue-400 transition-colors">
           Visión General
         </button>
-        <button onclick="switchModalTab('arch')" data-tab="arch" class="modal-tab-btn py-3 border-b-2 border-transparent text-slate-400 hover:text-slate-200 transition-colors">
-          Arquitectura & Código
+        <button onclick="switchModalTab('arch')" data-tab="arch" class="modal-tab-btn py-3 border-b-2 border-transparent text-neutral-400 hover:text-neutral-200 transition-colors">
+          Arquitectura &amp; Código
         </button>
-        <button onclick="switchModalTab('results')" data-tab="results" class="modal-tab-btn py-3 border-b-2 border-transparent text-slate-400 hover:text-slate-200 transition-colors">
-          Métricas & Resultados
+        <button onclick="switchModalTab('results')" data-tab="results" class="modal-tab-btn py-3 border-b-2 border-transparent text-neutral-400 hover:text-neutral-200 transition-colors">
+          Métricas, UI &amp; Evidencia
         </button>
       </div>
 
       <!-- Modal Body (Scrollable) -->
-      <div class="p-6 overflow-y-auto space-y-6 text-sm flex-1">
+      <div class="p-5 sm:p-6 overflow-y-auto space-y-6 text-sm flex-1">
         <!-- Key Metrics Cards -->
-        <div id="modal-metrics" class="grid grid-cols-2 sm:grid-cols-4 gap-3"></div>
+        <div id="modal-metrics" class="grid grid-cols-2 sm:grid-cols-4 gap-2.5"></div>
 
         <!-- Tags List -->
         <div id="modal-tags" class="flex flex-wrap gap-2"></div>
@@ -509,29 +439,29 @@
         <div id="modal-repo-notice"></div>
 
         <!-- Tab 1: Overview -->
-        <div id="tab-overview" class="modal-tab-panel space-y-4">
-          <h4 class="text-xs font-mono uppercase tracking-wider text-slate-400 font-semibold">// Planteamiento del Problema & Solución</h4>
+        <div id="tab-overview" class="modal-tab-panel space-y-3">
+          <h4 class="text-xs font-mono uppercase tracking-wider text-neutral-400 font-semibold">Planteamiento del Problema &amp; Solución</h4>
           <div id="modal-overview-content"></div>
         </div>
 
         <!-- Tab 2: Architecture -->
-        <div id="tab-arch" class="modal-tab-panel hidden space-y-4">
-          <h4 class="text-xs font-mono uppercase tracking-wider text-slate-400 font-semibold">// Desglose de Ingeniería & Flujos</h4>
+        <div id="tab-arch" class="modal-tab-panel hidden space-y-3">
+          <h4 class="text-xs font-mono uppercase tracking-wider text-neutral-400 font-semibold">Desglose de Ingeniería &amp; Flujos de Ejecución</h4>
           <div id="modal-arch-content"></div>
         </div>
 
         <!-- Tab 3: Results & Evidence -->
         <div id="tab-results" class="modal-tab-panel hidden space-y-4">
-          <h4 class="text-xs font-mono uppercase tracking-wider text-slate-400 font-semibold">// Conclusiones & Validación Experimental</h4>
+          <h4 class="text-xs font-mono uppercase tracking-wider text-neutral-400 font-semibold">Conclusiones &amp; Validación Experimental</h4>
           <div id="modal-results-content"></div>
-          <div id="modal-gallery-container" class="mt-6 pt-4 border-t border-slate-800"></div>
+          <div id="modal-gallery-container" class="mt-4 pt-4 border-t border-neutral-800"></div>
         </div>
       </div>
 
       <!-- Modal Footer -->
-      <div class="p-4 border-t border-slate-800 bg-slate-900/60 flex items-center justify-between">
-        <span class="text-xs text-slate-400 font-mono">David Valls Lozano · Technical Portfolio</span>
-        <button onclick="closeModal()" class="px-4 py-2 rounded-xl text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-200 transition-colors">
+      <div class="p-4 border-t border-neutral-800 bg-[#0e121a] flex items-center justify-between">
+        <span class="text-xs text-neutral-400 font-mono">David Valls Lozano · Technical Portfolio</span>
+        <button onclick="closeModal()" class="px-4 py-2 rounded-xl text-xs font-semibold bg-neutral-900 hover:bg-neutral-800 text-neutral-200 border border-neutral-800 transition-colors">
           Cerrar
         </button>
       </div>
@@ -540,9 +470,9 @@
   </div>
 
   <!-- Toast Notification Feedback -->
-  <div id="toast-notification" class="fixed bottom-6 right-6 z-50 flex items-center gap-3 px-4 py-3 rounded-2xl bg-slate-900 border border-blue-500/50 text-white shadow-2xl text-sm font-medium">
-    <div class="w-6 h-6 rounded-full bg-blue-600/30 text-blue-400 flex items-center justify-center">
-      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+  <div id="toast-notification" class="fixed bottom-6 right-6 z-50 flex items-center gap-3 px-4 py-3 rounded-xl bg-neutral-900 border border-neutral-700 text-white shadow-2xl text-xs sm:text-sm font-medium">
+    <div class="w-5 h-5 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center">
+      <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
     </div>
     <span id="toast-message">Notificación</span>
   </div>

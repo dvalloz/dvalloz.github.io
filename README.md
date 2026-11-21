@@ -34,22 +34,27 @@ Sitio web de portfolio técnico diseñado para exhibir proyectos de ingeniería 
 
 ```text
 C:\Users\dvdva\Documents\portfolio\
-├── index.html                   # Página principal interactiva (SPA)
-├── README.md                    # Esta guía de uso y despliegue
+├── index.html                   # Página principal interactiva (SPA centrada en proyectos)
+├── README.md                    # Guía de uso y despliegue
 ├── assets/
 │   ├── David_Valls_Lozano_CV.pdf# Currículum en PDF listo para descarga directa
+│   ├── TFG_David_Valls_Memoria.pdf # Memoria académica completa del TFG (37.7 MB)
+│   ├── TFG_David_Valls_Resumen_Ejecutivo.pdf # Resumen ejecutivo del TFG
 │   ├── css/
-│   │   └── styles.css           # Estilos personalizados (Dark theme, glassmorphism)
+│   │   └── styles.css           # Estilos limpios craft, sin clichés de IA
 │   ├── js/
-│   │   └── main.js              # Datos de proyectos, filtros y lógica de modal
+│   │   └── main.js              # Datos, renderizado de cards con imágenes y modal
 │   └── images/
-│       ├── avatar_0.png         # Tu fotografía de perfil profesional
-│       ├── tfg-benchmark.png    # Resultados benchmark de SSB-OCT
-│       ├── tfg-esquema.png      # Arquitectura del modelo del TFG
+│       ├── avatar_0.png         # Fotografía de perfil profesional
+│       ├── fintrack-preview.svg # Mockup UI de FinTrack (True Net Spend & Hexagonal)
+│       ├── jarvis-preview.svg   # Interfaz Telegram y Tool Calling de Jarvis
+│       ├── segder-preview.svg   # Diagrama criptográfico W3C EME & Forensic Watermark
+│       ├── tfg-benchmark.png    # Resultados benchmark de SSB-OCT (4 escáneres)
+│       ├── tfg-esquema.png      # Arquitectura del modelo del TFG (SSBridgeNet)
 │       ├── tfg-diffusion.png    # Proceso de difusión estocástica
 │       ├── matriculas-yolo.png  # Detección YOLOv8
-│       ├── matriculas-contornos.png # Morfología OpenCV
-│       └── matriculas-benchmark.png # Comparativa de detectores
+│       ├── matriculas-contornos.png # Morfología y gradientes OpenCV
+│       └── matriculas-benchmark.png # Comparativa de detectores ALPR
 ```
 
 ---

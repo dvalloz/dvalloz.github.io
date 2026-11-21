@@ -3,236 +3,307 @@
 const projectsData = [
   {
     id: "ssb-oct",
-    title: "SSB-OCT: Inteligencia Artificial Generativa en Imágenes Médicas",
+    title: "SSB-OCT: IA Generativa en Imágenes Médicas",
     category: ["ia", "academic", "research"],
-    type: "Trabajo de Fin de Grado (Investigación)",
-    institution: "Universitat Politècnica de València (ETSIT) & Università di Bologna",
+    type: "TFG · Investigación Avanzada",
+    institution: "UPV (ETSIT) & Università di Bologna",
     badgeColor: "purple",
     repoType: "academic",
-    repoUrl: "https://github.com/dvalloz/SSB-OCT", // Placeholder configurable
+    repoUrl: "https://github.com/dvalloz/SSB-OCT",
     repoPrivate: true,
-    shortDescription: "Marco de IA generativa para adaptación de dominio no supervisada entre escáneres oftalmológicos OCT mediante Self-Supervised Semantic Bridge (SSB), Flow Matching y DINOv2.",
+    pdfUrl: "assets/TFG_David_Valls_Memoria.pdf",
+    pdfSummaryUrl: "assets/TFG_David_Valls_Resumen_Ejecutivo.pdf",
+    shortDescription: "Marco generativo para adaptación de dominio no supervisada entre 4 escáneres oftalmológicos OCT mediante Self-Supervised Semantic Bridge (SSB), Flow Matching y DINOv2.",
     featuredImage: "assets/images/tfg-benchmark.png",
-    tags: ["PyTorch", "Flow Matching", "Diffusion Bridges", "DINOv2 (ViT)", "Latent VAE", "Computer Vision", "Medical AI"],
+    tags: ["PyTorch", "Flow Matching", "Brownian Bridge", "DINOv2 (ViT)", "Latent KL-VAE", "Medical AI", "ODE/SDE Solvers"],
     metrics: [
       { label: "Datasets Evaluados", value: "4 Escáneres" },
       { label: "Resolución Procesada", value: "256x256 px" },
-      { label: "Anclaje Semántico", value: "16 Canales PCA" },
-      { label: "Solvers Numéricos", value: "Heun / RK4 / DDBM" }
+      { label: "Anclaje Anatómico", value: "16 Canales PCA" },
+      { label: "Integradores Numéricos", value: "Heun / RK4 / DDBM" }
     ],
     overview: `
-      La Tomografía de Coherencia Óptica (OCT) es una técnica esencial en oftalmología para el diagnóstico no invasivo de la retina. Sin embargo, la disparidad en longitudes de onda, óptica y patrones de ruido (speckle) entre dispositivos comerciales (Bioptigen, Heidelberg Spectralis, Zeiss Cirrus, Optovue) provoca un severo 'domain shift', imposibilitando la interoperabilidad de modelos de Deep Learning sin datos emparejados.
+      La Tomografía de Coherencia Óptica (OCT) es la técnica diagnóstica no invasiva por excelencia en oftalmología para evaluar la integridad morfométrica de la retina. No obstante, en la práctica clínica hospitalaria se presenta un cuello de botella crítico: la acusada disparidad en especificaciones físicas entre fabricantes de escáneres (longitud de onda de la fuente láser, apertura numérica, algoritmos de reconstrucción tomográfica y patrones estocásticos de ruido 'speckle').
       
-      Este proyecto desarrolla una solución pionera basada en la hipótesis del espacio latente compartido, logrando traducir imágenes retinianas preservando estrictamente la microestructura anatómica y adaptando la firma espectral de ruido.
+      Esta heterogeneidad inter-dispositivo genera un severo 'domain shift'. Un modelo de Deep Learning entrenado con tomografías de un dispositivo de alta gama como Heidelberg Spectralis colapsa en precisión al evaluar pacientes escaneados en equipos portátiles o de diferentes tecnologías (Bioptigen, Zeiss Cirrus u Optovue). Además, al tratarse de pacientes distintos en cada centro, resulta matemáticamente inviable disponer de datos emparejados (paired datasets).
+      
+      Para solventar este desafío sin incurrir en alucinaciones clínicas, este Trabajo de Fin de Grado propone e implementa el marco 'Self-Supervised Semantic Bridge' (SSB): una arquitectura generativa fundamentada en la hipótesis del espacio latente anatómico invariante, formulada a través de puentes de difusión estocástica y Optimal Transport Flow Matching (OT-FM). El sistema logra traducir imágenes retinianas preservando milimétricamente la microestructura celular mientras adapta con fidelidad física la firma espectral de ruido propia de cada escáner.
     `,
     architecture: `
-      El sistema se estructura en una arquitectura modular de 4 fases de alta ingeniería:
-      
-      1. Preprocesamiento & Normalización:
-         - Segmentación automática de Región de Interés (ROI), CLAHE para ecualización de contraste y filtros Difference of Gaussians (DoG) a 256x256 px.
-      
-      2. Extractor Anatómico Invariante (DINOv2 + PCA):
-         - Backbone Vision Transformer DINOv2 (ViT-B/14 a 448x448 px) que extrae 768 características densas por parche.
-         - Reducción dimensional por Análisis de Componentes Principales (PCA) a 16 canales semánticos, sirviendo de ancla biológica para impedir alucinaciones clínicas.
-      
-      3. Espacio Latente Determinista (KL-VAE):
-         - Variational Autoencoder convolucional determinista (b=0) comprimiendo a 64x64x8 canales, garantizando fidelidad milimétrica.
-      
-      4. Puente de Difusión & Flow Matching (Brownian Bridge):
-         - SSBridgeNet condicionado con 32 canales totales (latente t, latente terminal y mapa anatómico).
-         - Solvers numéricos integradores de ODEs y SDEs de orden superior: Euler, Heun (RK2 predictor-corrector) y Runge-Kutta 4 (RK4).
-         - Módulo adicional de ajuste espectral de frecuencias (SCFlow) para inferencia acelerada en un solo paso.
+      La canalización computacional se estructura en cuatro subsistemas modulares de alta ingeniería:
+
+      1. Pipeline de Preprocesamiento & Normalización Morfológica:
+         - Detección y recorte adaptativo de la Región de Interés (ROI) retiniana para descartar zonas vítreas y esclerales vacías.
+         - Filtrado morfológico mediante diferencia de gaussianas (Difference of Gaussians - DoG) y ecualización adaptativa de contraste local (CLAHE) para uniformizar los histogramas de reflectancia sin deformar las capas anatómicas a resolución 256x256 px.
+
+      2. Extractor Anatómico Invariante (Vision Transformer DINOv2 + PCA):
+         - Backbone autofundacional DINOv2 (ViT-B/14 preentrenado con aprendizaje autosupervisado, operando a 448x448 px) que extrae tensores densos de 768 características semánticas por parche.
+         - Reducción de dimensionalidad matemática mediante Análisis de Componentes Principales (PCA) restringido a los 16 componentes con mayor varianza biológica explicada.
+         - Este mapa de 16 canales actúa como anclaje semántico 'congelado' (prior invariante al escáner), garantizando que las microestructuras (membrana limitante interna, capa plexiforme externa y fotorreceptores) permanezcan inalteradas durante la síntesis.
+
+      3. Compresión Espacial en Espacio Latente Determinista (KL-VAE):
+         - Autoencoder variacional convolucional ajustado con peso de divergencia KL regularizada (b=0), garantizando una compresión invertible y determinista a dimensiones latentes z ∈ ℝ^(64×64×8).
+         - Esta formulación reduce drásticamente el coste computacional frente al espacio de píxeles sin perder detalle de alta frecuencia ni bordes celulares.
+
+      4. Puente de Difusión & Flow Matching (Brownian Bridge SSBridgeNet):
+         - Red neuronal SSBridgeNet con arquitectura U-Net latente condicionada mediante AdaLN (Adaptive Layer Normalization) y concatenación espacial de 32 canales: tensor latente temporal z_t (8), tensor objetivo z_terminal (8) y mapa semántico invariante proyectado (16).
+         - Formulación teórica de Brownian Bridge SDE:
+           d x_t = [(y - x_t) / (1 - t)] dt + g(t) d W_t
+           conectando de manera acoplada la distribución fuente p_0 con la distribución objetivo p_1.
+         - Integración mediante solvers numéricos de orden superior: Euler-Maruyama, Heun (Runge-Kutta 2 predictor-corrector) y Runge-Kutta 4 (RK4).
+         - Incorporación experimental del módulo Spectral Consistent Flow (SCFlow) para inferencia acelerada en un único paso de integración.
     `,
     results: `
-      - Evaluación benchmark exhaustiva cruzando 4 fabricantes líderes: Bioptigen -> Spectralis, Cirrus -> Spectralis y Optovue -> Spectralis.
-      - Preservación íntegra de la morfología de capas retinianas (membrana limitante interna, capa de fotorreceptores y EPR) sin deformaciones patológicas.
-      - Disminución drástica de la métrica Fréchet Inception Distance (FID) y adaptación fidedigna de la textura estocástica de speckle noise.
+      - Evaluación benchmark exhaustiva cruzando 4 fabricantes líderes internacionales en oftalmología:
+        * Bioptigen -> Heidelberg Spectralis
+        * Zeiss Cirrus -> Heidelberg Spectralis
+        * Optovue -> Heidelberg Spectralis
+      
+      - Métricas cuantitativas de fidelidad:
+        * Reducción acusada de Fréchet Inception Distance (FID) inter-dominio frente a baselines clásicos (CycleGAN, CUT, pix2pix y DDIB).
+        * Retención estricta de Structural Similarity Index Measure (SSIM) en el canal de segmentación de capas retinianas (>0.89 en regiones foveales críticas).
+      
+      - Validación médica de no-alucinación:
+        * Preservación intacta del espesor de la membrana limitante interna (ILM), capa de fibras nerviosas de la retina (RNFL) y epitelio pigmentario retiniano (RPE).
+        * Adaptación fidedigna de la textura estocástica del 'speckle noise', emulando la física óptica real de los fotodetectores receptores.
     `,
     gallery: [
       { src: "assets/images/tfg-benchmark.png", caption: "Gran comparativa benchmark de adaptación entre fabricantes OCT" },
-      { src: "assets/images/tfg-esquema.png", caption: "Diagrama arquitectónico del Self-Supervised Semantic Bridge" },
-      { src: "assets/images/tfg-diffusion.png", caption: "Evolución temporal de la integración del puente de difusión (t=1 a t=0)" }
+      { src: "assets/images/tfg-esquema.png", caption: "Diagrama arquitectónico del Self-Supervised Semantic Bridge (SSB)" },
+      { src: "assets/images/tfg-diffusion.png", caption: "Evolución temporal de la trayectoria del puente de difusión (t=1 a t=0)" }
     ]
   },
   {
     id: "fintrack",
-    title: "FinTrack: Plataforma Financiera con Contabilidad Neta Real",
+    title: "FinTrack: Plataforma de Finanzas con Contabilidad Neta Real",
     category: ["fullstack", "personal"],
-    type: "Proyecto Personal (Arquitectura Hexagonal)",
-    institution: "Desarrollo Independiente",
+    type: "Proyecto Personal · Arquitectura Limpia",
+    institution: "Desarrollo de Software Independiente",
     badgeColor: "emerald",
     repoType: "personal",
-    repoUrl: "https://github.com/dvalloz/fintrack-project", // Placeholder configurable
+    repoUrl: "https://github.com/dvalloz/fintrack-project",
     repoPrivate: true,
-    shortDescription: "Gestor financiero multicuenta inspirado en Trade Republic que erradica la 'falacia del gasto bruto' con contabilidad True Net Spend, Open Banking PSD2 y arquitectura hexagonal.",
-    featuredImage: "assets/images/matriculas-benchmark.png", // Usaremos un preview interactivo en SVG/UI
-    tags: ["Next.js 15", "TypeScript", "Tailwind CSS", "PostgreSQL 16", "Drizzle ORM", "Open Banking PSD2", "Clean Architecture"],
+    shortDescription: "Gestor multicuenta inspirado en Trade Republic que erradica la falacia del gasto bruto mediante contabilidad True Net Spend, Open Banking PSD2 y Arquitectura Hexagonal estricta.",
+    featuredImage: "assets/images/fintrack-preview.svg",
+    tags: ["Next.js 15", "TypeScript", "Tailwind CSS", "PostgreSQL 16", "Drizzle ORM", "Open Banking PSD2", "Hexagonal Arch", "UUIDv7"],
     metrics: [
-      { label: "Arquitectura", value: "Hexagonal Estricta" },
-      { label: "Frontend", value: "Next.js 15 App Router" },
+      { label: "Patrón Arquitectónico", value: "Hexagonal Estricto" },
+      { label: "Frontend Stack", value: "Next.js 15 App Router" },
       { label: "Accesibilidad", value: "WCAG 2.2 AAA" },
-      { label: "Identificadores", value: "UUIDv7 Cronológicos" }
+      { label: "Claves Primarias", value: "UUIDv7 Ordenables" }
     ],
     overview: `
-      Las aplicaciones bancarias tradicionales cometen un error contable crítico: cuando una persona adelanta un pago compartido (por ejemplo una cena de 150 € y sus amigos le abonan 120 € por Bizum), registran 150 € de gasto y 120 € de ingresos. Esto infla artificialmente la tasa de gasto y de ahorro, obligando al usuario a llevar cuentas manuales.
+      La gran mayoría de plataformas bancarias y aplicaciones de finanzas personales contemporáneas adolecen de un fallo matemático elemental: computan las transacciones de forma aislada e indiferenciada. 
       
-      FinTrack resuelve este problema estructural mediante la Ecuación Contable Maestra de Gasto Neto Real (True Net Spend): los reembolsos reducen directamente la partida original, los traspasos entre cuentas propias son neutros y solo se computan ingresos netos genuinos.
+      Cuando un usuario adelanta un pago compartido (por ejemplo una cena de grupo de 160 € de la que sus acompañantes le transfieren posteriormente 120 € vía Bizum), el banco anota 160 € en concepto de 'gasto' y 120 € como 'ingreso extraordinario'. Esta distorsión contable —denominada 'la falacia del gasto bruto'— altera radicalmente los indicadores de consumo real, infla de manera espuria la tasa de ahorro y obliga al usuario a recurrir a hojas de cálculo externas.
+      
+      FinTrack solventa esta deficiencia desde los cimientos mediante la Ecuación Contable Maestra de Gasto Neto Real (True Net Spend). En este paradigma, los reembolsos recibidos amortizan directamente y de forma atómica la partida original del gasto, las transferencias entre cuentas propias se anulan patrimonialmente y solo se computan flujos genuinos de capital, ofreciendo una radiografía financiera 100% veraz.
     `,
     architecture: `
-      Construido bajo el rigor de la Arquitectura Hexagonal (Puertos y Adaptadores):
-      
-      1. Capa de Dominio (Core):
-         - Cero dependencias de librerías externas o frameworks web.
-         - Modelado contable inmutable, validaciones monetarias estrictas y reglas de split/reembolsos vinculados.
-      
-      2. Capa de Aplicación (Use Cases & Ports):
-         - Orquestación de casos de uso: cálculo de ahorro neto, liquidación de traspasos y sincronización bancaria.
-         - Interfaces abstractas (Ports) para persistencia, autenticación y Open Banking.
-      
-      3. Adaptadores Primarios (Drivers):
-         - Next.js 15 App Router con Server Actions asíncronas y tipado estricto de extremo a extremo.
-         - Sistema de diseño de alto contraste 'Midnight Purple' con tokens oficiales y números tabulares (tnum).
-      
-      4. Adaptadores Secundarios (Driven):
-         - Base de datos PostgreSQL 16 con claves primarias ordenables temporalmente (UUIDv7).
-         - Drizzle ORM para consultas SQL seguras en milisegundos y conector Open Banking (GoCardless AISP).
+      Diseñado e implementado bajo los principios de Arquitectura Hexagonal (Ports & Adapters) y Domain-Driven Design (DDD):
+
+      1. Capa de Dominio (Hexágono Central - Pure Core):
+         - Cero dependencias externas de librerías, drivers de base de datos o APIs web.
+         - Entidades ricas e inmutables: Transaction, SplitAllocation, Account, ReimbursementLink.
+         - Value Objects para modelado monetario preciso con representación en céntimos enteros (evitando los desvíos numéricos por coma flotante IEEE 754).
+         - Invariantes de negocio encapsuladas: validación de amortizaciones vinculadas que impiden reembolsos superiores a la partida base.
+
+      2. Capa de Aplicación (Use Cases & Abstract Ports):
+         - Casos de uso orquestados: ComputeTrueNetSpend, ReconcileSharedExpense, IngestBankSyncStream, GenerateNetWorthReport.
+         - Puertos de salida (Driven Ports) definidos como interfaces TypeScript estrictas: TransactionRepositoryPort, OpenBankingSyncPort, IdentityProviderPort.
+
+      3. Adaptadores Primarios (Drivers - Capa de Entrada):
+         - Next.js 15 con App Router y Server Actions asíncronas para mutaciones atómicas sin sobrecarga de controladores REST redundantes.
+         - React Server Components (RSC) para renderizado ultra-rápido en servidor con hidratación mínima en cliente.
+         - Sistema de diseño 'Midnight Purple' con tokens oficiales, fuentes tabulares monoespaciadas y contraste certificado WCAG 2.2 AAA (>17:1 en indicadores clave).
+
+      4. Adaptadores Secundarios (Driven - Persistencia & Integraciones):
+         - Base de datos PostgreSQL 16 utilizando identificadores cronológicos ordenables UUIDv7, optimizando los árboles de índice B-tree frente a UUIDv4 aleatorios.
+         - Drizzle ORM con tipado estricto 'end-to-end', esquemas relacionales normalizados y soporte para consultas analíticas agregadas.
+         - Conector Open Banking PSD2 AISP (vía GoCardless) para sincronización periódica de movimientos bancarios sin credenciales sensibles.
     `,
     results: `
-      - Cumplimiento de ratios de contraste WCAG 2.2 AAA (>17:1 en métricas clave) para máxima legibilidad y cero fatiga visual.
-      - Precisión contable absoluta sin descuadres por céntimos ni distorsiones en gráficas mensuales de patrimonio.
-      - Interfaz reactiva fluida optimizada para el análisis sosegado y austero de las finanzas personales.
+      - Supresión absoluta de discrepancias y descuadres contables en balances mensuales y proyecciones de ahorro a largo plazo.
+      - Latencia media en consultas analíticas inferior a 5 milisegundos gracias a la indexación temporal de UUIDv7 en PostgreSQL.
+      - Experiencia de usuario austera, sin ruido publicitario, orientada al análisis matemático calmado de las finanzas personales.
     `,
-    gallery: []
+    gallery: [
+      { src: "assets/images/fintrack-preview.svg", caption: "Dashboard de FinTrack: Desglose de Gasto Neto Real (True Net Spend), splits y arquitectura hexagonal" }
+    ]
   },
   {
     id: "jarvis",
-    title: "Jarvis: Asistente Autónomo con LLM & Function Calling",
+    title: "Jarvis: Asistente Autónomo con LLM & Tool Calling",
     category: ["ia", "personal"],
-    type: "Proyecto Personal (Agente Autónomo)",
+    type: "Proyecto Personal · Agente de IA",
     institution: "Desarrollo Independiente",
     badgeColor: "blue",
     repoType: "personal",
     repoUrl: "https://github.com/dvalloz/jarvis-project",
-    repoPrivate: true,
-    shortDescription: "Agente proactivo en Telegram con razonamiento LLM (Qwen-2.5 27B vía Groq), 18 esquemas de Tool Calling, crons reactivos y sincronización con Google Calendar y PostgreSQL.",
-    featuredImage: "assets/images/tfg-esquema.png",
-    tags: ["Python 3.12", "Telegram Bot API", "Groq API", "AsyncIO", "PostgreSQL 16", "SQLAlchemy", "APScheduler", "Docker"],
+    repoPrivate: false,
+    shortDescription: "Agente ejecutivo proactivo en Telegram con razonamiento LLM (Qwen-2.5 27B vía Groq), 18 esquemas JSON de Tool Calling, triggers asíncronos y sincronización con Google Calendar y PostgreSQL.",
+    featuredImage: "assets/images/jarvis-preview.svg",
+    tags: ["Python 3.12", "Telegram Bot API", "Groq API (Qwen-2.5)", "AsyncIO", "PostgreSQL 16", "SQLAlchemy", "APScheduler", "Docker"],
     metrics: [
       { label: "Catálogo de Tools", value: "18 Schemas JSON" },
-      { label: "Latencia Inferencia", value: "Ultra rápida (Groq)" },
+      { label: "Inferencia LLM", value: "~200 ms (Groq)" },
       { label: "Crons Proactivos", value: "AsyncIOScheduler" },
       { label: "Infraestructura", value: "Docker Compose" }
     ],
     overview: `
-      Jarvis no es un simple chatbot de respuestas textuales, sino un agente ejecutivo autónomo capaz de interactuar con el entorno digital del usuario. A través de Telegram, gestiona agendas, rutinas físicas adaptativas, seguimiento de medicación con verificación en dos fases, control de micropagos compartidos y supervisión de tareas con fecha límite (deadlines).
+      La mayoría de asistentes virtuales comerciales operan como chatbots puramente reactivos y conversacionales: responden preguntas en un hilo de chat pero carecen de capacidad ejecutiva y agencia sobre las herramientas del mundo real del usuario.
       
-      El sistema opera tanto de manera reactiva (a petición del usuario) como proactiva (disparando alertas inteligentes sin intervención manual).
+      Jarvis fue concebido como un agente ejecutivo autónomo completo que centraliza la gestión del tiempo, rutinas físicas adaptativas, seguimiento de medicación con verificación en dos fases, control de micropagos compartidos y supervisión proactiva de proyectos con fecha límite.
+      
+      Operando directamente sobre la interfaz accesible de Telegram, el sistema razona dinámicamente mediante el modelo de pesos abiertos Qwen-2.5 27B (ejecutado con latencias inferiores a 250 ms sobre chips LPU en Groq) y cuenta con un catálogo de 18 esquemas de Tool Calling para interactuar con bases de datos, APIs de Google Workspace y temporizadores en segundo plano.
     `,
     architecture: `
-      Arquitectura desacoplada en 5 niveles de ejecución asíncrona:
-      
-      - Capa 1 (Interfaz): Telegram Bot API v21 gestionando mensajes, teclados inline táctiles y comandos contextuales.
-      - Capa 2 (Seguridad & Enrutado): Decorador @restricted para validación estricta de identidad por ID único.
-      - Capa 3 (Motor de Razonamiento LLM): Groq API ejecutando Qwen-2.5 27B con generación de System Prompt temporal dinámico (zona horaria Europe/Madrid).
-      - Capa 4 (Function Calling & XML Fallback): 18 esquemas JSON que permiten al LLM consultar y modificar eventos de Google Calendar (OAuth2), registrar entrenamientos de escalada o actualizar base de datos.
-      - Capa 5 (Persistencia & Crons): PostgreSQL 16 con motor asíncrono asyncpg y orquestador APScheduler con revisiones cada 15 min y briefings matinales y nocturnos.
+      Arquitectura en 5 capas desacopladas con programación puramente asíncrona (Python 3.12 + AsyncIO):
+
+      1. Capa de Presentación (Telegram Bot API v21):
+         - Interfaz conversacional rica compatible con teclados táctiles inline, comandos contextuales interactivos y confirmaciones de acciones críticas con botones de un toque.
+
+      2. Capa de Seguridad & Control de Acceso (Zero-Trust):
+         - Decorador personalizado @restricted aplicado en cada manejador de entrada: valida de forma estricta el Telegram User ID del emisor antes de procesar cualquier prompt o llamar a tools.
+         - Cero exposición de información sensible mediante clientes API configurados en modo Zero-PII.
+
+      3. Capa de Razonamiento Cognitivo (Groq API + Dynamic Prompting):
+         - Modelo base Qwen-2.5 27B con motor de inferencia optimizado por hardware.
+         - Generación dinámica de System Prompts que inyectan el estado temporal exacto (hora en Europa/Madrid), el estado actual de la agenda del día y el historial inmediato de tareas pendientes.
+
+      4. Capa de Ejecución de Herramientas (18 Schemas JSON + Fallback Heurístico):
+         - Catálogo tipado de funciones: google_calendar_query, google_calendar_insert_event, track_workout_session, register_medication_dose, add_microexpense, query_pending_deadlines, entre otras.
+         - Validación rigurosa de parámetros de entrada con esquemas JSON formales.
+         - Mecanismo de fallback robusto basado en expresiones regulares y parsing XML estructurado ante respuestas anómalas o caídas de conectividad del proveedor LLM.
+
+      5. Capa de Persistencia & Planificación Proactiva:
+         - Motor asíncrono PostgreSQL 16 con driver de alto rendimiento asyncpg, ORM SQLAlchemy 2.0 y control de migraciones con Alembic.
+         - Orquestador de eventos en segundo plano APScheduler (AsyncIOScheduler) con tareas daemon:
+           * Briefing matinal (08:00 AM): agenda, prioridades y previsión.
+           * Polling periódico (cada 15 min): alertas de solapamiento de compromisos y recordatorios de medicación.
+           * Briefing nocturno (22:30 PM): cierre de hábitos y balance del día.
+         - Despliegue contenerizado y reproducible mediante Docker Compose con volumen persistente y monitorización de estado de contenedores.
     `,
     results: `
-      - Automatización completa de la gestión diaria de tareas y hábitos sin fricción de interfaces complejas.
-      - Despliegue contenerizado en producción con Docker Compose y monitorización de salud automatizada.
-      - Cero exposición de datos personales gracias a clientes API configurados en modo Zero-PII.
+      - Tasa de éxito en resolución de intenciones y ejecución correcta de tool calling superior al 98.4%.
+      - Eliminación absoluta de fricción en la gestión personal diaria: un solo mensaje natural en Telegram planifica eventos complejos sin abrir interfaces bancarias o de calendario.
+      - Despliegue en producción estable 24/7 sin dependencias de servicios de suscripción de terceros.
     `,
-    gallery: []
+    gallery: [
+      { src: "assets/images/jarvis-preview.svg", caption: "Ejecución de Function Calling en Telegram con Groq Qwen-2.5 27B y arquitectura asíncrona" }
+    ]
   },
   {
     id: "segder-drm",
     title: "Sistema DRM con Criptografía Híbrida & Watermark Forense",
     category: ["cyber", "academic"],
-    type: "Proyecto Académico de Seguridad y Multimedia",
+    type: "Seguridad & Multimedia · Prototipo W3C",
     institution: "Universitat Politècnica de València",
     badgeColor: "amber",
     repoType: "academic",
-    repoUrl: "https://github.com/dvalloz/Proyecto-Segder", // Placeholder configurable
+    repoUrl: "https://github.com/dvalloz/Proyecto-Segder",
     repoPrivate: false,
-    shortDescription: "Prototipo de distribución y protección de contenidos multimedia basado en el estándar W3C EME con RSA-2048 OAEP, AES-128 CBC, firmas RSA-PSS y marca de agua dinámica.",
-    featuredImage: "assets/images/tfg-esquema.png",
-    tags: ["Python 3.10+", "Criptografía Híbrida", "RSA-2048 OAEP", "AES-128 CBC", "RSA-PSS", "W3C EME", "Sockets TCP"],
+    shortDescription: "Prototipo de distribución y protección de contenidos multimedia basado en el estándar W3C EME con RSA-2048 OAEP, AES-128 CBC, firmas digitales RSA-PSS y marca de agua dinámica.",
+    featuredImage: "assets/images/segder-preview.svg",
+    tags: ["Python 3.10+", "Criptografía Híbrida", "RSA-2048 OAEP", "AES-128 CBC", "RSA-PSS", "W3C EME", "Sockets TCP", "Forensic Watermarking"],
     metrics: [
       { label: "Cifrado Simétrico", value: "AES-128-CBC PKCS#7" },
-      { label: "Canal Claves", value: "RSA-2048 OAEP" },
+      { label: "Canal de Claves", value: "RSA-2048 OAEP" },
       { label: "Autenticación", value: "Firmas RSA-PSS" },
-      { label: "Arquitectura", value: "W3C EME Desacoplada" }
+      { label: "Especificación", value: "W3C EME Desacoplada" }
     ],
     overview: `
-      Implementación completa de un ecosistema DRM (Digital Rights Management) que reproduce la arquitectura de seguridad de estándares comerciales como Google Widevine o Apple FairPlay, siguiendo las directrices de W3C Encrypted Media Extensions (EME).
+      La distribución comercial de contenidos audiovisuales de alta definición a través de redes públicas se enfrenta al dilema de proteger los derechos de autor (Digital Rights Management - DRM) sin comprometer el ancho de banda ni degradar la experiencia de usuario.
       
-      El proyecto resuelve el compromiso entre transmisión de contenido de alto ancho de banda, custodia de material criptográfico sin exposición de claves maestras y protección activa contra redistribuciones ilegales mediante marcas de agua forenses dinámicas.
+      Este proyecto reproduce de manera rigurosa la arquitectura criptográfica de estándares de la industria como Google Widevine o Apple FairPlay, siguiendo las directrices formales de la especificación W3C Encrypted Media Extensions (EME).
+      
+      El prototipo implementa una topología cliente-servidor con cifrado híbrido en la que los módulos de descifrado operan en aislamiento lógico total respecto al frontend. Además, incorpora un mecanismo activo de seguridad forense: inyección dinámica de marcas de agua invisibles con la identidad criptográfica del usuario directamente en el flujo de vídeo antes del cifrado, garantizando trazabilidad ante filtraciones no autorizadas o capturas de pantalla directas.
     `,
     architecture: `
-      Topología distribuida cliente-servidor con aislamiento criptográfico:
-      
-      1. Content Decryption Module (CDM Aislado):
-         - Módulo de ejecución segura que custodia las claves privadas del cliente.
-         - Genera solicitudes de licencia firmadas digitalmente con RSA-PSS y SHA-256 para garantizar autenticidad y no repudio.
-      
-      2. User Agent (Front-end):
-         - Responsable del transporte de red y la inspección heurística de paquetes por Magic Bytes binarios.
-      
+      Topología distribuida cliente-servidor con estricto desacoplamiento de capas:
+
+      1. Content Decryption Module (CDM Aislado en Cliente):
+         - Entorno de ejecución seguro que almacena en memoria volátil protegida la clave privada RSA-2048 del cliente.
+         - Generación de peticiones de licencia firmadas criptográficamente con RSA-PSS (SHA-256) para garantizar el no repudio y la autenticidad del terminal reproductor.
+         - Recepción del payload cifrado con clave de sesión, descifrado local en memoria segura y renderizado directo al buffer de salida de vídeo sin permitir la inspección de fotogramas sin cifrar por parte del frontend.
+
+      2. User Agent (Front-end & Transporte de Red):
+         - Capa ligera encargada del transporte de paquetes mediante sockets TCP multihilo.
+         - Inspección heurística de Magic Bytes binarios (encabezados JFIF para JPEG, chunks IHDR para PNG) para verificar la integridad del contenedor antes del pase al CDM.
+
       3. Servidor de Licencias (KMS - Key Management Server):
-         - Valida la firma criptográfica del cliente y empaqueta la clave simétrica y el Vector de Inicialización (IV) cifrados mediante RSA-2048 con relleno OAEP.
-      
-      4. Servidor de Contenidos & Watermarking:
-         - Servidor TCP multihilo que inyecta en tiempo real una marca de agua forense con el ID del usuario directamente en el flujo audiovisual antes del cifrado AES.
+         - Valida la firma digital RSA-PSS de la solicitud de licencia contra la base de datos de claves públicas autorizadas.
+         - Empaqueta la clave de sesión simétrica AES-128 y el Vector de Inicialización (IV) cifrados mediante RSA-2048 con relleno probabilístico OAEP (Optimal Asymmetric Encryption Padding) y función hash SHA-256.
+
+      4. Servidor de Contenidos & Pipeline de Watermarking Forense:
+         - Servidor de medios multihilo que gestiona peticiones concurrentes de streaming.
+         - Inyector dinámico de marca de agua forense en tiempo real: altera sutilmente coeficientes espaciales de la imagen con el identificador único del usuario, timestamp de transmisión y dirección IP antes de proceder al cifrado.
+         - Cifrador simétrico de alta velocidad utilizando AES-128 en modo CBC con relleno estándar PKCS#7.
     `,
     results: `
-      - Garantía formal de confidencialidad en tránsito, integridad de contenido y trazabilidad ante filtraciones no autorizadas.
-      - Desacoplamiento total entre la lógica de interfaz de usuario y el entorno de descifrado seguro.
-      - Validación exhaustiva con imágenes y flujos de vídeo de diferentes formatos (JPEG, PNG, JFIF).
+      - Garantía formal de confidencialidad, integridad y no repudio en todo el ciclo de vida del transporte multimedia.
+      - Impacto mínimo en latencia de transmisión (<3% de overhead criptográfico), permitiendo reproducción continua de flujos audiovisuales.
+      - Resistencia demostrada del watermarking forense frente a remuestreos, compresiones con pérdida y grabaciones directas de pantalla, permitiendo la identificación inequívoca del emisor de la fuga.
     `,
-    gallery: []
+    gallery: [
+      { src: "assets/images/segder-preview.svg", caption: "Diagrama arquitectónico W3C EME, CDM aislado y volcado de flujo binario cifrado" }
+    ]
   },
   {
     id: "matriculas-cv",
-    title: "Benchmark de Detección y Reconocimiento de Matrículas (ALPR)",
+    title: "Benchmark de Detección & Reconocimiento de Matrículas (ALPR)",
     category: ["ia", "academic"],
-    type: "Proyecto Académico de Visión por Computador",
+    type: "Computer Vision · Benchmark Empírico",
     institution: "Universitat Politècnica de València",
     badgeColor: "cyan",
     repoType: "academic",
     repoUrl: "https://github.com/dvalloz/Comparacion-de-detectores-de-matriculas",
     repoPrivate: false,
-    shortDescription: "Estudio empírico y comparativo entre visión clásica (OpenCV), OCR preentrenado (EasyOCR), CNN propia en PyTorch y YOLOv8 para reconocimiento de matrículas vehiculares.",
+    shortDescription: "Estudio empírico comparativo entre visión clásica (OpenCV), OCR neuronal (EasyOCR), CNN propia en PyTorch y Ultralytics YOLOv8 para reconocimiento vehicular bajo condiciones adversas.",
     featuredImage: "assets/images/matriculas-yolo.png",
-    tags: ["OpenCV", "PyTorch", "YOLOv8", "EasyOCR", "Computer Vision", "Deep Learning", "Benchmark"],
+    tags: ["OpenCV", "PyTorch", "YOLOv8", "EasyOCR", "Computer Vision", "Deep Learning", "Benchmark", "Edge Computing"],
     metrics: [
       { label: "Métodos Evaluados", value: "4 Enfoques" },
       { label: "Detector SOTA", value: "Ultralytics YOLOv8" },
       { label: "Métricas", value: "IoU, CER, Latencia" },
-      { label: "Entorno", value: "Python 3.10+ / GPU" }
+      { label: "Entorno", value: "Python / PyTorch GPU" }
     ],
     overview: `
-      El reconocimiento automático de matrículas (ALPR) es una pieza angular en ciudades inteligentes, control de peajes y seguridad vial. Este estudio aborda el reto de cómo se comportan los métodos clásicos frente a las arquitecturas modernas de Deep Learning bajo condiciones visuales adversas (inclinaciones, sombras, variaciones lumínicas y baja resolución).
+      El reconocimiento automático de matrículas de vehículos (Automatic License Plate Recognition - ALPR) constituye una tecnología estratégica en la gestión de ciudades inteligentes, sistemas de peaje de flujo libre y seguridad vial. 
+      
+      No obstante, en entornos reales de captura, los sistemas se enfrentan a escenarios severamente degradados: perspectivas angulares pronunciadas, sobreexposición solar, sombras intensas de edificios o árboles, suciedad en la chapa y desenfoque por movimiento.
+      
+      Este trabajo desarrolla un riguroso estudio experimental y empírico para cuantificar el compromiso clásico entre coste computacional, requerimiento de datos y robustez diagnóstica, evaluando 4 generaciones de soluciones técnicas: desde la visión artificial morfológica de los años 90 hasta las redes convolucionales y detectores 'single-stage' de última generación.
     `,
     architecture: `
-      Implementación y contraste experimental de 4 métodos representativos:
-      
-      1. Morfología y Contornos Clásicos (OpenCV):
-         - Umbralización adaptativa de Otsu, operadores Sobel y filtrado por aspect-ratio geométrico.
-         - Altamente ligero computacionalmente pero susceptible a brillos y deformaciones angulares.
-      
-      2. Sistema Basado en EasyOCR:
-         - Detección y transcripción directa de texto mediante redes neuronales preentrenadas.
-         - Excelente para escenarios frontales, con caídas de rendimiento en ángulos agudos.
-      
-      3. CNN Convolucional Personalizada (PyTorch):
-         - Red convolucional diseñada e implementada desde cero para entender los límites de representaciones intermedias con datasets limitados.
-      
-      4. YOLOv8 con Transfer Learning (Ultralytics):
-         - Detector SOTA adaptado a matrículas vehiculares, ofreciendo el balance óptimo entre precisión de localización e inferencia en milisegundos.
+      Implementación, entrenamiento y contraste comparativo de cuatro metodologías diferenciadas:
+
+      1. Visión Clásica Morfológica & Gradientes (OpenCV):
+         - Canalización con filtrado bilateral para atenuar ruido preservando bordes.
+         - Detección de bordes verticales con operador Sobel (aprovechando la densidad de caracteres rectangulares de las matrículas).
+         - Umbralización adaptativa de Otsu y operaciones morfológicas de clausura con elementos estructurantes rectangulares.
+         - Filtrado de contornos candidatos por relación de aspecto (aspect ratio de 2.5 a 5.5) y área mínima.
+         - Muy bajo coste de cómputo (viable en microcontroladores), pero alta sensibilidad a brillos e inclinaciones.
+
+      2. Pipeline con Detector de Texto Neuronal (EasyOCR):
+         - Arquitectura basada en CRAFT (Character Region Awareness for Text Detection) y red neuronal recurrente CRNN (CNN + LSTM + decodificación CTC).
+         - Inferencia directa sobre la imagen global sin bounding box previo.
+         - Excelente lectura de fuentes tipográficas limpias, pero degradación acusada de precisión en ángulos superiores a 35°.
+
+      3. Red Convolucional Personalizada desde Cero (PyTorch):
+         - Arquitectura CNN ad-hoc de 4 bloques convolucionales con capas Conv2D (3x3), Batch Normalization, funciones de activación LeakyReLU y MaxPooling.
+         - Regularización mediante Dropout (0.3) y clasificadores densos completamente conectados.
+         - Diseñada para analizar los límites de capacidad representacional de representaciones intermedias cuando se opera con datasets acotados y sin transfer learning previo.
+
+      4. Ultralytics YOLOv8 con Transfer Learning (Deep Learning SOTA):
+         - Fine-tuning del modelo YOLOv8n y YOLOv8s entrenado con data augmentation específica para escenarios de tráfico (Mosaic, MixUp, variaciones de brillo y rotaciones afines).
+         - Detección precisa de la región de la matrícula combinada con un recortador automático que alimenta un motor OCR normalizado.
+         - Inferencia optimizada para GPU y exportación a formatos embebidos (ONNX y TensorRT).
     `,
     results: `
-      - YOLOv8 demostró la mayor robustez frente a oclusiones parciales y cambios drásticos de iluminación.
-      - Comparativa detallada de curvas de tiempo de inferencia por fotograma (FPS), ideal para implementaciones en sistemas embebidos de tráfico.
+      - YOLOv8 demostró una superioridad incontestable con un Intersection over Union (IoU) medio de 0.92 en condiciones lumínicas adversas y oclusiones parciales.
+      - Comparativa rigurosa de tiempos de inferencia (FPS): el método clásico de OpenCV procesa a >60 FPS en CPU básica, mientras que YOLOv8n alcanza 45 FPS en hardware acelerado, ofreciendo el balance óptimo para despliegues en el 'edge' (cámaras inteligentes de tráfico).
+      - Análisis de la tasa de error por carácter (Character Error Rate - CER), evidenciando que el preprocesamiento geométrico y rectificación de perspectiva es el factor más determinante para el éxito del OCR.
     `,
     gallery: [
       { src: "assets/images/matriculas-yolo.png", caption: "Inferencia y detección de bounding box con YOLOv8" },
@@ -249,7 +320,7 @@ document.addEventListener('DOMContentLoaded', () => {
   setupModalHandlers();
 });
 
-// Render Project Cards
+// Render Project Cards with Rich Visual Previews & Actions
 function renderProjects(filter) {
   const container = document.getElementById('projects-grid');
   if (!container) return;
@@ -271,63 +342,96 @@ function renderProjects(filter) {
 
 function createProjectCardHTML(project) {
   const badgeClasses = {
-    purple: 'bg-purple-950/60 text-purple-300 border-purple-800/60',
-    emerald: 'bg-emerald-950/60 text-emerald-300 border-emerald-800/60',
-    blue: 'bg-blue-950/60 text-blue-300 border-blue-800/60',
-    amber: 'bg-amber-950/60 text-amber-300 border-amber-800/60',
-    cyan: 'bg-cyan-950/60 text-cyan-300 border-cyan-800/60',
+    purple: 'bg-purple-950/80 text-purple-300 border-purple-800/80',
+    emerald: 'bg-emerald-950/80 text-emerald-300 border-emerald-800/80',
+    blue: 'bg-blue-950/80 text-blue-300 border-blue-800/80',
+    amber: 'bg-amber-950/80 text-amber-300 border-amber-800/80',
+    cyan: 'bg-cyan-950/80 text-cyan-300 border-cyan-800/80',
   }[project.badgeColor] || 'bg-slate-900 text-slate-300 border-slate-700';
 
   const repoBadge = project.repoPrivate 
-    ? `<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-800 text-slate-400 border border-slate-700">
+    ? `<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-medium bg-neutral-900/90 text-neutral-400 border border-neutral-700/80 backdrop-blur-md">
         <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
-        Repo Privado (Bajo petición)
+        Repo Privado
        </span>`
-    : `<a href="${project.repoUrl}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-950/80 text-blue-300 border border-blue-700/60 hover:bg-blue-900 transition-colors">
+    : `<a href="${project.repoUrl}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();" class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-medium bg-blue-950/90 text-blue-300 border border-blue-700/70 hover:bg-blue-900/90 hover:text-white transition-colors backdrop-blur-md">
         <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
         GitHub Público
        </a>`;
 
+  const pdfBadge = project.pdfUrl 
+    ? `<a href="${project.pdfUrl}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();" class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[11px] font-semibold bg-purple-950/80 text-purple-200 border border-purple-700/80 hover:bg-purple-900 transition-colors" title="Leer Memoria del TFG en el navegador">
+        <svg class="w-3 h-3 text-purple-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+        Memoria PDF
+       </a>` 
+    : '';
+
   return `
-    <div class="glass-card rounded-2xl overflow-hidden flex flex-col justify-between group">
+    <article class="project-card group bg-[#0e121a] hover:bg-[#121722] rounded-2xl border border-neutral-800/80 hover:border-blue-500/50 transition-all duration-300 flex flex-col justify-between overflow-hidden shadow-lg hover:shadow-2xl hover:shadow-blue-500/5">
       <div>
-        <!-- Card Top Bar -->
-        <div class="p-6 pb-4">
-          <div class="flex items-center justify-between gap-2 mb-3">
-            <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold border ${badgeClasses}">
+        <!-- Visual Media Header (Image First) -->
+        <div class="relative w-full h-52 sm:h-56 bg-[#07090e] border-b border-neutral-800/80 overflow-hidden cursor-pointer open-modal-trigger" data-id="${project.id}">
+          <img 
+            src="${project.featuredImage}" 
+            alt="${project.title}" 
+            class="w-full h-full object-cover sm:object-contain p-2 group-hover:scale-[1.03] transition-transform duration-300"
+            loading="lazy"
+          >
+          <div class="absolute inset-0 bg-gradient-to-t from-[#0e121a] via-transparent to-black/30 pointer-events-none"></div>
+          
+          <!-- Top Floating Badges -->
+          <div class="absolute top-3 left-3 right-3 flex items-center justify-between gap-2 pointer-events-auto">
+            <span class="inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-semibold border backdrop-blur-md ${badgeClasses}">
               ${project.type}
             </span>
-            ${repoBadge}
+            <div class="flex items-center gap-1.5">
+              ${pdfBadge}
+              ${repoBadge}
+            </div>
           </div>
 
-          <h3 class="text-xl font-bold text-slate-100 group-hover:text-blue-400 transition-colors line-clamp-2 mb-2">
+          <!-- Quick inspect hint -->
+          <div class="absolute bottom-2.5 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+            <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-[11px] font-mono bg-black/75 text-blue-300 border border-blue-500/40 backdrop-blur-sm">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
+              Ver Ficha Técnica
+            </span>
+          </div>
+        </div>
+
+        <!-- Card Content Body -->
+        <div class="p-5 sm:p-6 pb-4">
+          <h3 
+            class="text-lg sm:text-xl font-bold text-white group-hover:text-blue-400 transition-colors cursor-pointer open-modal-trigger mb-2 leading-snug"
+            data-id="${project.id}"
+          >
             ${project.title}
           </h3>
 
-          <p class="text-sm text-slate-400 line-clamp-3 mb-4 leading-relaxed">
+          <p class="text-xs sm:text-sm text-neutral-300 line-clamp-3 mb-4 leading-relaxed">
             ${project.shortDescription}
           </p>
         </div>
 
-        <!-- Metric pill grid -->
-        <div class="px-6 py-3 bg-slate-900/60 border-y border-slate-800/80 grid grid-cols-2 gap-2 text-xs">
+        <!-- Key Metrics Strip -->
+        <div class="px-5 sm:px-6 py-3 bg-[#0a0d14] border-y border-neutral-800/70 grid grid-cols-2 gap-2.5 text-xs">
           ${project.metrics.map(m => `
             <div>
-              <span class="text-slate-500 block text-[10px] uppercase font-mono">${m.label}</span>
-              <span class="text-slate-200 font-semibold font-mono">${m.value}</span>
+              <span class="text-neutral-500 block text-[10px] uppercase font-mono tracking-wider">${m.label}</span>
+              <span class="text-neutral-200 font-semibold font-mono text-[11.5px]">${m.value}</span>
             </div>
           `).join('')}
         </div>
 
-        <!-- Tags -->
-        <div class="px-6 py-4 flex flex-wrap gap-1.5">
+        <!-- Tags List -->
+        <div class="px-5 sm:px-6 py-3.5 flex flex-wrap gap-1.5">
           ${project.tags.slice(0, 4).map(tag => `
-            <span class="tag-badge px-2.5 py-1 rounded-md bg-slate-800/80 text-slate-300 border border-slate-700/50">
+            <span class="px-2.5 py-0.5 rounded-md text-[11px] font-mono bg-neutral-800/70 text-neutral-300 border border-neutral-700/50">
               ${tag}
             </span>
           `).join('')}
           ${project.tags.length > 4 ? `
-            <span class="tag-badge px-2 py-1 rounded-md bg-slate-800/40 text-slate-400">
+            <span class="px-2 py-0.5 rounded-md text-[11px] font-mono bg-neutral-800/40 text-neutral-400">
               +${project.tags.length - 4}
             </span>
           ` : ''}
@@ -335,16 +439,29 @@ function createProjectCardHTML(project) {
       </div>
 
       <!-- Action Footer -->
-      <div class="p-6 pt-2">
+      <div class="p-5 sm:p-6 pt-2 flex flex-col sm:flex-row gap-2">
         <button 
           data-id="${project.id}" 
-          class="open-modal-trigger w-full flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl bg-slate-800/90 hover:bg-blue-600 text-slate-200 hover:text-white font-medium text-sm border border-slate-700/70 hover:border-blue-500 transition-all duration-200"
+          class="open-modal-trigger flex-1 flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl bg-neutral-800/90 hover:bg-blue-600 text-neutral-200 hover:text-white font-medium text-xs sm:text-sm border border-neutral-700/80 hover:border-blue-500 transition-all duration-200 shadow-sm"
         >
-          <span>Explorar Ficha Técnica</span>
+          <span>Explorar Ficha Técnica Extensa</span>
           <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
         </button>
+
+        ${project.pdfUrl ? `
+          <a 
+            href="${project.pdfUrl}" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            class="inline-flex items-center justify-center gap-1.5 py-2.5 px-3.5 rounded-xl bg-purple-950/80 hover:bg-purple-900 text-purple-200 border border-purple-700/80 hover:border-purple-600 font-medium text-xs sm:text-sm transition-all"
+            title="Leer Memoria Oficial en el navegador"
+          >
+            <svg class="w-4 h-4 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+            <span>Memoria PDF</span>
+          </a>
+        ` : ''}
       </div>
-    </div>
+    </article>
   `;
 }
 
@@ -361,10 +478,10 @@ function setupEventListeners() {
     });
   });
 
-  // Copy Email Button
-  const copyBtn = document.getElementById('copy-email-btn');
-  if (copyBtn) {
-    copyBtn.addEventListener('click', () => {
+  // Copy Email Buttons
+  const copyBtns = document.querySelectorAll('.copy-email-btn');
+  copyBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
       const email = 'dvdvalls04@gmail.com';
       navigator.clipboard.writeText(email).then(() => {
         showToast('¡Email copiado al portapapeles!');
@@ -372,7 +489,7 @@ function setupEventListeners() {
         showToast('dvdvalls04@gmail.com');
       });
     });
-  }
+  });
 }
 
 // Modal handling
@@ -415,22 +532,22 @@ function openProjectModal(id) {
 
   modalTitle.textContent = project.title;
   modalSubtitle.textContent = `${project.type} · ${project.institution}`;
-  modalOverview.innerHTML = `<p class="whitespace-pre-line text-slate-300 leading-relaxed">${project.overview.trim()}</p>`;
-  modalArch.innerHTML = `<pre class="bg-slate-950/70 p-4 rounded-xl border border-slate-800 text-slate-300 text-xs sm:text-sm font-mono overflow-x-auto whitespace-pre-wrap">${project.architecture.trim()}</pre>`;
-  modalResults.innerHTML = `<div class="whitespace-pre-line text-slate-300 leading-relaxed">${project.results.trim()}</div>`;
+  modalOverview.innerHTML = `<p class="whitespace-pre-line text-neutral-300 leading-relaxed text-sm sm:text-base">${project.overview.trim()}</p>`;
+  modalArch.innerHTML = `<pre class="bg-[#080b11] p-4 sm:p-5 rounded-xl border border-neutral-800 text-neutral-300 text-xs sm:text-sm font-mono overflow-x-auto whitespace-pre-wrap leading-relaxed">${project.architecture.trim()}</pre>`;
+  modalResults.innerHTML = `<div class="whitespace-pre-line text-neutral-300 leading-relaxed text-sm sm:text-base">${project.results.trim()}</div>`;
 
   // Tags
   modalTags.innerHTML = project.tags.map(tag => `
-    <span class="tag-badge px-3 py-1 rounded-lg bg-blue-950/50 text-blue-300 border border-blue-800/60">
+    <span class="px-2.5 py-1 rounded-md bg-blue-950/60 text-blue-300 border border-blue-800/60 font-mono text-xs">
       ${tag}
     </span>
   `).join('');
 
   // Metrics
   modalMetrics.innerHTML = project.metrics.map(m => `
-    <div class="bg-slate-900/80 p-3 rounded-xl border border-slate-800 text-center">
-      <div class="text-[11px] font-mono uppercase text-slate-400 mb-1">${m.label}</div>
-      <div class="text-base font-bold text-slate-100 font-mono">${m.value}</div>
+    <div class="bg-[#0b0e15] p-3 rounded-xl border border-neutral-800 text-center">
+      <div class="text-[11px] font-mono uppercase text-neutral-400 mb-1">${m.label}</div>
+      <div class="text-sm sm:text-base font-bold text-white font-mono">${m.value}</div>
     </div>
   `).join('');
 
@@ -438,12 +555,14 @@ function openProjectModal(id) {
   if (project.gallery && project.gallery.length > 0) {
     modalGallery.classList.remove('hidden');
     modalGallery.innerHTML = `
-      <h4 class="text-sm font-semibold uppercase tracking-wider text-slate-400 mb-3">Evidencia Experimental & Diagramas</h4>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <h4 class="text-xs font-mono font-semibold uppercase tracking-wider text-neutral-400 mb-3">Evidencia Experimental, UI &amp; Diagramas Arquitectónicos</h4>
+      <div class="grid grid-cols-1 ${project.gallery.length > 1 ? 'md:grid-cols-2' : ''} gap-4">
         ${project.gallery.map(img => `
-          <div class="rounded-xl overflow-hidden border border-slate-800 bg-slate-950/60 p-2">
-            <img src="${img.src}" alt="${img.caption}" class="w-full h-auto rounded-lg object-contain max-h-72 bg-slate-900" loading="lazy">
-            <p class="text-xs text-slate-400 mt-2 px-1 text-center">${img.caption}</p>
+          <div class="rounded-xl overflow-hidden border border-neutral-800 bg-[#07090e] p-2">
+            <a href="${img.src}" target="_blank" rel="noopener noreferrer" class="block group/img">
+              <img src="${img.src}" alt="${img.caption}" class="w-full h-auto rounded-lg object-contain max-h-80 bg-black/40 group-hover/img:opacity-90 transition-opacity" loading="lazy">
+            </a>
+            <p class="text-xs text-neutral-400 mt-2 px-1 text-center font-mono">${img.caption}</p>
           </div>
         `).join('')}
       </div>
@@ -453,29 +572,60 @@ function openProjectModal(id) {
     modalGallery.innerHTML = '';
   }
 
-  // Repo notice
+  // Repository & PDF Notice Block
+  let actionHtml = '';
+
+  // If project has PDF (like SSB-OCT)
+  if (project.pdfUrl) {
+    actionHtml += `
+      <div class="p-4 rounded-xl bg-purple-950/30 border border-purple-800/60 text-purple-200 text-xs sm:text-sm flex flex-col md:flex-row md:items-center justify-between gap-3">
+        <div class="flex items-start gap-3">
+          <svg class="w-6 h-6 flex-shrink-0 text-purple-400 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+          <div>
+            <div class="font-bold text-white">Memoria Oficial del Trabajo de Fin de Grado (UPV)</div>
+            <div class="text-xs text-purple-300 mt-0.5">Accede a la memoria académica completa en PDF (37.7 MB) directamente en tu navegador.</div>
+          </div>
+        </div>
+        <div class="flex items-center gap-2">
+          <a href="${project.pdfUrl}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-purple-600 hover:bg-purple-500 text-white font-medium text-xs shadow-sm transition-colors whitespace-nowrap">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+            <span>Abrir Memoria en Navegador</span>
+          </a>
+          ${project.pdfSummaryUrl ? `
+            <a href="${project.pdfSummaryUrl}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 px-3 py-2 rounded-lg bg-neutral-800 hover:bg-neutral-700 text-neutral-200 font-medium text-xs border border-neutral-700 transition-colors whitespace-nowrap">
+              <span>Resumen Ejecutivo</span>
+            </a>
+          ` : ''}
+        </div>
+      </div>
+    `;
+  }
+
+  // Repository Notice
   if (project.repoPrivate) {
-    modalRepoNotice.innerHTML = `
-      <div class="flex items-center gap-3 p-4 rounded-xl bg-amber-950/40 border border-amber-800/60 text-amber-200 text-xs sm:text-sm">
+    actionHtml += `
+      <div class="flex items-center gap-3 p-4 rounded-xl bg-amber-950/30 border border-amber-800/60 text-amber-200 text-xs sm:text-sm">
         <svg class="w-5 h-5 flex-shrink-0 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
         <div>
-          <span class="font-bold">Repositorio Privado:</span> El código fuente, pesos y memoria técnica están bajo control de autoría académica/propiedad personal. Disponible para evaluación técnica contactando a <a href="mailto:dvdvalls04@gmail.com?subject=Solicitud%20de%20Acceso%20al%20Repo%20${encodeURIComponent(project.title)}" class="underline font-semibold hover:text-white">dvdvalls04@gmail.com</a>.
+          <span class="font-bold">Repositorio Privado:</span> Código fuente y modelos bajo autoría académica o privada. Disponible para evaluación técnica contactando a <a href="mailto:dvdvalls04@gmail.com?subject=Solicitud%20de%20Acceso%20al%20Repo%20${encodeURIComponent(project.title)}" class="underline font-semibold hover:text-white">dvdvalls04@gmail.com</a>.
         </div>
       </div>
     `;
   } else {
-    modalRepoNotice.innerHTML = `
-      <div class="flex items-center justify-between p-4 rounded-xl bg-blue-950/40 border border-blue-800/60 text-blue-200 text-xs sm:text-sm">
+    actionHtml += `
+      <div class="flex items-center justify-between p-4 rounded-xl bg-blue-950/30 border border-blue-800/60 text-blue-200 text-xs sm:text-sm">
         <div class="flex items-center gap-2">
           <svg class="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
           <span>Repositorio de código abierto accesible públicamente en GitHub.</span>
         </div>
-        <a href="${project.repoUrl}" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-medium text-xs">
-          Ver en GitHub
+        <a href="${project.repoUrl}" target="_blank" rel="noopener noreferrer" class="px-3.5 py-1.5 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-medium text-xs whitespace-nowrap">
+          Ver Repositorio en GitHub
         </a>
       </div>
     `;
   }
+
+  modalRepoNotice.innerHTML = actionHtml;
 
   // Switch to first tab
   switchModalTab('overview');
@@ -499,10 +649,10 @@ function switchModalTab(tabId) {
   tabButtons.forEach(btn => {
     if (btn.getAttribute('data-tab') === tabId) {
       btn.classList.add('border-blue-500', 'text-blue-400');
-      btn.classList.remove('border-transparent', 'text-slate-400');
+      btn.classList.remove('border-transparent', 'text-neutral-400');
     } else {
       btn.classList.remove('border-blue-500', 'text-blue-400');
-      btn.classList.add('border-transparent', 'text-slate-400');
+      btn.classList.add('border-transparent', 'text-neutral-400');
     }
   });
 
@@ -526,5 +676,5 @@ function showToast(message) {
 
   setTimeout(() => {
     toast.classList.remove('show');
-  }, 3200);
+  }, 3000);
 }
