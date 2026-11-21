@@ -18,6 +18,12 @@ html {
   color-scheme: dark;
 }
 
+/* Engineering Dot Grid Background */
+.bg-dot-grid {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
 /* Hide scrollbar for horizontal chips */
 .no-scrollbar::-webkit-scrollbar {
   display: none;
@@ -28,12 +34,14 @@ html {
 }
 
 body {
-  background-color: var(--bg-main);
+  background-color: #07090e;
   color: var(--text-primary);
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   overflow-x: hidden;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
+  position: relative;
+  min-height: 100vh;
 }
 
 /* Custom subtle scrollbar */

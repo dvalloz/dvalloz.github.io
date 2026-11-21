@@ -43,11 +43,26 @@
   </script>
 
   <!-- Custom CSS -->
-  <link rel="stylesheet" href="assets/css/styles.css?v=20261121_07">
+  <link rel="stylesheet" href="assets/css/styles.css?v=20261121_08">
 </head>
 
 <body
-  class="bg-[#090b10] text-neutral-100 font-sans antialiased selection:bg-blue-600 selection:text-white min-h-screen">
+  class="bg-[#07090e] text-neutral-100 font-sans antialiased selection:bg-blue-600 selection:text-white min-h-screen relative">
+
+  <!-- Atmospheric Background Canvas (Engineering Dot Matrix + Ambient Spotlight Auras) -->
+  <div class="fixed inset-0 pointer-events-none z-[-1] overflow-hidden" aria-hidden="true">
+    <!-- Precision Dot Matrix Grid -->
+    <div class="absolute inset-0 bg-dot-grid opacity-75"></div>
+    
+    <!-- Hero Spotlight Glow (Deep Blue Aura) -->
+    <div class="absolute -top-32 left-1/2 -translate-x-1/2 w-[900px] h-[550px] bg-gradient-to-b from-blue-600/20 via-indigo-600/10 to-transparent rounded-full blur-[110px] pointer-events-none"></div>
+    
+    <!-- Mid-page Ambient Accent (Subtle Purple Aura behind Projects) -->
+    <div class="absolute top-[35%] -right-48 w-[700px] h-[700px] bg-purple-600/10 rounded-full blur-[130px] pointer-events-none"></div>
+    
+    <!-- Lower Ambient Accent (Subtle Emerald/Teal Aura behind Stack/Profile) -->
+    <div class="absolute top-[70%] -left-48 w-[650px] h-[650px] bg-emerald-600/8 rounded-full blur-[130px] pointer-events-none"></div>
+  </div>
 
   <!-- Top Navigation Bar -->
   <header class="sticky top-0 z-40 w-full nav-glass">
@@ -588,7 +603,7 @@
   </div>
 
   <!-- JavaScript con Cache Buster para actualización inmediata -->
-  <script src="assets/js/main.js?v=20261121_07"></script>
+  <script src="assets/js/main.js?v=20261121_08"></script>
 </body>
 
 </html>
