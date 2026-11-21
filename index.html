@@ -212,29 +212,38 @@
 
     <!-- CORE SECTION: PROYECTOS (Centrado al 100% en proyectos reales con imágenes) -->
     <section id="proyectos" class="py-14 sm:py-20 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="mb-8">
-        <div class="flex flex-col lg:flex-row lg:items-center gap-3 sm:gap-5">
-          <h2 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight whitespace-nowrap">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-5">
+        <div>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
             Proyectos Realizados
           </h2>
-          <div class="h-6 w-px bg-neutral-800 hidden lg:block"></div>
+          <p class="text-neutral-400 text-sm mt-1 max-w-xl leading-relaxed">
+            Sistemas completos en producción, investigaciones generativas en medicina oftalmológica y prototipos de
+            seguridad criptográfica.
+          </p>
+        </div>
 
-          <!-- Category Selectors in a single row -->
-          <div class="flex items-center gap-2 overflow-x-auto no-scrollbar py-1">
+        <!-- Selectores de Categoría en dos filas -->
+        <div class="flex flex-col gap-2 self-start md:self-end flex-shrink-0">
+          <!-- Fila 1 -->
+          <div class="flex flex-wrap items-center gap-2">
             <button data-filter="all" class="filter-btn active px-3.5 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap transition-colors">
               Todos (5)
             </button>
             <button data-filter="tfg" class="filter-btn px-3.5 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap transition-colors">
-              TFG (1)
+              TFG
             </button>
             <button data-filter="academicos" class="filter-btn px-3.5 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap transition-colors">
-              Proyectos Académicos (2)
+              Proyectos Académicos
             </button>
+          </div>
+          <!-- Fila 2 -->
+          <div class="flex flex-wrap items-center gap-2">
             <button data-filter="personales" class="filter-btn px-3.5 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap transition-colors">
-              Proyectos Personales (2)
+              Proyectos Personales
             </button>
             <button data-filter="profesionales" class="filter-btn px-3.5 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap transition-colors">
-              Proyectos Profesionales (0)
+              Proyectos Profesionales
             </button>
           </div>
         </div>
