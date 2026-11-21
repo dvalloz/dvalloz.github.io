@@ -40,6 +40,7 @@ C:\Users\dvdva\Documents\portfolio\
 │   ├── David_Valls_Lozano_CV.pdf# Currículum en PDF listo para descarga directa
 │   ├── TFG_David_Valls_Memoria.pdf # Memoria académica completa del TFG (37.7 MB)
 │   ├── TFG_David_Valls_Resumen_Ejecutivo.pdf # Resumen ejecutivo del TFG
+│   ├── Presentacion_TFG.pdf     # Diapositivas de la defensa del TFG (19.7 MB)
 │   ├── css/
 │   │   └── styles.css           # Estilos limpios craft, sin clichés de IA
 │   ├── js/

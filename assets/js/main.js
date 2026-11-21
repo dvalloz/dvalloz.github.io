@@ -367,6 +367,13 @@ function createProjectCardHTML(project) {
        </a>` 
     : '';
 
+  const presentationBadge = project.pdfPresentationUrl 
+    ? `<a href="${project.pdfPresentationUrl}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();" class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[11px] font-semibold bg-purple-950/80 text-purple-200 border border-purple-700/80 hover:bg-purple-900 transition-colors" title="Ver Presentación del TFG en el navegador">
+        <svg class="w-3 h-3 text-purple-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"></path></svg>
+        Slides
+       </a>` 
+    : '';
+
   return `
     <article class="project-card group bg-[#0e121a] hover:bg-[#121722] rounded-2xl border border-neutral-800/80 hover:border-blue-500/50 transition-all duration-300 flex flex-col lg:flex-row overflow-hidden shadow-lg hover:shadow-2xl hover:shadow-blue-500/5">
       <!-- Left Side: Image / Mockup Preview -->
@@ -384,7 +391,8 @@ function createProjectCardHTML(project) {
           <span class="inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-semibold border backdrop-blur-md ${badgeClasses}">
             ${project.type}
           </span>
-          <div class="flex items-center gap-1.5">
+          <div class="flex items-center gap-1.5 flex-wrap justify-end">
+            ${presentationBadge}
             ${pdfBadge}
             ${repoBadge}
           </div>
@@ -460,6 +468,19 @@ function createProjectCardHTML(project) {
             >
               <svg class="w-4 h-4 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
               <span>Memoria Oficial (PDF)</span>
+            </a>
+          ` : ''}
+
+          ${project.pdfPresentationUrl ? `
+            <a 
+              href="${project.pdfPresentationUrl}" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              class="inline-flex items-center justify-center gap-1.5 py-2.5 px-4 rounded-xl bg-purple-950/80 hover:bg-purple-900 text-purple-200 border border-purple-700/80 hover:border-purple-600 font-medium text-xs sm:text-sm transition-all"
+              title="Ver Presentación de Diapositivas en el navegador"
+            >
+              <svg class="w-4 h-4 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"></path></svg>
+              <span>Presentación (Slides)</span>
             </a>
           ` : ''}
 
