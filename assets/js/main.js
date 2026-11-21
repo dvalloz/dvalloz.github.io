@@ -9,7 +9,7 @@ const projectsData = [
     institution: "Universitat Politècnica de València (ETSIT) & Università di Bologna",
     badgeColor: "purple",
     repoType: "academic",
-    repoUrl: "https://github.com/dvdvalls04/SSB-OCT", // Placeholder configurable
+    repoUrl: "https://github.com/dvalloz/SSB-OCT", // Placeholder configurable
     repoPrivate: true,
     shortDescription: "Marco de IA generativa para adaptación de dominio no supervisada entre escáneres oftalmológicos OCT mediante Self-Supervised Semantic Bridge (SSB), Flow Matching y DINOv2.",
     featuredImage: "assets/images/tfg-benchmark.png",
@@ -62,7 +62,7 @@ const projectsData = [
     institution: "Desarrollo Independiente",
     badgeColor: "emerald",
     repoType: "personal",
-    repoUrl: "https://github.com/dvdvalls04/fintrack-project", // Placeholder configurable
+    repoUrl: "https://github.com/dvalloz/fintrack-project", // Placeholder configurable
     repoPrivate: true,
     shortDescription: "Gestor financiero multicuenta inspirado en Trade Republic que erradica la 'falacia del gasto bruto' con contabilidad True Net Spend, Open Banking PSD2 y arquitectura hexagonal.",
     featuredImage: "assets/images/matriculas-benchmark.png", // Usaremos un preview interactivo en SVG/UI
@@ -112,7 +112,7 @@ const projectsData = [
     institution: "Desarrollo Independiente",
     badgeColor: "blue",
     repoType: "personal",
-    repoUrl: "https://github.com/dvdvalls04/jarvis-project",
+    repoUrl: "https://github.com/dvalloz/jarvis-project",
     repoPrivate: true,
     shortDescription: "Agente proactivo en Telegram con razonamiento LLM (Qwen-2.5 27B vía Groq), 18 esquemas de Tool Calling, crons reactivos y sincronización con Google Calendar y PostgreSQL.",
     featuredImage: "assets/images/tfg-esquema.png",
@@ -152,7 +152,7 @@ const projectsData = [
     institution: "Universitat Politècnica de València",
     badgeColor: "amber",
     repoType: "academic",
-    repoUrl: "https://github.com/dvdvalls04/Proyecto-Segder", // Placeholder configurable
+    repoUrl: "https://github.com/dvalloz/Proyecto-Segder", // Placeholder configurable
     repoPrivate: false,
     shortDescription: "Prototipo de distribución y protección de contenidos multimedia basado en el estándar W3C EME con RSA-2048 OAEP, AES-128 CBC, firmas RSA-PSS y marca de agua dinámica.",
     featuredImage: "assets/images/tfg-esquema.png",
@@ -199,7 +199,7 @@ const projectsData = [
     institution: "Universitat Politècnica de València",
     badgeColor: "cyan",
     repoType: "academic",
-    repoUrl: "https://github.com/dvdvalls04/Comparacion-de-detectores-de-matriculas",
+    repoUrl: "https://github.com/dvalloz/Comparacion-de-detectores-de-matriculas",
     repoPrivate: false,
     shortDescription: "Estudio empírico y comparativo entre visión clásica (OpenCV), OCR preentrenado (EasyOCR), CNN propia en PyTorch y YOLOv8 para reconocimiento de matrículas vehiculares.",
     featuredImage: "assets/images/matriculas-yolo.png",

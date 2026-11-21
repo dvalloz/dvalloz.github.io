@@ -60,8 +60,8 @@ Tienes tres opciones recomendadas, gratuitas y de despliegue en 2 minutos:
 
 ### Opción 1: GitHub Pages (La más recomendada para desarrolladores)
 1. Entra en tu cuenta de GitHub y crea un nuevo repositorio llamado:
-   - `dvdvalls04.github.io` (se publicará directamente en la raíz `https://dvdvalls04.github.io`)
-   - O bien un repositorio llamado `portfolio` (se publicará en `https://dvdvalls04.github.io/portfolio`).
+   - `dvalloz.github.io` (se publicará directamente en la raíz `https://dvalloz.github.io`)
+   - O bien un repositorio llamado `portfolio` (se publicará en `https://dvalloz.github.io/portfolio`).
 2. Abre la terminal en esta carpeta y sube los archivos:
    ```bash
    cd C:\Users\dvdva\Documents\portfolio
@@ -69,7 +69,7 @@ Tienes tres opciones recomendadas, gratuitas y de despliegue en 2 minutos:
    git add .
    git commit -m "Initial commit: David Valls portfolio"
    git branch -M main
-   git remote add origin https://github.com/dvdvalls04/dvdvalls04.github.io.git
+   git remote add origin https://github.com/dvalloz/dvalloz.github.io.git
    git push -u origin main
    ```
 3. En GitHub, ve a **Settings** > **Pages** > En **Branch** selecciona `main` y guarda. En menos de un minuto tu portfolio estará online.
