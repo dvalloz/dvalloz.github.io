@@ -213,21 +213,15 @@
 
     <!-- CORE SECTION: PROYECTOS (Centrado al 100% en proyectos reales con imágenes) -->
     <section id="proyectos" class="py-14 sm:py-20 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-5">
-        <div>
-          <h2 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+      <div class="mb-8">
+        <div class="flex flex-col lg:flex-row lg:items-center gap-3 sm:gap-5">
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight whitespace-nowrap">
             Proyectos Realizados
           </h2>
-          <p class="text-neutral-400 text-sm mt-1 max-w-xl leading-relaxed">
-            Sistemas completos en producción, investigaciones generativas en medicina oftalmológica y prototipos de
-            seguridad criptográfica.
-          </p>
-        </div>
+          <div class="h-6 w-px bg-neutral-800 hidden lg:block"></div>
 
-        <!-- Selectores de Categoría en dos filas estrictas -->
-        <div class="flex flex-col gap-2 self-start md:self-end flex-shrink-0">
-          <!-- Fila 1: Todos, TFG, Proyectos Académicos -->
-          <div class="flex items-center gap-2 overflow-x-auto no-scrollbar">
+          <!-- Selectores de Categoría en una sola fila -->
+          <div class="flex items-center gap-2 overflow-x-auto no-scrollbar py-1">
             <button onclick="filterProjects('all', this)" data-filter="all" class="filter-btn active px-3.5 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap transition-colors">
               Todos (5)
             </button>
@@ -237,9 +231,6 @@
             <button onclick="filterProjects('academicos', this)" data-filter="academicos" class="filter-btn px-3.5 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap transition-colors">
               Proyectos Académicos
             </button>
-          </div>
-          <!-- Fila 2: Proyectos Personales, Proyectos Profesionales -->
-          <div class="flex items-center gap-2 overflow-x-auto no-scrollbar">
             <button onclick="filterProjects('personales', this)" data-filter="personales" class="filter-btn px-3.5 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap transition-colors">
               Proyectos Personales
             </button>
