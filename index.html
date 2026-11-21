@@ -43,7 +43,7 @@
   </script>
 
   <!-- Custom CSS -->
-  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="stylesheet" href="assets/css/styles.css?v=20261121_04">
 </head>
 
 <body
@@ -227,22 +227,22 @@
         <div class="flex flex-col gap-2 self-start md:self-end flex-shrink-0">
           <!-- Fila 1 -->
           <div class="flex flex-wrap items-center gap-2">
-            <button data-filter="all" class="filter-btn active px-3.5 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap transition-colors">
+            <button onclick="filterProjects('all', this)" data-filter="all" class="filter-btn active px-3.5 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap transition-colors">
               Todos (5)
             </button>
-            <button data-filter="tfg" class="filter-btn px-3.5 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap transition-colors">
+            <button onclick="filterProjects('tfg', this)" data-filter="tfg" class="filter-btn px-3.5 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap transition-colors">
               TFG
             </button>
-            <button data-filter="academicos" class="filter-btn px-3.5 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap transition-colors">
+            <button onclick="filterProjects('academicos', this)" data-filter="academicos" class="filter-btn px-3.5 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap transition-colors">
               Proyectos Académicos
             </button>
           </div>
           <!-- Fila 2 -->
           <div class="flex flex-wrap items-center gap-2">
-            <button data-filter="personales" class="filter-btn px-3.5 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap transition-colors">
+            <button onclick="filterProjects('personales', this)" data-filter="personales" class="filter-btn px-3.5 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap transition-colors">
               Proyectos Personales
             </button>
-            <button data-filter="profesionales" class="filter-btn px-3.5 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap transition-colors">
+            <button onclick="filterProjects('profesionales', this)" data-filter="profesionales" class="filter-btn px-3.5 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap transition-colors">
               Proyectos Profesionales
             </button>
           </div>
@@ -590,8 +590,8 @@
     <span id="toast-message">Notificación</span>
   </div>
 
-  <!-- JavaScript -->
-  <script src="assets/js/main.js"></script>
+  <!-- JavaScript con Cache Buster para actualización inmediata -->
+  <script src="assets/js/main.js?v=20261121_04"></script>
 </body>
 
 </html>

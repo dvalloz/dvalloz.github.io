@@ -326,9 +326,26 @@ function renderProjects(filter = 'all') {
   const container = document.getElementById('projects-grid');
   if (!container) return;
 
-  const filtered = filter === 'all' 
-    ? projectsData 
-    : projectsData.filter(p => p.category.includes(filter));
+  const f = (filter || 'all').toLowerCase().trim();
+
+  let filtered = [];
+  if (f === 'all') {
+    filtered = projectsData;
+  } else if (f === 'tfg') {
+    // TFG: SSB-OCT
+    filtered = projectsData.filter(p => p.id === 'ssb-oct' || (p.category && p.category.includes('tfg')));
+  } else if (f === 'academicos' || f === 'academic' || f.includes('academ')) {
+    // Proyectos Académicos: Matrículas y DRM
+    filtered = projectsData.filter(p => p.id === 'segder-drm' || p.id === 'matriculas-cv' || (p.category && p.category.some(c => c.includes('academ')) && p.id !== 'ssb-oct'));
+  } else if (f === 'personales' || f === 'personal' || f.includes('person')) {
+    // Proyectos Personales: Jarvis y FinTrack
+    filtered = projectsData.filter(p => p.id === 'jarvis' || p.id === 'fintrack' || (p.category && p.category.some(c => c.includes('person'))));
+  } else if (f === 'profesionales' || f === 'profesional' || f.includes('profesion')) {
+    // Proyectos Profesionales: vacíos por ahora
+    filtered = projectsData.filter(p => p.category && p.category.some(c => c.includes('profesion')));
+  } else {
+    filtered = projectsData.filter(p => p.category && p.category.includes(f));
+  }
 
   if (filtered.length === 0) {
     container.innerHTML = `
@@ -516,16 +533,28 @@ function createProjectCardHTML(project) {
   `;
 }
 
+// Global filter trigger
+window.filterProjects = function(category, element) {
+  const filterButtons = document.querySelectorAll('.filter-btn');
+  filterButtons.forEach(b => b.classList.remove('active'));
+  if (element) {
+    element.classList.add('active');
+  } else {
+    const targetBtn = document.querySelector(`.filter-btn[data-filter="${category}"]`);
+    if (targetBtn) targetBtn.classList.add('active');
+  }
+  renderProjects(category);
+};
+
 // Event Listeners Setup
 function setupEventListeners() {
   // Category filters
   const filterButtons = document.querySelectorAll('.filter-btn');
   filterButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      filterButtons.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
       const category = btn.getAttribute('data-filter');
-      renderProjects(category);
+      window.filterProjects(category, btn);
     });
   });
 
