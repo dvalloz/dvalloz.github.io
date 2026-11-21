@@ -18,6 +18,15 @@ html {
   color-scheme: dark;
 }
 
+/* Hide scrollbar for horizontal chips */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 body {
   background-color: var(--bg-main);
   color: var(--text-primary);

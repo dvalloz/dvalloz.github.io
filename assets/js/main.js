@@ -4,7 +4,7 @@ const projectsData = [
   {
     id: "ssb-oct",
     title: "SSB-OCT: IA Generativa en Imágenes Médicas",
-    category: ["ia", "academic", "research"],
+    category: ["tfg"],
     type: "TFG · Investigación Avanzada",
     institution: "UPV (ETSIT) & Università di Bologna",
     badgeColor: "purple",
@@ -77,7 +77,7 @@ const projectsData = [
   {
     id: "fintrack",
     title: "FinTrack: Plataforma de Finanzas con Contabilidad Neta Real",
-    category: ["fullstack", "personal"],
+    category: ["personales"],
     type: "Proyecto Personal · Arquitectura Limpia",
     institution: "Desarrollo de Software Independiente",
     badgeColor: "emerald",
@@ -135,7 +135,7 @@ const projectsData = [
   {
     id: "jarvis",
     title: "Jarvis: Asistente Autónomo con LLM & Tool Calling",
-    category: ["ia", "personal"],
+    category: ["personales"],
     type: "Proyecto Personal · Agente de IA",
     institution: "Desarrollo Independiente",
     badgeColor: "blue",
@@ -197,7 +197,7 @@ const projectsData = [
   {
     id: "segder-drm",
     title: "Sistema DRM con Criptografía Híbrida & Watermark Forense",
-    category: ["cyber", "academic"],
+    category: ["academicos"],
     type: "Seguridad & Multimedia · Prototipo W3C",
     institution: "Universitat Politècnica de València",
     badgeColor: "amber",
@@ -253,7 +253,7 @@ const projectsData = [
   {
     id: "matriculas-cv",
     title: "Benchmark de Detección & Reconocimiento de Matrículas (ALPR)",
-    category: ["ia", "academic"],
+    category: ["academicos"],
     type: "Computer Vision · Benchmark Empírico",
     institution: "Universitat Politècnica de València",
     badgeColor: "cyan",
@@ -322,13 +322,28 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // Render Project Cards with Rich Visual Previews & Actions
-function renderProjects(filter) {
+function renderProjects(filter = 'all') {
   const container = document.getElementById('projects-grid');
   if (!container) return;
 
   const filtered = filter === 'all' 
     ? projectsData 
     : projectsData.filter(p => p.category.includes(filter));
+
+  if (filtered.length === 0) {
+    container.innerHTML = `
+      <div class="p-12 text-center rounded-2xl bg-[#0e121a] border border-neutral-800/80">
+        <div class="w-12 h-12 rounded-xl bg-blue-500/10 text-blue-400 mx-auto flex items-center justify-center mb-3">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
+        </div>
+        <h4 class="text-base font-bold text-white mb-1">Próximamente Proyectos Profesionales</h4>
+        <p class="text-xs sm:text-sm text-neutral-400 max-w-md mx-auto leading-relaxed">
+          Actualmente desempeñando tareas en ingeniería de datos. Próximamente se incorporarán casos de estudio y proyectos del ámbito profesional.
+        </p>
+      </div>
+    `;
+    return;
+  }
 
   container.innerHTML = filtered.map(p => createProjectCardHTML(p)).join('');
   
