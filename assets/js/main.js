@@ -367,99 +367,113 @@ function createProjectCardHTML(project) {
     : '';
 
   return `
-    <article class="project-card group bg-[#0e121a] hover:bg-[#121722] rounded-2xl border border-neutral-800/80 hover:border-blue-500/50 transition-all duration-300 flex flex-col justify-between overflow-hidden shadow-lg hover:shadow-2xl hover:shadow-blue-500/5">
-      <div>
-        <!-- Visual Media Header (Image First) -->
-        <div class="relative w-full h-52 sm:h-56 bg-[#07090e] border-b border-neutral-800/80 overflow-hidden cursor-pointer open-modal-trigger" data-id="${project.id}">
-          <img 
-            src="${project.featuredImage}" 
-            alt="${project.title}" 
-            class="w-full h-full object-cover sm:object-contain p-2 group-hover:scale-[1.03] transition-transform duration-300"
-            loading="lazy"
-          >
-          <div class="absolute inset-0 bg-gradient-to-t from-[#0e121a] via-transparent to-black/30 pointer-events-none"></div>
-          
-          <!-- Top Floating Badges -->
-          <div class="absolute top-3 left-3 right-3 flex items-center justify-between gap-2 pointer-events-auto">
-            <span class="inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-semibold border backdrop-blur-md ${badgeClasses}">
-              ${project.type}
-            </span>
-            <div class="flex items-center gap-1.5">
-              ${pdfBadge}
-              ${repoBadge}
-            </div>
-          </div>
-
-          <!-- Quick inspect hint -->
-          <div class="absolute bottom-2.5 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-            <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-[11px] font-mono bg-black/75 text-blue-300 border border-blue-500/40 backdrop-blur-sm">
-              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
-              Ver Ficha Técnica
-            </span>
+    <article class="project-card group bg-[#0e121a] hover:bg-[#121722] rounded-2xl border border-neutral-800/80 hover:border-blue-500/50 transition-all duration-300 flex flex-col lg:flex-row overflow-hidden shadow-lg hover:shadow-2xl hover:shadow-blue-500/5">
+      <!-- Left Side: Image / Mockup Preview -->
+      <div class="lg:w-[42%] xl:w-[40%] relative bg-[#07090e] border-b lg:border-b-0 lg:border-r border-neutral-800/80 overflow-hidden cursor-pointer open-modal-trigger flex items-center justify-center min-h-[250px] sm:min-h-[290px] lg:min-h-[350px]" data-id="${project.id}">
+        <img 
+          src="${project.featuredImage}" 
+          alt="${project.title}" 
+          class="w-full h-full object-contain p-3.5 sm:p-5 group-hover:scale-[1.03] transition-transform duration-300"
+          loading="lazy"
+        >
+        <div class="absolute inset-0 bg-gradient-to-t lg:bg-gradient-to-r from-black/40 via-transparent to-transparent pointer-events-none"></div>
+        
+        <!-- Top Floating Badges -->
+        <div class="absolute top-3.5 left-3.5 right-3.5 flex items-center justify-between gap-2 pointer-events-auto">
+          <span class="inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-semibold border backdrop-blur-md ${badgeClasses}">
+            ${project.type}
+          </span>
+          <div class="flex items-center gap-1.5">
+            ${pdfBadge}
+            ${repoBadge}
           </div>
         </div>
 
-        <!-- Card Content Body -->
-        <div class="p-5 sm:p-6 pb-4">
+        <!-- Quick inspect hint -->
+        <div class="absolute bottom-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+          <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-[11px] font-mono bg-black/80 text-blue-300 border border-blue-500/40 backdrop-blur-sm shadow-md">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
+            Ver Ficha Técnica
+          </span>
+        </div>
+      </div>
+
+      <!-- Right Side: Content Details -->
+      <div class="lg:w-[58%] xl:w-[60%] p-6 sm:p-7 lg:p-8 flex flex-col justify-between">
+        <div>
+          <!-- Header Meta -->
+          <div class="text-xs font-mono text-neutral-400 mb-2 font-medium">
+            <span>${project.institution}</span>
+          </div>
+
+          <!-- Title -->
           <h3 
-            class="text-lg sm:text-xl font-bold text-white group-hover:text-blue-400 transition-colors cursor-pointer open-modal-trigger mb-2 leading-snug"
+            class="text-xl sm:text-2xl font-bold text-white group-hover:text-blue-400 transition-colors cursor-pointer open-modal-trigger mb-3 leading-snug"
             data-id="${project.id}"
           >
             ${project.title}
           </h3>
 
-          <p class="text-xs sm:text-sm text-neutral-300 line-clamp-3 mb-4 leading-relaxed">
+          <!-- Description -->
+          <p class="text-xs sm:text-sm text-neutral-300 leading-relaxed mb-5">
             ${project.shortDescription}
           </p>
+
+          <!-- Key Metrics Strip (4 columns) -->
+          <div class="p-3.5 rounded-xl bg-[#080b11] border border-neutral-800/80 grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs mb-5">
+            ${project.metrics.map(m => `
+              <div>
+                <span class="text-neutral-500 block text-[10px] uppercase font-mono tracking-wider">${m.label}</span>
+                <span class="text-neutral-200 font-semibold font-mono text-xs sm:text-[13px]">${m.value}</span>
+              </div>
+            `).join('')}
+          </div>
+
+          <!-- Tags List -->
+          <div class="flex flex-wrap gap-1.5 mb-6">
+            ${project.tags.map(tag => `
+              <span class="px-2.5 py-1 rounded-md text-[11px] font-mono bg-neutral-800/70 text-neutral-300 border border-neutral-700/50">
+                ${tag}
+              </span>
+            `).join('')}
+          </div>
         </div>
 
-        <!-- Key Metrics Strip -->
-        <div class="px-5 sm:px-6 py-3 bg-[#0a0d14] border-y border-neutral-800/70 grid grid-cols-2 gap-2.5 text-xs">
-          ${project.metrics.map(m => `
-            <div>
-              <span class="text-neutral-500 block text-[10px] uppercase font-mono tracking-wider">${m.label}</span>
-              <span class="text-neutral-200 font-semibold font-mono text-[11.5px]">${m.value}</span>
-            </div>
-          `).join('')}
-        </div>
+        <!-- Action Buttons Row -->
+        <div class="pt-4 border-t border-neutral-800/80 flex flex-wrap items-center gap-3">
+          <button 
+            data-id="${project.id}" 
+            class="open-modal-trigger inline-flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-medium text-xs sm:text-sm transition-all duration-200 shadow-sm"
+          >
+            <span>Explorar Ficha Técnica Extensa</span>
+            <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+          </button>
 
-        <!-- Tags List -->
-        <div class="px-5 sm:px-6 py-3.5 flex flex-wrap gap-1.5">
-          ${project.tags.slice(0, 4).map(tag => `
-            <span class="px-2.5 py-0.5 rounded-md text-[11px] font-mono bg-neutral-800/70 text-neutral-300 border border-neutral-700/50">
-              ${tag}
-            </span>
-          `).join('')}
-          ${project.tags.length > 4 ? `
-            <span class="px-2 py-0.5 rounded-md text-[11px] font-mono bg-neutral-800/40 text-neutral-400">
-              +${project.tags.length - 4}
-            </span>
+          ${project.pdfUrl ? `
+            <a 
+              href="${project.pdfUrl}" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              class="inline-flex items-center justify-center gap-1.5 py-2.5 px-4 rounded-xl bg-purple-950/80 hover:bg-purple-900 text-purple-200 border border-purple-700/80 hover:border-purple-600 font-medium text-xs sm:text-sm transition-all"
+              title="Leer Memoria Oficial en el navegador"
+            >
+              <svg class="w-4 h-4 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+              <span>Memoria Oficial (PDF)</span>
+            </a>
+          ` : ''}
+
+          ${!project.repoPrivate ? `
+            <a 
+              href="${project.repoUrl}" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              class="inline-flex items-center justify-center gap-1.5 py-2.5 px-3.5 rounded-xl bg-neutral-900 hover:bg-neutral-800 text-neutral-200 hover:text-white border border-neutral-700/80 font-medium text-xs sm:text-sm transition-all"
+            >
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+              <span>GitHub</span>
+            </a>
           ` : ''}
         </div>
-      </div>
-
-      <!-- Action Footer -->
-      <div class="p-5 sm:p-6 pt-2 flex flex-col sm:flex-row gap-2">
-        <button 
-          data-id="${project.id}" 
-          class="open-modal-trigger flex-1 flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl bg-neutral-800/90 hover:bg-blue-600 text-neutral-200 hover:text-white font-medium text-xs sm:text-sm border border-neutral-700/80 hover:border-blue-500 transition-all duration-200 shadow-sm"
-        >
-          <span>Explorar Ficha Técnica Extensa</span>
-          <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-        </button>
-
-        ${project.pdfUrl ? `
-          <a 
-            href="${project.pdfUrl}" 
-            target="_blank" 
-            rel="noopener noreferrer" 
-            class="inline-flex items-center justify-center gap-1.5 py-2.5 px-3.5 rounded-xl bg-purple-950/80 hover:bg-purple-900 text-purple-200 border border-purple-700/80 hover:border-purple-600 font-medium text-xs sm:text-sm transition-all"
-            title="Leer Memoria Oficial en el navegador"
-          >
-            <svg class="w-4 h-4 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
-            <span>Memoria PDF</span>
-          </a>
-        ` : ''}
       </div>
     </article>
   `;
