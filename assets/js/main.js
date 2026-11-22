@@ -374,38 +374,6 @@ function renderProjects(filter = 'all') {
 }
 
 function createProjectCardHTML(project) {
-  const badgeClasses = {
-    purple: 'bg-purple-950/80 text-purple-300 border-purple-800/80',
-    emerald: 'bg-emerald-950/80 text-emerald-300 border-emerald-800/80',
-    blue: 'bg-blue-950/80 text-blue-300 border-blue-800/80',
-    amber: 'bg-amber-950/80 text-amber-300 border-amber-800/80',
-    cyan: 'bg-cyan-950/80 text-cyan-300 border-cyan-800/80',
-  }[project.badgeColor] || 'bg-slate-900 text-slate-300 border-slate-700';
-
-  const repoBadge = project.repoPrivate 
-    ? `<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-medium bg-neutral-900/90 text-neutral-400 border border-neutral-700/80 backdrop-blur-md">
-        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
-        Repo Privado
-       </span>`
-    : `<a href="${project.repoUrl}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();" class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-medium bg-blue-950/90 text-blue-300 border border-blue-700/70 hover:bg-blue-900/90 hover:text-white transition-colors backdrop-blur-md">
-        <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
-        GitHub Público
-       </a>`;
-
-  const pdfBadge = project.pdfUrl 
-    ? `<a href="${project.pdfUrl}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();" class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[11px] font-semibold bg-purple-950/80 text-purple-200 border border-purple-700/80 hover:bg-purple-900 transition-colors" title="Leer Memoria del TFG en el navegador">
-        <svg class="w-3 h-3 text-purple-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
-        Memoria PDF
-       </a>` 
-    : '';
-
-  const presentationBadge = project.pdfPresentationUrl 
-    ? `<a href="${project.pdfPresentationUrl}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();" class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[11px] font-semibold bg-purple-950/80 text-purple-200 border border-purple-700/80 hover:bg-purple-900 transition-colors" title="Ver Presentación del TFG en el navegador">
-        <svg class="w-3 h-3 text-purple-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"></path></svg>
-        Slides
-       </a>` 
-    : '';
-
   return `
     <article class="project-card group bg-[#0e121a] hover:bg-[#121722] rounded-2xl border border-neutral-800/80 hover:border-blue-500/50 transition-all duration-300 flex flex-col lg:flex-row overflow-hidden shadow-lg hover:shadow-2xl hover:shadow-blue-500/5">
       <!-- Left Side: Image / Mockup Preview -->
@@ -413,22 +381,10 @@ function createProjectCardHTML(project) {
         <img 
           src="${project.featuredImage}" 
           alt="${project.title}" 
-          class="w-full h-full object-contain p-3.5 sm:p-5 group-hover:scale-[1.03] transition-transform duration-300"
+          class="w-full h-full object-contain p-4 sm:p-6 group-hover:scale-[1.03] transition-transform duration-300"
           loading="lazy"
         >
-        <div class="absolute inset-0 bg-gradient-to-t lg:bg-gradient-to-r from-black/40 via-transparent to-transparent pointer-events-none"></div>
-        
-        <!-- Top Floating Badges -->
-        <div class="absolute top-3.5 left-3.5 right-3.5 flex items-center justify-between gap-2 pointer-events-auto">
-          <span class="inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-semibold border backdrop-blur-md ${badgeClasses}">
-            ${project.type}
-          </span>
-          <div class="flex items-center gap-1.5 flex-wrap justify-end">
-            ${presentationBadge}
-            ${pdfBadge}
-            ${repoBadge}
-          </div>
-        </div>
+        <div class="absolute inset-0 bg-gradient-to-t lg:bg-gradient-to-r from-black/20 via-transparent to-transparent pointer-events-none"></div>
 
         <!-- Quick inspect hint -->
         <div class="absolute bottom-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
@@ -443,7 +399,9 @@ function createProjectCardHTML(project) {
       <div class="lg:w-[58%] xl:w-[60%] p-6 sm:p-7 lg:p-8 flex flex-col justify-between">
         <div>
           <!-- Header Meta -->
-          <div class="text-xs font-mono text-neutral-400 mb-2 font-medium">
+          <div class="text-xs font-mono text-neutral-400 mb-2 font-medium flex items-center gap-2">
+            <span class="text-blue-400 font-semibold">${project.type}</span>
+            <span class="text-neutral-600">·</span>
             <span>${project.institution}</span>
           </div>
 
