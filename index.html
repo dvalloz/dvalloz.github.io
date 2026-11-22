@@ -43,7 +43,7 @@
   </script>
 
   <!-- Custom CSS -->
-  <link rel="stylesheet" href="assets/css/styles.css?v=20261122_01">
+  <link rel="stylesheet" href="assets/css/styles.css?v=20261122_02">
 </head>
 
 <body
@@ -53,15 +53,21 @@
   <div class="fixed inset-0 pointer-events-none z-[-1] overflow-hidden" aria-hidden="true">
     <!-- Precision Dot Matrix Grid -->
     <div class="absolute inset-0 bg-dot-grid opacity-75"></div>
-    
+
     <!-- Hero Spotlight Glow (Deep Blue Aura) -->
-    <div class="absolute -top-32 left-1/2 -translate-x-1/2 w-[900px] h-[550px] bg-gradient-to-b from-blue-600/20 via-indigo-600/10 to-transparent rounded-full blur-[110px] pointer-events-none"></div>
-    
+    <div
+      class="absolute -top-32 left-1/2 -translate-x-1/2 w-[900px] h-[550px] bg-gradient-to-b from-blue-600/20 via-indigo-600/10 to-transparent rounded-full blur-[110px] pointer-events-none">
+    </div>
+
     <!-- Mid-page Ambient Accent (Subtle Purple Aura behind Projects) -->
-    <div class="absolute top-[35%] -right-48 w-[700px] h-[700px] bg-purple-600/10 rounded-full blur-[130px] pointer-events-none"></div>
-    
+    <div
+      class="absolute top-[35%] -right-48 w-[700px] h-[700px] bg-purple-600/10 rounded-full blur-[130px] pointer-events-none">
+    </div>
+
     <!-- Lower Ambient Accent (Subtle Emerald/Teal Aura behind Stack/Profile) -->
-    <div class="absolute top-[70%] -left-48 w-[650px] h-[650px] bg-emerald-600/8 rounded-full blur-[130px] pointer-events-none"></div>
+    <div
+      class="absolute top-[70%] -left-48 w-[650px] h-[650px] bg-emerald-600/8 rounded-full blur-[130px] pointer-events-none">
+    </div>
   </div>
 
   <!-- Top Navigation Bar -->
@@ -138,13 +144,11 @@
           </h1>
 
           <p class="text-base sm:text-lg text-neutral-300 leading-relaxed mb-6 font-normal">
-            Actualmente trabajo en el área de <strong class="text-white font-medium">ingeniería de datos</strong>,
-            enfocado en pipelines de procesamiento, arquitectura de almacenamiento y preparación de datos para
-            analítica. Cuento con formación académica especializada en <strong
+            Actualmente trabajo en <strong class="text-white font-medium">ingeniería de datos</strong> para Smart Cities y destinos inteligentes (ETL con Pentaho, arquitectura FIWARE y analítica en URBO). Cuento con formación académica especializada en <strong
               class="text-white font-medium">Inteligencia Artificial</strong>: graduado en Tecnología Digital y
             Multimedia por la <span class="text-blue-400 font-medium">UPV</span> y formado en el Máster en IA de la
-            <span class="text-purple-400 font-medium">Università di Bologna</span>, con foco en modelos generativos (<em
-              class="not-italic text-neutral-200">Flow Matching, Diffusion</em>) y visión por computador.
+            <span class="text-purple-400 font-medium">Università di Bologna</span>, con foco en modelos generativos y
+            visión por computador.
           </p>
 
           <!-- Action buttons -->
@@ -182,20 +186,24 @@
         <!-- Right: Profile card badge (Large Photo & Details) -->
         <div
           class="w-full sm:w-[360px] md:w-[380px] lg:w-[400px] mx-auto lg:mx-0 bg-[#0e121a] border border-neutral-800/90 rounded-2xl overflow-hidden shadow-2xl flex-shrink-0">
-          
+
           <!-- Large Portrait Photo -->
           <div class="relative w-full h-72 sm:h-80 bg-neutral-950 overflow-hidden group">
             <img src="assets/images/avatar_0.png" alt="David Valls Lozano"
               class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
               style="object-position: center 55%;">
-            <div class="absolute inset-0 bg-gradient-to-t from-[#0e121a] via-[#0e121a]/25 to-transparent pointer-events-none"></div>
-            
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-[#0e121a] via-[#0e121a]/25 to-transparent pointer-events-none">
+            </div>
+
             <div class="absolute bottom-4 left-5 right-5 flex items-end justify-between">
               <div>
-                <h3 class="font-extrabold text-white text-xl sm:text-2xl leading-tight drop-shadow-md">David Valls Lozano</h3>
+                <h3 class="font-extrabold text-white text-xl sm:text-2xl leading-tight drop-shadow-md">David Valls
+                  Lozano</h3>
                 <div class="text-xs sm:text-sm text-neutral-300 font-mono mt-0.5">Data &amp; AI Engineer</div>
               </div>
-              <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono bg-black/70 backdrop-blur-md text-emerald-400 border border-emerald-500/40 shadow-lg">
+              <div
+                class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono bg-black/70 backdrop-blur-md text-emerald-400 border border-emerald-500/40 shadow-lg">
                 <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
                 <span>Activo</span>
               </div>
@@ -228,7 +236,7 @@
 
     <!-- CORE SECTION: PROYECTOS (Centrado al 100% en proyectos reales con imágenes) -->
     <section id="proyectos" class="py-14 sm:py-20 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      
+
       <!-- Título de Sección y Descripción -->
       <div class="mb-5">
         <h2 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
@@ -243,19 +251,24 @@
       <!-- Barra de Botones: Todos estrictamente en una sola fila continua -->
       <div class="w-full pb-3 mb-8 border-b border-neutral-800/80 overflow-x-auto no-scrollbar">
         <div class="inline-flex flex-row flex-nowrap items-center gap-2 sm:gap-2.5">
-          <button onclick="filterProjects('all', this)" data-filter="all" class="filter-btn active px-4 py-2 rounded-xl text-xs sm:text-sm font-medium whitespace-nowrap flex-shrink-0 transition-colors">
-            Todos (5)
+          <button onclick="filterProjects('all', this)" data-filter="all"
+            class="filter-btn active px-4 py-2 rounded-xl text-xs sm:text-sm font-medium whitespace-nowrap flex-shrink-0 transition-colors">
+            Todos (7)
           </button>
-          <button onclick="filterProjects('tfg', this)" data-filter="tfg" class="filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-medium whitespace-nowrap flex-shrink-0 transition-colors">
+          <button onclick="filterProjects('tfg', this)" data-filter="tfg"
+            class="filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-medium whitespace-nowrap flex-shrink-0 transition-colors">
             TFG
           </button>
-          <button onclick="filterProjects('academicos', this)" data-filter="academicos" class="filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-medium whitespace-nowrap flex-shrink-0 transition-colors">
+          <button onclick="filterProjects('academicos', this)" data-filter="academicos"
+            class="filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-medium whitespace-nowrap flex-shrink-0 transition-colors">
             Proyectos Académicos
           </button>
-          <button onclick="filterProjects('personales', this)" data-filter="personales" class="filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-medium whitespace-nowrap flex-shrink-0 transition-colors">
+          <button onclick="filterProjects('personales', this)" data-filter="personales"
+            class="filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-medium whitespace-nowrap flex-shrink-0 transition-colors">
             Proyectos Personales
           </button>
-          <button onclick="filterProjects('profesionales', this)" data-filter="profesionales" class="filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-medium whitespace-nowrap flex-shrink-0 transition-colors">
+          <button onclick="filterProjects('profesionales', this)" data-filter="profesionales"
+            class="filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-medium whitespace-nowrap flex-shrink-0 transition-colors">
             Proyectos Profesionales
           </button>
         </div>
@@ -373,16 +386,15 @@
               Ingeniería de datos e Inteligencia Artificial
             </h2>
             <p class="text-neutral-300 text-sm leading-relaxed mb-4">
-              Actualmente desempeño mi actividad profesional en el ámbito de la <strong class="text-white">ingeniería de
-                datos</strong>, trabajando en la ingesta, modelado y tratamiento de información para alimentar sistemas
-              y flujos de análisis.
+              Actualmente desempeño mi actividad profesional en <strong class="text-white">ingeniería de
+                datos</strong> para Smart Cities y plataformas territoriales, desarrollando pipelines ETL con Pentaho (Kettle), gestión de contexto en tiempo real con FIWARE (Orion y Cygnus) y analítica con cuadros de mando en URBO.
             </p>
             <p class="text-neutral-300 text-sm leading-relaxed">
               Mi perfil se sustenta sobre una formación técnica especializada en <strong class="text-white">Inteligencia
                 Artificial</strong>: graduado en Tecnología Digital y Multimedia por la <strong
                 class="text-white">UPV</strong> y con estancia académica cursando materias del Máster en IA de la
-              <strong class="text-white">Università di Bologna</strong>, con foco en modelos generativos (<em
-                class="not-italic text-neutral-200">Flow Matching, Diffusion</em>) y visión por computador.
+              <strong class="text-white">Università di Bologna</strong>, con foco en modelos generativos y visión por
+              computador.
             </p>
           </div>
 
@@ -411,7 +423,8 @@
                 class="text-blue-400 hover:text-blue-300 font-semibold text-xs flex items-center gap-1">
                 <span>Ver CV completo en navegador</span>
                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
                 </svg>
               </a>
             </div>
@@ -492,7 +505,8 @@
         <a href="https://www.linkedin.com/in/david-valls-lozano/" target="_blank" rel="noopener noreferrer"
           class="hover:text-white transition-colors">LinkedIn</a>
         <a href="mailto:dvdvalls04@gmail.com" class="hover:text-white transition-colors">Email</a>
-        <a href="assets/David_Valls_Lozano_CV.pdf" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">CV (PDF)</a>
+        <a href="assets/David_Valls_Lozano_CV.pdf" target="_blank" rel="noopener noreferrer"
+          class="hover:text-white transition-colors">CV (PDF)</a>
       </div>
     </div>
   </footer>
@@ -593,7 +607,7 @@
   </div>
 
   <!-- JavaScript con Cache Buster para actualización inmediata -->
-  <script src="assets/js/main.js?v=20261122_01"></script>
+  <script src="assets/js/main.js?v=20261122_02"></script>
 </body>
 
 </html>

@@ -311,6 +311,110 @@ const projectsData = [
       { src: "assets/images/matriculas-contornos.png", caption: "Procesamiento por contornos y gradientes morfológicos en OpenCV" },
       { src: "assets/images/matriculas-benchmark.png", caption: "Comparativa visual de resultados y lectura OCR" }
     ]
+  },
+  {
+    id: "pid-turismo",
+    title: "PID: Plataforma Inteligente de Destinos",
+    category: ["profesionales"],
+    type: "Proyecto Profesional · Smart Destination & Data Platform",
+    institution: "Ministerio de Industria y Turismo / SEGITTUR · URBO",
+    badgeColor: "emerald",
+    repoType: "professional",
+    repoUrl: "https://www.plataformainteligentedestinos.es/es",
+    repoPrivate: true,
+    shortDescription: "Ingesta, orquestación y analítica de datos territoriales para la Plataforma Inteligente de Destinos (SEGITTUR) en Álava, Cáceres, Granada y Getafe, integrando pipelines ETL con Pentaho, arquitectura FIWARE y cuadros de mando en URBO.",
+    featuredImage: "assets/images/pid-preview.svg",
+    tags: ["Pentaho PDI (Kettle)", "FIWARE Orion", "Cygnus", "URBO", "Cubos OLAP", "JPivot", "REST APIs", "CDE Dashboards", "Smart Tourism"],
+    metrics: [
+      { label: "Destinos Desplegados", value: "Álava, Cáceres, Granada, Getafe" },
+      { label: "Gestión de Contexto", value: "FIWARE Orion Broker" },
+      { label: "Pipelines ETL / ELT", value: "Pentaho Kettle" },
+      { label: "Analítica & BI", value: "Cubos OLAP & CDE" }
+    ],
+    overview: `
+      La Plataforma Inteligente de Destinos (PID) es una iniciativa estratégica tractora promovida por el Ministerio de Industria y Turismo del Gobierno de España a través de SEGITTUR. Su misión es dotar a los destinos turísticos nacionales de una infraestructura tecnológica soberana que homogenice, integre e interprete grandes volúmenes de datos heterogéneos (flujos de movilidad urbana, ocupación hotelera, gasto turístico con tarjetas, afluencia en tiempo real, consumo de recursos y oferta cultural).
+
+      En este marco, colaboro activamente en el despliegue e integración técnica para cuatro destinos emblemáticos con casuísticas territoriales diferenciadas: Álava, Cáceres, Granada y Getafe. El reto reside en la gran dispersión y disparidad de fuentes de datos (desde APIs REST de operadores y sensores IoT en vía pública hasta ficheros tabulares abiertos), requiriendo una estandarización rigurosa bajo modelos semánticos comunes (FIWARE Smart Data Models) para garantizar la interoperabilidad vertical y horizontal.
+    `,
+    architecture: `
+      La solución técnica se implementa dentro del ecosistema URBO y se articula en cuatro capas fundamentales:
+
+      1. Ingesta Heterogénea y Transformación de Datos (ETL/ELT con Pentaho PDI):
+         - Diseño y ejecución de transformaciones y jobs en Pentaho Data Integration (Kettle) para extraer información periódica y en tiempo real desde APIs REST, bases de datos relacionales, feeds de transporte y fuentes abiertas.
+         - Limpieza, reconciliación de entidades territoriales y conversión de formatos semiestructurados (JSON, XML, CSV) a especificaciones normalizadas.
+
+      2. Gestión de Contexto en Tiempo Real (FIWARE Orion Context Broker):
+         - Publicación y actualización continua de entidades de contexto mediante operaciones CRUD atómicas sobre Orion.
+         - Modelado estructurado bajo FIWARE Smart Data Models (Destination, PointOfInterest, WeatherObserved, TrafficFlowObserved).
+         - Configuración de suscripciones a eventos y notificaciones asíncronas para disparar flujos orientados a contexto.
+
+      3. Persistencia Estructurada y Series Temporales (Cygnus):
+         - Conexión de Cygnus como sink de persistencia conectado al Orion Broker.
+         - Almacenamiento histórico de series temporales de indicadores de contexto para su explotación analítica posterior sin degradar la latencia del broker operacional.
+
+      4. Modelado Multidimensional (Cubos OLAP & JPivot) y Business Intelligence (URBO):
+         - Diseño y construcción de cubos analíticos OLAP para exploración multidimensional agregada (tiempo, geolocalización, tipología turística).
+         - Integración de herramientas como JPivot para navegación por drill-down y slice-and-dice de métricas complejas.
+         - Desarrollo de cuadros de mando interactivos (CDE - Community Dashboard Editor) en URBO, facilitando a los gestores de los destinos la monitorización visual y la toma de decisiones informada.
+    `,
+    results: `
+      - Despliegue operativo de pipelines de datos y cuadros de mando adaptados a los requerimientos de gobernanza de Álava, Cáceres, Granada y Getafe.
+      - Estandarización de más de 30 fuentes de datos heterogéneas bajo el marco semántico europeo FIWARE.
+      - Habilitación de paneles analíticos interactivos y cubos OLAP con tiempos de consulta agregada sub-segundo para análisis de estacionalidad, aforos e impacto económico territorial.
+    `,
+    gallery: [
+      { src: "assets/images/pid-preview.svg", caption: "Arquitectura Técnica Integral de la Plataforma Inteligente de Destinos (PID)" }
+    ]
+  },
+  {
+    id: "impulso-vlci",
+    title: "Impulso VLCi: Plataforma Smart City de València",
+    category: ["profesionales"],
+    type: "Proyecto Profesional · Smart City & IoT Platform",
+    institution: "Ajuntament de València · Plataforma VLCi",
+    badgeColor: "blue",
+    repoType: "professional",
+    repoUrl: "https://smartcity.valencia.es/vlci/plataforma-vlci/",
+    repoPrivate: true,
+    shortDescription: "Mantenimiento y evolución técnica de la plataforma de ciudad inteligente Impulso VLCi del Ayuntamiento de Valencia, orquestando flujos de datos urbanos mediante el estándar FIWARE, Pentaho PDI y gestión de contexto.",
+    featuredImage: "assets/images/vlci-preview.svg",
+    tags: ["FIWARE Orion", "Cygnus", "Pentaho PDI (Kettle)", "Smart City", "Event-Driven", "IoT Context Broker", "URBO", "Open Data"],
+    metrics: [
+      { label: "Estándar Urbano", value: "FIWARE Compliant" },
+      { label: "Motor de Contexto", value: "Orion Context Broker" },
+      { label: "Persistencia", value: "Cygnus Historic Engine" },
+      { label: "Ámbito Territorial", value: "Ciudad de València" }
+    ],
+    overview: `
+      La plataforma VLCi (València Ciudad Inteligente) del Ajuntament de València fue la primera plataforma de ciudad inteligente de España 100% conforme a los estándares europeos de la Unión Europea y la iniciativa FIWARE. Conecta de forma centralizada la operativa de los servicios públicos municipales: sensores de tráfico y movilidad, redes de calidad del aire y ruido, alumbrado inteligente, gestión de residuos y eficiencia energética en edificios públicos.
+
+      Participo en las labores de mantenimiento evolutivo, monitoreo de integridad y soporte de ingeniería de datos para la infraestructura de Impulso VLCi, garantizando la fiabilidad continua en la sincronización de flujos de contexto que alimentan el cuadro de mando de ciudad y el portal municipal de datos abiertos.
+    `,
+    architecture: `
+      La arquitectura tecnológica se fundamenta en componentes open source certificados FIWARE:
+
+      1. Orquestación del Contexto Urbano (FIWARE Orion Context Broker):
+         - Mantenimiento y supervisión del bróker de contexto Orion para la gestión de entidades urbanas en tiempo real.
+         - Ejecución y validación de operaciones CRUD masivas sobre entidades de sensores, paradas de transporte y estaciones meteorológicas.
+         - Gestión y depuración de suscripciones a eventos de contexto (context subscriptions) para el procesamiento reactivo de incidencias urbanas.
+
+      2. Ingesta y Pipelines de Sincronización (Pentaho Data Integration):
+         - Actualización y monitoreo de transformaciones Kettle para la extracción programada desde sistemas departamentales y repositorios municipales.
+         - Aseguramiento de la calidad de datos (validación de esquemas, detección de valores atípicos y normalización geográfica).
+
+      3. Almacenamiento Histórico e Inteligencia de Datos (Cygnus & URBO):
+         - Canalización continua de eventos de contexto hacia sistemas de persistencia histórica mediante Cygnus.
+         - Consolidación de datos temporales para análisis longitudinal de tendencias de tráfico, emisiones ambientales y consumo de servicios públicos.
+         - Soporte a la alimentación de cuadros de mando estratégicos de la plataforma URBO para el personal técnico municipal.
+    `,
+    results: `
+      - Garantía de alta disponibilidad y consistencia en el procesamiento de millones de eventos y lecturas sensoriales urbanas.
+      - Automatización de procesos de sincronización entre servicios operacionales municipales y la capa analítica de contexto.
+      - Soporte continuo a la infraestructura Smart City que posiciona a Valencia como referente internacional en digitalización urbana abierta y estandarizada.
+    `,
+    gallery: [
+      { src: "assets/images/vlci-preview.svg", caption: "Arquitectura de la Plataforma de Ciudad Inteligente Impulso VLCi (València)" }
+    ]
   }
 ];
 
@@ -341,8 +445,8 @@ function renderProjects(filter = 'all') {
     // Proyectos Personales: Jarvis y FinTrack
     filtered = projectsData.filter(p => p.id === 'jarvis' || p.id === 'fintrack' || (p.category && p.category.some(c => c.includes('person'))));
   } else if (f === 'profesionales' || f === 'profesional' || f.includes('profesion')) {
-    // Proyectos Profesionales: vacíos por ahora
-    filtered = projectsData.filter(p => p.category && p.category.some(c => c.includes('profesion')));
+    // Proyectos Profesionales: PID y VLCi
+    filtered = projectsData.filter(p => p.id === 'pid-turismo' || p.id === 'impulso-vlci' || (p.category && p.category.some(c => c.includes('profesion'))));
   } else {
     filtered = projectsData.filter(p => p.category && p.category.includes(f));
   }
