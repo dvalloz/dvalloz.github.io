@@ -3,7 +3,7 @@
 const projectsData = [
   {
     id: "ssb-oct",
-    title: "SSB-OCT: IA Generativa en Imágenes Médicas",
+    title: "Inteligencia artificial generativa para el cambio de dominio en imágenes oftalmológicas OCT",
     category: ["tfg"],
     type: "TFG · Investigación Avanzada",
     institution: "UPV (ETSIT) & Università di Bologna",
@@ -323,7 +323,7 @@ const projectsData = [
     repoUrl: "https://www.plataformainteligentedestinos.es/es",
     repoPrivate: true,
     shortDescription: "Ingesta, orquestación y analítica de datos territoriales para la Plataforma Inteligente de Destinos (SEGITTUR) en Álava, Cáceres, Granada y Getafe, integrando pipelines ETL con Pentaho, arquitectura FIWARE y cuadros de mando en URBO.",
-    featuredImage: "assets/images/pid-preview.svg",
+    featuredImage: "assets/images/pid-preview.png",
     tags: ["Pentaho PDI (Kettle)", "FIWARE Orion", "Cygnus", "URBO", "Cubos OLAP", "JPivot", "REST APIs", "CDE Dashboards", "Smart Tourism"],
     metrics: [
       { label: "Destinos Desplegados", value: "Álava, Cáceres, Granada, Getafe" },
@@ -363,7 +363,8 @@ const projectsData = [
       - Habilitación de paneles analíticos interactivos y cubos OLAP con tiempos de consulta agregada sub-segundo para análisis de estacionalidad, aforos e impacto económico territorial.
     `,
     gallery: [
-      { src: "assets/images/pid-preview.svg", caption: "Arquitectura Técnica Integral de la Plataforma Inteligente de Destinos (PID)" }
+      { src: "assets/images/pid-preview.png", caption: "Identidad Visual y Arquitectura Conceptual de la Plataforma Inteligente de Destinos (SEGITTUR)" },
+      { src: "assets/images/pid-dashboard.png", caption: "Interfaz Operativa y Visualización Territorial de la Plataforma de Destinos" }
     ]
   },
   {
@@ -377,7 +378,7 @@ const projectsData = [
     repoUrl: "https://smartcity.valencia.es/vlci/plataforma-vlci/",
     repoPrivate: true,
     shortDescription: "Mantenimiento y evolución técnica de la plataforma de ciudad inteligente Impulso VLCi del Ayuntamiento de Valencia, orquestando flujos de datos urbanos mediante el estándar FIWARE, Pentaho PDI y gestión de contexto.",
-    featuredImage: "assets/images/vlci-preview.svg",
+    featuredImage: "assets/images/vlci-preview.jpg",
     tags: ["FIWARE Orion", "Cygnus", "Pentaho PDI (Kettle)", "Smart City", "Event-Driven", "IoT Context Broker", "URBO", "Open Data"],
     metrics: [
       { label: "Estándar Urbano", value: "FIWARE Compliant" },
@@ -413,7 +414,8 @@ const projectsData = [
       - Soporte continuo a la infraestructura Smart City que posiciona a Valencia como referente internacional en digitalización urbana abierta y estandarizada.
     `,
     gallery: [
-      { src: "assets/images/vlci-preview.svg", caption: "Arquitectura de la Plataforma de Ciudad Inteligente Impulso VLCi (València)" }
+      { src: "assets/images/vlci-preview.jpg", caption: "Plataforma Smart City Valencia · Arquitectura Thinking City Powered by FIWARE" },
+      { src: "assets/images/vlci-idom.png", caption: "Despliegue y Consultoría Tecnológica Impulso VLCi (València Smart City)" }
     ]
   }
 ];
@@ -467,7 +469,7 @@ function renderProjects(filter = 'all') {
   }
 
   container.innerHTML = filtered.map(p => createProjectCardHTML(p)).join('');
-  
+
   // Re-attach card click listeners
   document.querySelectorAll('.open-modal-trigger').forEach(btn => {
     btn.addEventListener('click', (e) => {
@@ -596,7 +598,7 @@ function createProjectCardHTML(project) {
 }
 
 // Global filter trigger
-window.filterProjects = function(category, element) {
+window.filterProjects = function (category, element) {
   const filterButtons = document.querySelectorAll('.filter-btn');
   filterButtons.forEach(b => b.classList.remove('active'));
   if (element) {
